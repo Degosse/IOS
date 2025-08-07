@@ -14,7 +14,7 @@ import { Calendar, FileText, ChevronRight } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import Button from '@/components/Button';
 import { useReceiptStore } from '@/store/receiptStore';
-import { formatDate } from '@/utils/formatters';
+import { formatDate } from '@/utils/formatter';
 import { useTranslation } from '@/hooks/useTranslation';
 
 export default function GenerateReportScreen() {

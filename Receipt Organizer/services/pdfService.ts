@@ -1,7 +1,7 @@
 import * as FileSystem from 'expo-file-system';
 import { Platform, Alert } from 'react-native';
 import { Receipt } from '@/types/receipt';
-import { formatCurrency, formatDate } from '@/utils/formatters';
+import { formatCurrency, formatDate } from '@/utils/formatter';
 import * as ImageManipulator from 'expo-image-manipulator';
 
 // This is a mock PDF service since we can't actually generate PDFs in this environment

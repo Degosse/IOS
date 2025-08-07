@@ -15,7 +15,7 @@ import { Download, Share2, Printer, FileText } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import Button from '@/components/Button';
 import { useReceiptStore } from '@/store/receiptStore';
-import { formatCurrency, formatDate } from '@/utils/formatters';
+import { formatCurrency, formatDate } from '@/utils/formatter';
 import * as Haptics from 'expo-haptics';
 import { shareFile } from '@/utils/sharing';
 import { generateReportPdf } from '@/services/pdfService';

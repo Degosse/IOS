@@ -5,7 +5,7 @@ import { FileText, Download, Share2, Calendar } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import Button from '@/components/Button';
 import { useReceiptStore } from '@/store/receiptStore';
-import { formatCurrency } from '@/utils/formatters';
+import { formatCurrency } from '@/utils/formatter';
 
 export default function ReportsScreen() {
   const router = useRouter();

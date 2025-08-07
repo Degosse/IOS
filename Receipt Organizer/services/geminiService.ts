@@ -1,5 +1,6 @@
 import { Platform } from 'react-native';
 import * as FileSystem from 'expo-file-system';
+import Constants from 'expo-constants';
 
 // Types for Gemini API
 interface GeminiResponse {
@@ -22,8 +23,19 @@ interface ReceiptAnalysisResult {
   error?: string;
 }
 
-// Embedded API key - not exposed to end users
-const GEMINI_API_KEY = "AIzaSyA0KAKmK7ffkuhs35f9XF1ZNqkn-Zp4hVk";
+// Get API key from environment variables (secure method)
+const getApiKey = (): string => {
+  // For production builds, the key should be in Constants.expoConfig.extra
+  const apiKey = Constants.expoConfig?.extra?.geminiApiKey || 
+                 // For development, fallback to environment variable
+                 (typeof process !== 'undefined' ? process.env.EXPO_PUBLIC_GEMINI_API_KEY : null);
+  
+  if (!apiKey) {
+    throw new Error('Gemini API key not configured. Please set EXPO_PUBLIC_GEMINI_API_KEY in your .env file or configure it in app.json extra field.');
+  }
+  
+  return apiKey;
+};
 
 export async function analyzeReceiptImage(imageUri: string): Promise<ReceiptAnalysisResult> {
   try {
@@ -156,7 +168,8 @@ async function processImageWithGemini(imageData: string, isUrl: boolean): Promis
 
   try {
     console.log('Sending request to Gemini API');
-    const response = await fetch(`${apiUrl}?key=${GEMINI_API_KEY}`, {
+    const apiKey = getApiKey();
+    const response = await fetch(`${apiUrl}?key=${apiKey}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

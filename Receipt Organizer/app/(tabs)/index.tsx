@@ -6,7 +6,7 @@ import { useReceiptStore } from '@/store/receiptStore';
 import ReceiptItem from '@/components/ReceiptItem';
 import EmptyState from '@/components/EmptyState';
 import Colors from '@/constants/colors';
-import { formatCurrency } from '@/utils/formatters';
+import { formatCurrency } from '@/utils/formatter';
 import { Search, Filter } from 'lucide-react-native';
 
 export default function ReceiptsScreen() {

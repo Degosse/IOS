@@ -13,6 +13,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "extra": {
+      "geminiApiKey": "AIzaSyA0KAKmK7ffkuhs35f9XF1ZNqkn-Zp4hVk"
+    },
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "app.rork.receipt-organizer-pro-udw49n7",

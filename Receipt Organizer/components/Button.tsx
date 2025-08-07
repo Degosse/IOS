@@ -109,7 +109,7 @@ export default function Button({
             style={[
               styles.text,
               { color: getTextColor(), fontSize: getFontSize() },
-              icon && styles.textWithIcon,
+              icon ? styles.textWithIcon : null,
               textStyle,
             ]}
           >

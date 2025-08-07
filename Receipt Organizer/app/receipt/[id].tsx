@@ -14,7 +14,7 @@ import { useRouter, useLocalSearchParams, Stack } from 'expo-router';
 import { Edit2, Trash2, Share2, FileText, Download } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { useReceiptStore } from '@/store/receiptStore';
-import { formatCurrency, formatDate } from '@/utils/formatters';
+import { formatCurrency, formatDate } from '@/utils/formatter';
 import * as Haptics from 'expo-haptics';
 import { shareFile } from '@/utils/sharing';
 import { generateReceiptPdf, convertImageToPdf } from '@/services/pdfService';

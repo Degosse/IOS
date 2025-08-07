@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Pressable, Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Receipt } from '@/types/receipt';
 import Colors from '@/constants/colors';
-import { formatCurrency } from '@/utils/formatters';
+import { formatCurrency } from '@/utils/formatter';
 
 interface ReceiptItemProps {
   receipt: Receipt;
