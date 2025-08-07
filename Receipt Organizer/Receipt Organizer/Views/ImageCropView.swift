@@ -132,7 +132,8 @@ class CropViewController: UIViewController {
         )
         
         guard let cgImage = image.cgImage?.cropping(to: scaledCropRect) else { return nil }
-        return UIImage(cgImage: cgImage)
+        // Preserve the original image orientation
+        return UIImage(cgImage: cgImage, scale: image.scale, orientation: image.imageOrientation)
     }
 }
 

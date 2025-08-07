@@ -129,7 +129,7 @@ class PDFExporter {
         }
     }
     
-    static func shareDocument(data: Data, filename: String, from viewController: UIViewController) {
+    static func sharePDFDocument(data: Data, filename: String, from viewController: UIViewController) {
         let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent(filename)
         
         do {
@@ -137,6 +137,11 @@ class PDFExporter {
             
             let activityVC = UIActivityViewController(activityItems: [tempURL], applicationActivities: nil)
             activityVC.excludedActivityTypes = [.assignToContact, .saveToCameraRoll]
+            
+            // Clean up temporary file after sharing
+            activityVC.completionWithItemsHandler = { _, _, _, _ in
+                try? FileManager.default.removeItem(at: tempURL)
+            }
             
             if let popover = activityVC.popoverPresentationController {
                 popover.sourceView = viewController.view
@@ -146,7 +151,7 @@ class PDFExporter {
             
             viewController.present(activityVC, animated: true)
         } catch {
-            print("Error sharing document: \(error)")
+            print("Error sharing PDF: \(error)")
         }
     }
 }

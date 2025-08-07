@@ -16,6 +16,7 @@ struct AddReceiptView: View {
     
     @State private var showingCamera = false
     @State private var showingCropper = false
+    @State private var showingCropConfirmation = false
     @State private var selectedPhotoItem: PhotosPickerItem?
     @State private var capturedImage: UIImage?
     @State private var croppedImage: UIImage?
@@ -76,9 +77,25 @@ struct AddReceiptView: View {
             } message: {
                 Text(analysisError ?? "Unknown error occurred")
             }
+            .confirmationDialog("Crop Receipt?", isPresented: $showingCropConfirmation) {
+                Button("Crop Image") {
+                    showingCropper = true
+                }
+                Button("Use as is") {
+                    if let image = capturedImage {
+                        croppedImage = image
+                    }
+                }
+                Button("Cancel", role: .cancel) {
+                    capturedImage = nil
+                    selectedPhotoItem = nil
+                }
+            } message: {
+                Text("Would you like to crop the image to focus on the receipt?")
+            }
             .onChange(of: capturedImage) { oldValue, newValue in
                 if newValue != nil {
-                    showingCropper = true
+                    showingCropConfirmation = true
                 }
             }
             .onChange(of: croppedImage) { oldValue, newValue in

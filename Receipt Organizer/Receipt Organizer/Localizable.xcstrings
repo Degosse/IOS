@@ -134,6 +134,9 @@
         }
       }
     },
+    "Crop" : {
+
+    },
     "Crop Image" : {
       "localizations" : {
         "nl" : {
@@ -151,6 +154,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bon Bijsnijden"
+          }
+        }
+      }
+    },
+    "Crop Receipt?" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bon bijsnijden?"
           }
         }
       }
@@ -179,6 +192,16 @@
     },
     "Edit" : {
 
+    },
+    "Edit Image" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afbeelding Bewerken"
+          }
+        }
+      }
     },
     "Edit Receipt" : {
       "localizations" : {
@@ -234,6 +257,7 @@
     },
     "Export Receipt Images" : {
       "comment" : "Export option",
+      "extractionState" : "stale",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
@@ -245,6 +269,7 @@
     },
     "Failed to create archive" : {
       "comment" : "Export error",
+      "extractionState" : "stale",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
@@ -261,6 +286,32 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "PDF aanmaken mislukt"
+          }
+        }
+      }
+    },
+    "Failed to prepare document for sharing" : {
+      "comment" : "Export error"
+    },
+    "Failed to prepare images for sharing" : {
+      "comment" : "Export error",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afbeeldingen voorbereiden voor delen mislukt"
+          }
+        }
+      }
+    },
+    "Failed to save images: %@" : {
+      "comment" : "Save error",
+      "extractionState" : "stale",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afbeeldingen opslaan mislukt: %@"
           }
         }
       }
@@ -307,8 +358,22 @@
     "No data available" : {
 
     },
+    "No image available" : {
+
+    },
     "No Image Available" : {
 
+    },
+    "No images to export." : {
+      "comment" : "Export error",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geen afbeeldingen om te exporteren."
+          }
+        }
+      }
     },
     "No receipts for selected period" : {
       "comment" : "Export error",
@@ -360,8 +425,40 @@
         }
       }
     },
+    "Orientation" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oriëntatie"
+          }
+        }
+      }
+    },
     "Period" : {
 
+    },
+    "Photo library access denied. Please enable it in Settings." : {
+      "comment" : "Photo access error",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toegang tot fotobibliotheek geweigerd. Schakel dit in via Instellingen."
+          }
+        }
+      }
+    },
+    "Photo library access not determined." : {
+      "comment" : "Photo access error",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toegang tot fotobibliotheek niet bepaald."
+          }
+        }
+      }
     },
     "Q%lld" : {
 
@@ -426,6 +523,27 @@
         }
       }
     },
+    "Reset" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resetten"
+          }
+        }
+      }
+    },
+    "Reset Changes?" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wijzigingen resetten?"
+          }
+        }
+      }
+    },
     "Restaurant" : {
       "comment" : "PDF header",
       "localizations" : {
@@ -436,9 +554,6 @@
           }
         }
       }
-    },
-    "Restaurant Details" : {
-
     },
     "Restaurant Name" : {
 
@@ -456,6 +571,20 @@
         }
       }
     },
+    "Save Changes" : {
+
+    },
+    "Save Images to Photos" : {
+      "comment" : "Export option",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afbeeldingen Opslaan in Foto's"
+          }
+        }
+      }
+    },
     "Search receipts..." : {
 
     },
@@ -466,6 +595,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selecteer een foto van uw bon"
+          }
+        }
+      }
+    },
+    "Share Images as Files" : {
+      "comment" : "Export option",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afbeeldingen Delen als Bestanden"
           }
         }
       }
@@ -488,6 +628,20 @@
 
     },
     "Tap the camera button to add your first receipt" : {
+
+    },
+    "This will reset all changes made to the image." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dit zal alle wijzigingen aan de afbeelding ongedaan maken."
+          }
+        }
+      }
+    },
+    "This will reset the image to its original state. All changes will be lost." : {
 
     },
     "Top Expenses by Restaurant" : {
@@ -514,6 +668,9 @@
         }
       }
     },
+    "Unable to share document" : {
+      "comment" : "Export error"
+    },
     "Unknown" : {
       "comment" : "Unknown restaurant",
       "localizations" : {
@@ -532,6 +689,37 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Onbekende fout opgetreden"
+          }
+        }
+      }
+    },
+    "Unknown photo library error." : {
+      "comment" : "Photo access error",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onbekende fotobibliotheek fout."
+          }
+        }
+      }
+    },
+    "Use as is" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gebruik zoals het is"
+          }
+        }
+      }
+    },
+    "Would you like to crop the image to focus on the receipt?" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wil je de afbeelding bijsnijden om op de bon te focussen?"
           }
         }
       }

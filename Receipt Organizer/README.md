@@ -14,7 +14,7 @@ A sleek iOS app designed to help you capture, organize, and manage your receipts
   - Date of purchase
   - Restaurant/store name  
   - Total price
-- API integration with your provided key: `AIzaSyA0KAKmK7ffkuhs35f9XF1ZNqkn-Zp4hVk`
+
 
 ### 📊 Smart Organization
 - Automatically stores receipts with extracted data

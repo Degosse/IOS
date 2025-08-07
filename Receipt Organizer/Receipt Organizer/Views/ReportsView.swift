@@ -20,6 +20,7 @@ struct ReportsView: View {
     @State private var showingExportOptions = false
     @State private var showingExportError = false
     @State private var exportError: String?
+    @State private var isExporting = false
     
     private var availableYears: [Int] {
         let years = Set(receipts.map { Calendar.current.component(.year, from: $0.date) })
@@ -119,8 +120,11 @@ struct ReportsView: View {
                         .default(Text(NSLocalizedString("Export PDF", comment: "Export option"))) {
                             exportPDFReport()
                         },
-                        .default(Text(NSLocalizedString("Export Receipt Images", comment: "Export option"))) {
-                            exportReceiptImages()
+                        .default(Text(NSLocalizedString("Save Images to Photos", comment: "Export option"))) {
+                            saveImagesToPhotos()
+                        },
+                        .default(Text(NSLocalizedString("Share Images as Files", comment: "Export option"))) {
+                            shareImagesAsFiles()
                         },
                         .cancel(Text(NSLocalizedString("Cancel", comment: "Cancel button")))
                     ]
@@ -328,6 +332,15 @@ struct ReportsView: View {
     }
     
     private func exportPDFReport() {
+        guard !isExporting else { return }
+        isExporting = true
+        
+        defer {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                isExporting = false
+            }
+        }
+        
         guard !filteredReceipts.isEmpty else { 
             showingExportError = true
             exportError = NSLocalizedString("No receipts for selected period", comment: "Export error")
@@ -360,7 +373,44 @@ struct ReportsView: View {
         sharePDF(data: pdfData, filename: filename)
     }
     
-    private func exportReceiptImages() {
+    private func saveImagesToPhotos() {
+        guard !isExporting else { return }
+        isExporting = true
+        
+        defer {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                isExporting = false
+            }
+        }
+        
+        guard !filteredReceipts.isEmpty else { 
+            showingExportError = true
+            exportError = NSLocalizedString("No receipts for selected period", comment: "Export error")
+            return 
+        }
+        
+        ImageExporter.saveImagesToPhotos(receipts: filteredReceipts) { result in
+            switch result {
+            case .success(let count):
+                // Success feedback could be added here if desired
+                print("Successfully saved \(count) images to Photos")
+            case .failure(let error):
+                showingExportError = true
+                exportError = error.localizedDescription
+            }
+        }
+    }
+    
+    private func shareImagesAsFiles() {
+        guard !isExporting else { return }
+        isExporting = true
+        
+        defer {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                isExporting = false
+            }
+        }
+        
         guard !filteredReceipts.isEmpty else { 
             showingExportError = true
             exportError = NSLocalizedString("No receipts for selected period", comment: "Export error")
@@ -378,68 +428,70 @@ struct ReportsView: View {
             periodString = String(selectedYear)
         }
         
-        guard let archiveData = ZipExporter.createReceiptImagesZip(
-            receipts: filteredReceipts,
-            period: periodString
-        ) else {
+        guard let imageURLs = ImageExporter.prepareImagesForSharing(receipts: filteredReceipts, period: periodString) else {
             showingExportError = true
-            exportError = NSLocalizedString("Failed to create archive", comment: "Export error")
+            exportError = NSLocalizedString("Failed to prepare images for sharing", comment: "Export error")
             return
         }
         
-        let filename = "ReceiptImages_\(periodString).tar"
-        shareZip(data: archiveData, filename: filename)
+        // Find the topmost view controller to present the share sheet
+        if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
+           let window = scene.windows.first(where: \.isKeyWindow),
+           let rootViewController = window.rootViewController {
+            
+            var topController = rootViewController
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
+            
+            ImageExporter.shareImages(imageURLs: imageURLs, from: topController)
+        }
     }
-    
+
     private func sharePDF(data: Data, filename: String) {
+        // Use temporary directory for better compatibility
         let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent(filename)
         
         do {
             try data.write(to: tempURL)
             
-            let activityVC = UIActivityViewController(activityItems: [tempURL], applicationActivities: nil)
-            activityVC.excludedActivityTypes = [.assignToContact, .saveToCameraRoll]
-            
-            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-               let window = windowScene.windows.first,
-               let rootVC = window.rootViewController {
+            DispatchQueue.main.async {
+                let activityVC = UIActivityViewController(activityItems: [tempURL], applicationActivities: nil)
+                activityVC.excludedActivityTypes = [.assignToContact, .saveToCameraRoll]
                 
-                if let popover = activityVC.popoverPresentationController {
-                    popover.sourceView = rootVC.view
-                    popover.sourceRect = CGRect(x: rootVC.view.bounds.midX, y: rootVC.view.bounds.midY, width: 0, height: 0)
-                    popover.permittedArrowDirections = []
+                // Add completion handler to clean up temporary file
+                activityVC.completionWithItemsHandler = { _, _, _, _ in
+                    try? FileManager.default.removeItem(at: tempURL)
                 }
                 
-                rootVC.present(activityVC, animated: true)
+                // Find the topmost view controller
+                if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
+                   let window = scene.windows.first(where: \.isKeyWindow),
+                   let rootVC = window.rootViewController {
+                    
+                    var topVC = rootVC
+                    while let presentedVC = topVC.presentedViewController {
+                        topVC = presentedVC
+                    }
+                    
+                    if let popover = activityVC.popoverPresentationController {
+                        popover.sourceView = topVC.view
+                        popover.sourceRect = CGRect(x: topVC.view.bounds.midX, y: topVC.view.bounds.midY, width: 0, height: 0)
+                        popover.permittedArrowDirections = []
+                    }
+                    
+                    topVC.present(activityVC, animated: true)
+                } else {
+                    // Fallback: clean up if we can't present
+                    try? FileManager.default.removeItem(at: tempURL)
+                    showingExportError = true
+                    exportError = NSLocalizedString("Unable to share document", comment: "Export error")
+                }
             }
         } catch {
             print("Error sharing PDF: \(error)")
-        }
-    }
-    
-    private func shareZip(data: Data, filename: String) {
-        let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent(filename)
-        
-        do {
-            try data.write(to: tempURL)
-            
-            let activityVC = UIActivityViewController(activityItems: [tempURL], applicationActivities: nil)
-            activityVC.excludedActivityTypes = [.assignToContact, .saveToCameraRoll]
-            
-            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-               let window = windowScene.windows.first,
-               let rootVC = window.rootViewController {
-                
-                if let popover = activityVC.popoverPresentationController {
-                    popover.sourceView = rootVC.view
-                    popover.sourceRect = CGRect(x: rootVC.view.bounds.midX, y: rootVC.view.bounds.midY, width: 0, height: 0)
-                    popover.permittedArrowDirections = []
-                }
-                
-                rootVC.present(activityVC, animated: true)
-            }
-        } catch {
-            print("Error sharing ZIP: \(error)")
+            showingExportError = true
+            exportError = NSLocalizedString("Failed to prepare document for sharing", comment: "Export error")
         }
     }
 }
