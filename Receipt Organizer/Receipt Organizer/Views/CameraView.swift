@@ -12,15 +12,31 @@ struct CameraView: UIViewControllerRepresentable {
     @Binding var image: UIImage?
     @Binding var isPresented: Bool
     
-    func makeUIViewController(context: Context) -> UIImagePickerController {
+    func makeUIViewController(context: Context) -> UIViewController {
+        // Check if camera is available
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+            // Return an alert controller if camera is not available
+            let alert = UIAlertController(
+                title: NSLocalizedString("camera_unavailable_title", value: "Camera Unavailable", comment: ""),
+                message: NSLocalizedString("camera_unavailable_message", value: "Camera is not available on this device. Please use the photo library option.", comment: ""),
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: NSLocalizedString("ok", value: "OK", comment: ""), style: .default) { _ in
+                isPresented = false
+            })
+            return alert
+        }
+        
         let picker = UIImagePickerController()
         picker.delegate = context.coordinator
         picker.sourceType = .camera
         picker.allowsEditing = false
+        picker.cameraCaptureMode = .photo
+        picker.cameraDevice = .rear
         return picker
     }
     
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
     
     func makeCoordinator() -> Coordinator {
         Coordinator(self)

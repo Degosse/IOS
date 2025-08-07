@@ -13,13 +13,14 @@ struct ImageCropView: UIViewControllerRepresentable {
     @Binding var croppedImage: UIImage?
     @Binding var isPresented: Bool
     
-    func makeUIViewController(context: Context) -> CropViewController {
+    func makeUIViewController(context: Context) -> UINavigationController {
         let cropViewController = CropViewController(image: image ?? UIImage())
         cropViewController.delegate = context.coordinator
-        return cropViewController
+        let navigationController = UINavigationController(rootViewController: cropViewController)
+        return navigationController
     }
     
-    func updateUIViewController(_ uiViewController: CropViewController, context: Context) {}
+    func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {}
     
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -138,7 +139,14 @@ class CropViewController: UIViewController {
 class CropOverlayView: UIView {
     private let borderWidth: CGFloat = 2.0
     private let cornerLength: CGFloat = 20.0
+    private let handleSize: CGFloat = 30.0
     private var _cropRect: CGRect = CGRect(x: 50, y: 50, width: 200, height: 300)
+    private var activeHandle: Handle = .none
+    private var lastPanPoint: CGPoint = .zero
+    
+    enum Handle {
+        case none, move, topLeft, topRight, bottomLeft, bottomRight, top, bottom, left, right
+    }
     
     var cropRect: CGRect {
         return _cropRect
@@ -188,6 +196,41 @@ class CropOverlayView: UIView {
         
         // Draw corner indicators
         drawCorners(in: context)
+        
+        // Draw resize handles
+        drawResizeHandles(in: context)
+    }
+    
+    private func drawResizeHandles(in context: CGContext) {
+        context.setFillColor(UIColor.white.cgColor)
+        context.setStrokeColor(UIColor.black.cgColor)
+        context.setLineWidth(1.0)
+        
+        let handles = [
+            CGPoint(x: _cropRect.minX, y: _cropRect.minY), // Top-left
+            CGPoint(x: _cropRect.maxX, y: _cropRect.minY), // Top-right
+            CGPoint(x: _cropRect.minX, y: _cropRect.maxY), // Bottom-left
+            CGPoint(x: _cropRect.maxX, y: _cropRect.maxY), // Bottom-right
+            CGPoint(x: _cropRect.midX, y: _cropRect.minY), // Top
+            CGPoint(x: _cropRect.midX, y: _cropRect.maxY), // Bottom
+            CGPoint(x: _cropRect.minX, y: _cropRect.midY), // Left
+            CGPoint(x: _cropRect.maxX, y: _cropRect.midY)  // Right
+        ]
+        
+        for handle in handles {
+            let handleRect = CGRect(
+                x: handle.x - 8,
+                y: handle.y - 8,
+                width: 16,
+                height: 16
+            )
+            
+            // Fill handle
+            context.fillEllipse(in: handleRect)
+            
+            // Stroke handle
+            context.strokeEllipse(in: handleRect)
+        }
     }
     
     private func drawCorners(in context: CGContext) {
@@ -234,21 +277,121 @@ class CropOverlayView: UIView {
     }
     
     @objc private func handlePan(_ gesture: UIPanGestureRecognizer) {
-        let translation = gesture.translation(in: self)
+        let location = gesture.location(in: self)
         
         switch gesture.state {
+        case .began:
+            activeHandle = getHandleAt(location)
+            lastPanPoint = location
+            
         case .changed:
-            let newRect = CGRect(
-                x: max(0, min(bounds.width - _cropRect.width, _cropRect.origin.x + translation.x)),
-                y: max(0, min(bounds.height - _cropRect.height, _cropRect.origin.y + translation.y)),
-                width: _cropRect.width,
-                height: _cropRect.height
-            )
+            let deltaX = location.x - lastPanPoint.x
+            let deltaY = location.y - lastPanPoint.y
+            
+            var newRect = _cropRect
+            let minSize: CGFloat = 50.0
+            
+            switch activeHandle {
+            case .move:
+                newRect.origin.x = max(0, min(bounds.width - newRect.width, newRect.origin.x + deltaX))
+                newRect.origin.y = max(0, min(bounds.height - newRect.height, newRect.origin.y + deltaY))
+                
+            case .topLeft:
+                let newWidth = newRect.maxX - max(0, min(newRect.maxX - minSize, location.x))
+                let newHeight = newRect.maxY - max(0, min(newRect.maxY - minSize, location.y))
+                newRect = CGRect(
+                    x: newRect.maxX - newWidth,
+                    y: newRect.maxY - newHeight,
+                    width: newWidth,
+                    height: newHeight
+                )
+                
+            case .topRight:
+                let newWidth = max(minSize, min(bounds.width - newRect.minX, location.x - newRect.minX))
+                let newHeight = newRect.maxY - max(0, min(newRect.maxY - minSize, location.y))
+                newRect = CGRect(
+                    x: newRect.minX,
+                    y: newRect.maxY - newHeight,
+                    width: newWidth,
+                    height: newHeight
+                )
+                
+            case .bottomLeft:
+                let newWidth = newRect.maxX - max(0, min(newRect.maxX - minSize, location.x))
+                let newHeight = max(minSize, min(bounds.height - newRect.minY, location.y - newRect.minY))
+                newRect = CGRect(
+                    x: newRect.maxX - newWidth,
+                    y: newRect.minY,
+                    width: newWidth,
+                    height: newHeight
+                )
+                
+            case .bottomRight:
+                newRect.size.width = max(minSize, min(bounds.width - newRect.minX, location.x - newRect.minX))
+                newRect.size.height = max(minSize, min(bounds.height - newRect.minY, location.y - newRect.minY))
+                
+            case .top:
+                let newHeight = newRect.maxY - max(0, min(newRect.maxY - minSize, location.y))
+                newRect = CGRect(
+                    x: newRect.minX,
+                    y: newRect.maxY - newHeight,
+                    width: newRect.width,
+                    height: newHeight
+                )
+                
+            case .bottom:
+                newRect.size.height = max(minSize, min(bounds.height - newRect.minY, location.y - newRect.minY))
+                
+            case .left:
+                let newWidth = newRect.maxX - max(0, min(newRect.maxX - minSize, location.x))
+                newRect = CGRect(
+                    x: newRect.maxX - newWidth,
+                    y: newRect.minY,
+                    width: newWidth,
+                    height: newRect.height
+                )
+                
+            case .right:
+                newRect.size.width = max(minSize, min(bounds.width - newRect.minX, location.x - newRect.minX))
+                
+            case .none:
+                break
+            }
+            
             _cropRect = newRect
-            gesture.setTranslation(.zero, in: self)
+            lastPanPoint = location
             setNeedsDisplay()
+            
         default:
-            break
+            activeHandle = .none
         }
+    }
+    
+    private func getHandleAt(_ point: CGPoint) -> Handle {
+        let handleRect = { (center: CGPoint) -> CGRect in
+            CGRect(
+                x: center.x - self.handleSize/2,
+                y: center.y - self.handleSize/2,
+                width: self.handleSize,
+                height: self.handleSize
+            )
+        }
+        
+        // Check corners first (they have priority)
+        if handleRect(CGPoint(x: _cropRect.minX, y: _cropRect.minY)).contains(point) { return .topLeft }
+        if handleRect(CGPoint(x: _cropRect.maxX, y: _cropRect.minY)).contains(point) { return .topRight }
+        if handleRect(CGPoint(x: _cropRect.minX, y: _cropRect.maxY)).contains(point) { return .bottomLeft }
+        if handleRect(CGPoint(x: _cropRect.maxX, y: _cropRect.maxY)).contains(point) { return .bottomRight }
+        
+        // Check edges
+        if handleRect(CGPoint(x: _cropRect.midX, y: _cropRect.minY)).contains(point) { return .top }
+        if handleRect(CGPoint(x: _cropRect.midX, y: _cropRect.maxY)).contains(point) { return .bottom }
+        if handleRect(CGPoint(x: _cropRect.minX, y: _cropRect.midY)).contains(point) { return .left }
+        if handleRect(CGPoint(x: _cropRect.maxX, y: _cropRect.midY)).contains(point) { return .right }
+        
+        // Check if inside crop area for moving
+        if _cropRect.contains(point) { return .move }
+        
+        return .none
     }
 }

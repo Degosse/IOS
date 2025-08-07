@@ -88,12 +88,21 @@ struct AddReceiptView: View {
             }
             .onChange(of: selectedPhotoItem) { oldValue, newValue in
                 Task {
-                    if let item = newValue,
-                       let data = try? await item.loadTransferable(type: Data.self),
-                       let image = UIImage(data: data) {
-                        capturedImage = image
-                        // Clear the selection after loading
-                        selectedPhotoItem = nil
+                    do {
+                        if let item = newValue,
+                           let data = try await item.loadTransferable(type: Data.self),
+                           let image = UIImage(data: data) {
+                            await MainActor.run {
+                                capturedImage = image
+                                selectedPhotoItem = nil
+                            }
+                        }
+                    } catch {
+                        await MainActor.run {
+                            analysisError = "Failed to load photo: \(error.localizedDescription)"
+                            showingError = true
+                            selectedPhotoItem = nil
+                        }
                     }
                 }
             }

@@ -14,41 +14,42 @@ class PDFExporter {
         let pageSize = CGSize(width: 612, height: 792) // US Letter size
         let renderer = UIGraphicsPDFRenderer(bounds: CGRect(origin: .zero, size: pageSize))
         
-        return renderer.pdfData { context in
-            context.beginPage()
-            
-            let titleFont = UIFont.boldSystemFont(ofSize: 24)
-            let headingFont = UIFont.boldSystemFont(ofSize: 16)
-            let bodyFont = UIFont.systemFont(ofSize: 12)
-            
-            var yPosition: CGFloat = 50
-            let margin: CGFloat = 50
-            let pageWidth = pageSize.width - (margin * 2)
-            
-            // Title
-            let title = "Expense Report - \(period)"
-            let titleSize = title.size(withAttributes: [.font: titleFont])
-            let titleRect = CGRect(x: margin, y: yPosition, width: pageWidth, height: titleSize.height)
-            title.draw(in: titleRect, withAttributes: [
-                .font: titleFont,
-                .foregroundColor: UIColor.black
-            ])
-            
-            yPosition += titleSize.height + 20
-            
-            // Summary section
-            let summaryText = "Total Expenses: $\(String(format: "%.2f", totalAmount))\nNumber of Receipts: \(receipts.count)"
-            let summarySize = summaryText.size(withAttributes: [.font: headingFont])
-            let summaryRect = CGRect(x: margin, y: yPosition, width: pageWidth, height: summarySize.height * 2)
-            summaryText.draw(in: summaryRect, withAttributes: [
-                .font: headingFont,
-                .foregroundColor: UIColor.black
-            ])
+        do {
+            return try renderer.pdfData { context in
+                context.beginPage()
+                
+                let titleFont = UIFont.boldSystemFont(ofSize: 24)
+                let headingFont = UIFont.boldSystemFont(ofSize: 16)
+                let bodyFont = UIFont.systemFont(ofSize: 12)
+                
+                var yPosition: CGFloat = 50
+                let margin: CGFloat = 50
+                let pageWidth = pageSize.width - (margin * 2)
+                
+                // Title
+                let title = NSLocalizedString("Expense Report", comment: "PDF title") + " - \(period)"
+                let titleSize = title.size(withAttributes: [.font: titleFont])
+                let titleRect = CGRect(x: margin, y: yPosition, width: pageWidth, height: titleSize.height)
+                title.draw(in: titleRect, withAttributes: [
+                    .font: titleFont,
+                    .foregroundColor: UIColor.black
+                ])
+                
+                yPosition += titleSize.height + 20
+                
+                // Summary section
+                let summaryText = "\(NSLocalizedString("Total Expenses", comment: "PDF summary")): €\(String(format: "%.2f", totalAmount))\n\(NSLocalizedString("Number of Receipts", comment: "PDF summary")): \(receipts.count)"
+                let summarySize = summaryText.size(withAttributes: [.font: headingFont])
+                let summaryRect = CGRect(x: margin, y: yPosition, width: pageWidth, height: summarySize.height * 2)
+                summaryText.draw(in: summaryRect, withAttributes: [
+                    .font: headingFont,
+                    .foregroundColor: UIColor.black
+                ])
             
             yPosition += summarySize.height * 2 + 30
             
             // Receipts list header
-            let headerText = "Receipt Details"
+            let headerText = NSLocalizedString("Receipt Details", comment: "PDF section header")
             let headerSize = headerText.size(withAttributes: [.font: headingFont])
             let headerRect = CGRect(x: margin, y: yPosition, width: pageWidth, height: headerSize.height)
             headerText.draw(in: headerRect, withAttributes: [
@@ -59,7 +60,7 @@ class PDFExporter {
             yPosition += headerSize.height + 15
             
             // Table headers
-            let headers = ["Date", "Restaurant", "Amount"]
+            let headers = [NSLocalizedString("Date", comment: "PDF header"), NSLocalizedString("Restaurant", comment: "PDF header"), NSLocalizedString("Amount", comment: "PDF header")]
             let columnWidths: [CGFloat] = [120, 300, 100]
             var xPosition: CGFloat = margin
             
@@ -97,8 +98,8 @@ class PDFExporter {
                 xPosition = margin
                 let rowData = [
                     dateFormatter.string(from: receipt.date),
-                    receipt.restaurantName.isEmpty ? "Unknown" : receipt.restaurantName,
-                    "$\(String(format: "%.2f", receipt.totalPrice))"
+                    receipt.restaurantName.isEmpty ? NSLocalizedString("Unknown", comment: "Unknown restaurant") : receipt.restaurantName,
+                    "€\(String(format: "%.2f", receipt.totalPrice))"
                 ]
                 
                 for (index, data) in rowData.enumerated() {
@@ -115,12 +116,16 @@ class PDFExporter {
             
             // Footer
             yPosition = pageSize.height - 50
-            let footerText = "Generated on \(Date().formatted(date: .abbreviated, time: .shortened))"
+            let footerText = NSLocalizedString("Generated on", comment: "PDF footer") + " \(Date().formatted(date: .abbreviated, time: .shortened))"
             let footerRect = CGRect(x: margin, y: yPosition, width: pageWidth, height: 20)
             footerText.draw(in: footerRect, withAttributes: [
                 .font: UIFont.systemFont(ofSize: 10),
                 .foregroundColor: UIColor.gray
             ])
+        }
+        } catch {
+            print("Error creating PDF: \(error)")
+            return nil
         }
     }
     

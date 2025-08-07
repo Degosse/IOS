@@ -1,0 +1,562 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%lld" : {
+
+    },
+    "%lld." : {
+
+    },
+    "Add Receipt" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bon Toevoegen"
+          }
+        }
+      }
+    },
+    "Add Receipt Photo" : {
+
+    },
+    "All Receipts (%lld)" : {
+
+    },
+    "Amount" : {
+      "comment" : "PDF header",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bedrag"
+          }
+        }
+      }
+    },
+    "Analysis Error" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Analyse Fout"
+          }
+        }
+      }
+    },
+    "Analyze Receipt" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bon Analyseren"
+          }
+        }
+      }
+    },
+    "Analyzing receipt with AI..." : {
+
+    },
+    "Average per receipt:" : {
+
+    },
+    "Camera" : {
+      "comment" : "Camera tab",
+      "extractionState" : "stale",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Camera"
+          }
+        }
+      }
+    },
+    "camera_unavailable_message" : {
+      "comment" : "Camera unavailable alert message",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Camera is not available on this device. Please use the photo library option."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Camera is niet beschikbaar op dit apparaat. Gebruik de fotobibliotheek optie."
+          }
+        }
+      }
+    },
+    "camera_unavailable_title" : {
+      "comment" : "Camera unavailable alert title",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Camera Unavailable"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Camera Niet Beschikbaar"
+          }
+        }
+      }
+    },
+    "Cancel" : {
+      "comment" : "Cancel button",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annuleren"
+          }
+        }
+      }
+    },
+    "Choose Photo" : {
+
+    },
+    "Close" : {
+      "comment" : "Close button",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sluiten"
+          }
+        }
+      }
+    },
+    "Crop Image" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Foto Bijsnijden"
+          }
+        }
+      }
+    },
+    "Crop Receipt" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bon Bijsnijden"
+          }
+        }
+      }
+    },
+    "Date" : {
+      "comment" : "PDF header",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datum"
+          }
+        }
+      }
+    },
+    "Delete Receipt" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bon Verwijderen"
+          }
+        }
+      }
+    },
+    "Edit" : {
+
+    },
+    "Edit Receipt" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bon Bewerken"
+          }
+        }
+      }
+    },
+    "Enter restaurant name" : {
+
+    },
+    "Enter total amount" : {
+
+    },
+    "Expense Report" : {
+      "comment" : "PDF title",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onkostendeclaratie"
+          }
+        }
+      }
+    },
+    "Export Error" : {
+      "comment" : "Alert title"
+    },
+    "Export Options" : {
+      "comment" : "Export action sheet title",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Export Opties"
+          }
+        }
+      }
+    },
+    "Export PDF" : {
+      "comment" : "Export option",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDF Exporteren"
+          }
+        }
+      }
+    },
+    "Export Receipt Images" : {
+      "comment" : "Export option",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bon Afbeeldingen Exporteren"
+          }
+        }
+      }
+    },
+    "Failed to create archive" : {
+      "comment" : "Export error",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Archief aanmaken mislukt"
+          }
+        }
+      }
+    },
+    "Failed to create PDF" : {
+      "comment" : "Export error",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDF aanmaken mislukt"
+          }
+        }
+      }
+    },
+    "From Library" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uit Bibliotheek"
+          }
+        }
+      }
+    },
+    "Generated on" : {
+      "comment" : "PDF footer",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gegenereerd op"
+          }
+        }
+      }
+    },
+    "Month" : {
+
+    },
+    "Monthly" : {
+      "comment" : "Report period",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maandelijks"
+          }
+        }
+      }
+    },
+    "Monthly Breakdown" : {
+
+    },
+    "No data available" : {
+
+    },
+    "No Image Available" : {
+
+    },
+    "No receipts for selected period" : {
+      "comment" : "Export error",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geen bonnen voor geselecteerde periode"
+          }
+        }
+      }
+    },
+    "No receipts found for the selected period" : {
+
+    },
+    "No Receipts Yet" : {
+
+    },
+    "Number of Receipts" : {
+      "comment" : "PDF summary",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aantal Bonnen"
+          }
+        }
+      }
+    },
+    "ok" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "OK"
+          }
+        }
+      }
+    },
+    "OK" : {
+      "comment" : "OK button",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
+    "Period" : {
+
+    },
+    "Q%lld" : {
+
+    },
+    "Quarter" : {
+
+    },
+    "Quarterly" : {
+      "comment" : "Report period",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Driemaandelijks"
+          }
+        }
+      }
+    },
+    "Receipt Date" : {
+
+    },
+    "Receipt Details" : {
+      "comment" : "PDF section header",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bon Details"
+          }
+        }
+      }
+    },
+    "Receipt Organizer" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bon Beheer"
+          }
+        }
+      }
+    },
+    "Receipts" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bonnen"
+          }
+        }
+      }
+    },
+    "Reports" : {
+      "comment" : "Navigation title",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rapporten"
+          }
+        }
+      }
+    },
+    "Restaurant" : {
+      "comment" : "PDF header",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restaurant"
+          }
+        }
+      }
+    },
+    "Restaurant Details" : {
+
+    },
+    "Restaurant Name" : {
+
+    },
+    "Retake Photo" : {
+
+    },
+    "Save" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opslaan"
+          }
+        }
+      }
+    },
+    "Search receipts..." : {
+
+    },
+    "Select a photo of your receipt" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecteer een foto van uw bon"
+          }
+        }
+      }
+    },
+    "Take a photo of your receipt" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maak een foto van uw bon"
+          }
+        }
+      }
+    },
+    "Take a photo or choose from your library" : {
+
+    },
+    "Take Photo" : {
+
+    },
+    "Tap the camera button to add your first receipt" : {
+
+    },
+    "Top Expenses by Restaurant" : {
+
+    },
+    "Total Amount" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Totaalbedrag"
+          }
+        }
+      }
+    },
+    "Total Expenses" : {
+      "comment" : "PDF summary",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Totale Uitgaven"
+          }
+        }
+      }
+    },
+    "Unknown" : {
+      "comment" : "Unknown restaurant",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onbekend"
+          }
+        }
+      }
+    },
+    "Unknown error occurred" : {
+      "comment" : "Generic error",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onbekende fout opgetreden"
+          }
+        }
+      }
+    },
+    "Year" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jaar"
+          }
+        }
+      }
+    },
+    "Yearly" : {
+      "comment" : "Report period",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jaarlijks"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

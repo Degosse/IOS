@@ -15,9 +15,7 @@ class ZipExporter {
         do {
             try FileManager.default.createDirectory(at: tempDirectory, withIntermediateDirectories: true)
             
-            // Create a folder to zip
-            let imagesFolder = tempDirectory.appendingPathComponent("Receipt_Images_\(period)")
-            try FileManager.default.createDirectory(at: imagesFolder, withIntermediateDirectories: true)
+            var imageFiles: [URL] = []
             
             // Save all receipt images to temp directory
             for (index, receipt) in receipts.enumerated() {
@@ -28,18 +26,19 @@ class ZipExporter {
                     dateFormatter.dateFormat = "yyyy-MM-dd"
                     let dateString = dateFormatter.string(from: receipt.date)
                     
-                    let restaurantName = receipt.restaurantName.isEmpty ? "Unknown" : receipt.restaurantName
+                    let restaurantName = receipt.restaurantName.isEmpty ? NSLocalizedString("Unknown", comment: "Unknown restaurant") : receipt.restaurantName
                     let cleanRestaurantName = restaurantName.replacingOccurrences(of: "[^a-zA-Z0-9 ]", with: "_", options: .regularExpression)
                     
-                    let filename = "\(String(format: "%03d", index + 1))_\(dateString)_\(cleanRestaurantName)_$\(String(format: "%.2f", receipt.totalPrice)).jpg"
-                    let fileURL = imagesFolder.appendingPathComponent(filename)
+                    let filename = "\(String(format: "%03d", index + 1))_\(dateString)_\(cleanRestaurantName)_€\(String(format: "%.2f", receipt.totalPrice)).jpg"
+                    let fileURL = tempDirectory.appendingPathComponent(filename)
                     
                     try imageData.write(to: fileURL)
+                    imageFiles.append(fileURL)
                 }
             }
             
-            // Create a simple tar-like archive (since we can't use ZIP without external library)
-            let archiveData = try createSimpleArchive(from: imagesFolder)
+            // Create a tar-like archive since ZIP requires external dependencies
+            let archiveData = try createTarArchive(files: imageFiles, basePath: tempDirectory)
             
             // Clean up temp files
             try FileManager.default.removeItem(at: tempDirectory)
@@ -48,37 +47,31 @@ class ZipExporter {
             
         } catch {
             print("Error creating archive: \(error)")
+            // Clean up on error
+            try? FileManager.default.removeItem(at: tempDirectory)
             return nil
         }
     }
     
-    private static func createSimpleArchive(from directory: URL) throws -> Data {
-        // Create a simple archive by concatenating all files with metadata
-        // This is a simplified approach - in production, use a proper ZIP library
+    private static func createTarArchive(files: [URL], basePath: URL) throws -> Data {
         var archiveData = Data()
         
-        let fileManager = FileManager.default
-        let files = try fileManager.contentsOfDirectory(at: directory, includingPropertiesForKeys: [.fileSizeKey])
-        
-        // Add header
-        let header = "RECEIPT_ARCHIVE_V1\n"
-        archiveData.append(header.data(using: .utf8) ?? Data())
-        
+        // Simple tar-like format with file headers
         for fileURL in files {
             let filename = fileURL.lastPathComponent
             let fileData = try Data(contentsOf: fileURL)
             
-            // Add file entry: filename length, filename, data length, data
+            // Create a simple header: filename length + filename + data length + data
             let filenameData = filename.data(using: .utf8) ?? Data()
             
-            // Write filename length (4 bytes)
+            // Write filename length (4 bytes, big endian)
             var filenameLength = UInt32(filenameData.count).bigEndian
             archiveData.append(Data(bytes: &filenameLength, count: 4))
             
             // Write filename
             archiveData.append(filenameData)
             
-            // Write data length (4 bytes) 
+            // Write data length (4 bytes, big endian)
             var dataLength = UInt32(fileData.count).bigEndian
             archiveData.append(Data(bytes: &dataLength, count: 4))
             
@@ -111,16 +104,4 @@ class ZipExporter {
     }
 }
 
-enum ArchiveError: Error {
-    case cannotCreateDirectory
-    case cannotWriteFile
-    
-    var localizedDescription: String {
-        switch self {
-        case .cannotCreateDirectory:
-            return "Cannot create directory for archive"
-        case .cannotWriteFile:
-            return "Cannot write file to archive"
-        }
-    }
-}
+

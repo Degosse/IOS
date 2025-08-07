@@ -18,6 +18,8 @@ struct ReportsView: View {
     @State private var selectedMonth = Calendar.current.component(.month, from: Date())
     @State private var selectedQuarter = 1
     @State private var showingExportOptions = false
+    @State private var showingExportError = false
+    @State private var exportError: String?
     
     private var availableYears: [Int] {
         let years = Set(receipts.map { Calendar.current.component(.year, from: $0.date) })
@@ -94,11 +96,11 @@ struct ReportsView: View {
                 }
                 .padding()
             }
-            .navigationTitle("Expense Reports")
+            .navigationTitle(NSLocalizedString("Reports", comment: "Navigation title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button("Close") {
+                    Button(NSLocalizedString("Close", comment: "Close button")) {
                         dismiss()
                     }
                 }
@@ -112,17 +114,22 @@ struct ReportsView: View {
             }
             .actionSheet(isPresented: $showingExportOptions) {
                 ActionSheet(
-                    title: Text("Export Options"),
+                    title: Text(NSLocalizedString("Export Options", comment: "Export action sheet title")),
                     buttons: [
-                        .default(Text("Export PDF Report")) {
+                        .default(Text(NSLocalizedString("Export PDF", comment: "Export option"))) {
                             exportPDFReport()
                         },
-                        .default(Text("Export Receipt Images")) {
+                        .default(Text(NSLocalizedString("Export Receipt Images", comment: "Export option"))) {
                             exportReceiptImages()
                         },
-                        .cancel()
+                        .cancel(Text(NSLocalizedString("Cancel", comment: "Cancel button")))
                     ]
                 )
+            }
+            .alert(NSLocalizedString("Export Error", comment: "Alert title"), isPresented: $showingExportError) {
+                Button(NSLocalizedString("OK", comment: "OK button")) { }
+            } message: {
+                Text(exportError ?? NSLocalizedString("Unknown error occurred", comment: "Generic error"))
             }
         }
     }
@@ -183,7 +190,7 @@ struct ReportsView: View {
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                     
-                    Text(totalExpenses.formatted(.currency(code: "USD")))
+                    Text(totalExpenses.formatted(.currency(code: "EUR")))
                         .font(.title)
                         .fontWeight(.bold)
                         .foregroundStyle(.primary)
@@ -212,7 +219,7 @@ struct ReportsView: View {
                     
                     Spacer()
                     
-                    Text(avgExpense.formatted(.currency(code: "USD")))
+                    Text(avgExpense.formatted(.currency(code: "EUR")))
                         .font(.caption)
                         .fontWeight(.medium)
                         .foregroundStyle(.secondary)
@@ -266,7 +273,7 @@ struct ReportsView: View {
                         
                         Spacer()
                         
-                        Text(amount.formatted(.currency(code: "USD")))
+                        Text(amount.formatted(.currency(code: "EUR")))
                             .font(.subheadline)
                             .fontWeight(.medium)
                             .foregroundStyle(.blue)
@@ -306,7 +313,7 @@ struct ReportsView: View {
                             
                             Spacer()
                             
-                            Text(receipt.totalPrice.formatted(.currency(code: "USD")))
+                            Text(receipt.totalPrice.formatted(.currency(code: "EUR")))
                                 .font(.subheadline)
                                 .fontWeight(.semibold)
                                 .foregroundStyle(.blue)
@@ -321,7 +328,11 @@ struct ReportsView: View {
     }
     
     private func exportPDFReport() {
-        guard !filteredReceipts.isEmpty else { return }
+        guard !filteredReceipts.isEmpty else { 
+            showingExportError = true
+            exportError = NSLocalizedString("No receipts for selected period", comment: "Export error")
+            return 
+        }
         
         let periodString: String
         switch selectedPeriod {
@@ -334,19 +345,27 @@ struct ReportsView: View {
             periodString = String(selectedYear)
         }
         
-        if let pdfData = PDFExporter.createReport(
+        guard let pdfData = PDFExporter.createReport(
             receipts: filteredReceipts,
             period: periodString,
             totalAmount: totalExpenses
-        ) {
-            // Create a temporary file and share it
-            let filename = "ExpenseReport_\(periodString.replacingOccurrences(of: " ", with: "_")).pdf"
-            sharePDF(data: pdfData, filename: filename)
+        ) else {
+            showingExportError = true
+            exportError = NSLocalizedString("Failed to create PDF", comment: "Export error")
+            return
         }
+        
+        // Create a temporary file and share it
+        let filename = "ExpenseReport_\(periodString.replacingOccurrences(of: " ", with: "_")).pdf"
+        sharePDF(data: pdfData, filename: filename)
     }
     
     private func exportReceiptImages() {
-        guard !filteredReceipts.isEmpty else { return }
+        guard !filteredReceipts.isEmpty else { 
+            showingExportError = true
+            exportError = NSLocalizedString("No receipts for selected period", comment: "Export error")
+            return 
+        }
         
         let periodString: String
         switch selectedPeriod {
@@ -359,13 +378,17 @@ struct ReportsView: View {
             periodString = String(selectedYear)
         }
         
-        if let archiveData = ZipExporter.createReceiptImagesZip(
+        guard let archiveData = ZipExporter.createReceiptImagesZip(
             receipts: filteredReceipts,
             period: periodString
-        ) {
-            let filename = "ReceiptImages_\(periodString).archive"
-            shareZip(data: archiveData, filename: filename)
+        ) else {
+            showingExportError = true
+            exportError = NSLocalizedString("Failed to create archive", comment: "Export error")
+            return
         }
+        
+        let filename = "ReceiptImages_\(periodString).tar"
+        shareZip(data: archiveData, filename: filename)
     }
     
     private func sharePDF(data: Data, filename: String) {
@@ -426,9 +449,9 @@ enum ReportPeriod: CaseIterable {
     
     var displayName: String {
         switch self {
-        case .monthly: return "Monthly"
-        case .quarterly: return "Quarterly"
-        case .yearly: return "Yearly"
+        case .monthly: return NSLocalizedString("Monthly", comment: "Report period")
+        case .quarterly: return NSLocalizedString("Quarterly", comment: "Report period")
+        case .yearly: return NSLocalizedString("Yearly", comment: "Report period")
         }
     }
 }

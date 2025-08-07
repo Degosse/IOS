@@ -20,7 +20,7 @@ struct ReceiptListView: View {
         let filtered = receipts.filter { receipt in
             searchText.isEmpty ||
             receipt.restaurantName.localizedCaseInsensitiveContains(searchText) ||
-            receipt.totalPrice.formatted(.currency(code: "USD")).contains(searchText)
+            receipt.totalPrice.formatted(.currency(code: "EUR")).contains(searchText)
         }
         
         return filtered.sorted { receipt1, receipt2 in
@@ -189,7 +189,7 @@ struct ReceiptRowView: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
                 
-                Text(receipt.totalPrice.formatted(.currency(code: "USD")))
+                Text(receipt.totalPrice.formatted(.currency(code: "EUR")))
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundStyle(.blue)

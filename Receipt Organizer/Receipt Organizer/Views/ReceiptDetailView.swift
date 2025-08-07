@@ -58,8 +58,8 @@ struct ReceiptDetailView: View {
                     
                     receiptDetailRow(
                         title: "Total Amount",
-                        value: receipt.totalPrice.formatted(.currency(code: "USD")),
-                        icon: "dollarsign.circle"
+                        value: receipt.totalPrice.formatted(.currency(code: "EUR")),
+                        icon: "eurosign.circle"
                     )
                     
                     receiptDetailRow(
