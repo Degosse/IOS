@@ -79,7 +79,6 @@ export default function NewReceiptScreen() {
       
       if (!result.canceled && result.assets && result.assets.length > 0) {
         const selectedImageUri = result.assets[0].uri;
-        console.log('Selected image URI:', selectedImageUri);
         
         // Set the actual uploaded image
         setImageUri(selectedImageUri);

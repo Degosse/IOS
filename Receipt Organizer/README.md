@@ -29,20 +29,17 @@ Before running this app, make sure you have:
 1. **Node.js** (v18 or later)
 2. **Expo CLI** (`npm install -g @expo/cli`)
 3. **iOS Simulator** (via Xcode) or physical iOS device
-4. **Google Gemini API key** (already configured in this project)
+4. **Google Gemini API key** (configured securely via environment variables)
 
 ## Quick Start
 
 ### 1. Installation
 
 ```bash
-# Clone and navigate to the project
+# Navigate to the project
 cd "Receipt Organizer"
 
-# Run the setup script
-./setup.sh
-
-# Or manually install dependencies
+# Install dependencies
 npm install --legacy-peer-deps
 ```
 

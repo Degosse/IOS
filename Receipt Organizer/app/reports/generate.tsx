@@ -121,7 +121,7 @@ export default function GenerateReportScreen() {
     >
       <Text style={styles.title}>{t('generateReport')}</Text>
       <Text style={styles.subtitle}>
-        {t('generateReport')}
+        Create detailed expense reports for your business needs
       </Text>
       
       <View style={styles.section}>
@@ -140,8 +140,7 @@ export default function GenerateReportScreen() {
             <TouchableOpacity 
               style={styles.dateButton}
               onPress={() => {
-                // In a real app, this would open a date picker
-                console.log('Open date picker for start date');
+                // TODO: Implement date picker for start date
               }}
             >
               <Calendar size={18} color={Colors.textSecondary} style={styles.dateIcon} />
@@ -155,8 +154,7 @@ export default function GenerateReportScreen() {
             <TouchableOpacity 
               style={styles.dateButton}
               onPress={() => {
-                // In a real app, this would open a date picker
-                console.log('Open date picker for end date');
+                // TODO: Implement date picker for end date
               }}
             >
               <Calendar size={18} color={Colors.textSecondary} style={styles.dateIcon} />
@@ -192,8 +190,7 @@ export default function GenerateReportScreen() {
           </View>
           <TouchableOpacity
             onPress={() => {
-              // In a real app, this would open a text input modal
-              console.log('Edit report title');
+              // TODO: Implement report title editing
             }}
           >
             <ChevronRight size={20} color={Colors.textSecondary} />

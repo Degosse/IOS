@@ -6,7 +6,6 @@ import {
   ActivityIndicator, 
   Image,
   TouchableOpacity,
-  Platform,
   ScrollView
 } from 'react-native';
 import { RefreshCw, AlertCircle, CheckCircle2, FileText } from 'lucide-react-native';
@@ -57,11 +56,9 @@ export default function ReceiptAnalyzer({
     // If we have a PDF, convert it to an image for preview and analysis
     if (pdfUri && !imageUri) {
       try {
-        console.log('Converting PDF to image for analysis:', pdfUri);
         
         // For demo purposes, we'll generate a realistic preview based on the PDF name
         const previewImageUri = generatePdfPreview(pdfFileName || 'receipt.pdf');
-        console.log('Generated preview image URI:', previewImageUri);
         
         setDisplayImageUri(previewImageUri);
         setPreviewGenerated(true);
@@ -104,7 +101,6 @@ export default function ReceiptAnalyzer({
     }, 500);
     
     try {
-      console.log('Starting receipt analysis with source:', sourceUri);
       
       // Use the Gemini API to analyze the receipt
       const result = await analyzeReceiptImage(sourceUri);
@@ -128,7 +124,6 @@ export default function ReceiptAnalyzer({
       }
     } catch (err) {
       clearInterval(progressInterval);
-      console.error('Analysis error:', err);
       setError(t('analysisFailed'));
     } finally {
       setIsAnalyzing(false);

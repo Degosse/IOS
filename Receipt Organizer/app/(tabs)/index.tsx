@@ -47,8 +47,7 @@ export default function ReceiptsScreen() {
         <Pressable 
           style={styles.searchInput}
           onPress={() => {
-            // In a real app, this would open a search modal or focus the input
-            console.log('Open search');
+            // TODO: Implement search functionality
           }}
         >
           <Text style={styles.searchPlaceholder}>Search receipts...</Text>

@@ -6,7 +6,6 @@ export async function shareFile(fileUri: string, mimeType: string = 'application
   try {
     if (Platform.OS === 'web') {
       // For web, we'd typically use a download link
-      console.log('Sharing not fully supported on web');
       return false;
     }
     
@@ -19,11 +18,9 @@ export async function shareFile(fileUri: string, mimeType: string = 'application
       });
       return true;
     } else {
-      console.log('Sharing is not available on this platform');
       return false;
     }
   } catch (error) {
-    console.error('Error sharing file:', error);
     return false;
   }
 }

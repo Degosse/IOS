@@ -4,15 +4,9 @@
     "slug": "receipt-organizer-pro-udw49n7",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-    "splash": {
-      "image": "./assets/images/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
     "extra": {
       "geminiApiKey": "AIzaSyA0KAKmK7ffkuhs35f9XF1ZNqkn-Zp4hVk"
     },
@@ -26,10 +20,6 @@
       }
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
       "package": "app.rork.receipt-organizer-pro-udw49n7",
       "permissions": [
         "READ_EXTERNAL_STORAGE",
@@ -40,9 +30,7 @@
         "android.permission.VIBRATE"
       ]
     },
-    "web": {
-      "favicon": "./assets/images/favicon.png"
-    },
+    "web": {},
     "plugins": [
       [
         "expo-router",

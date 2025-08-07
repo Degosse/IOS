@@ -39,11 +39,8 @@ const getApiKey = (): string => {
 
 export async function analyzeReceiptImage(imageUri: string): Promise<ReceiptAnalysisResult> {
   try {
-    console.log('Analyzing image URI:', imageUri);
-    
     // For URLs (like unsplash images), we'll analyze them directly
     if (imageUri.startsWith('https://')) {
-      console.log('Analyzing URL image with Gemini');
       return await processImageWithGemini(imageUri, true);
     }
     
@@ -86,26 +83,21 @@ export async function analyzeReceiptImage(imageUri: string): Promise<ReceiptAnal
         
         // Check if file exists before reading
         const fileInfo = await FileSystem.getInfoAsync(fileUri);
-        console.log('File info:', fileInfo);
         
         if (!fileInfo.exists) {
-          console.error('File does not exist:', fileUri);
           return fallbackOcrAnalysis(imageUri);
         }
         
-        console.log('Reading file as base64:', fileUri);
         base64Image = await FileSystem.readAsStringAsync(fileUri, {
           encoding: FileSystem.EncodingType.Base64,
         });
         
         return processImageWithGemini(base64Image, false);
       } catch (error) {
-        console.error('Error reading file:', error);
         return fallbackOcrAnalysis(imageUri);
       }
     }
   } catch (error) {
-    console.error('Error analyzing receipt:', error);
     return fallbackOcrAnalysis(imageUri);
   }
 }
@@ -167,7 +159,6 @@ async function processImageWithGemini(imageData: string, isUrl: boolean): Promis
   }
 
   try {
-    console.log('Sending request to Gemini API');
     const apiKey = getApiKey();
     const response = await fetch(`${apiUrl}?key=${apiKey}`, {
       method: 'POST',
@@ -179,12 +170,10 @@ async function processImageWithGemini(imageData: string, isUrl: boolean): Promis
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('Gemini API error response:', errorText);
       throw new Error(`API error: ${response.status} - ${errorText}`);
     }
 
     const data = await response.json() as GeminiResponse;
-    console.log('Received response from Gemini API');
     
     if (!data.candidates || data.candidates.length === 0) {
       throw new Error('No response from Gemini API');
@@ -195,8 +184,6 @@ async function processImageWithGemini(imageData: string, isUrl: boolean): Promis
       .map(part => part.text)
       .join('');
 
-    console.log('Gemini response text:', textResponse);
-
     // Extract JSON from the response
     const jsonMatch = textResponse.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
@@ -204,7 +191,6 @@ async function processImageWithGemini(imageData: string, isUrl: boolean): Promis
     }
 
     const extractedData = JSON.parse(jsonMatch[0]) as ReceiptAnalysisResult;
-    console.log('Extracted data:', extractedData);
     
     // Validate and clean up the data
     return {
@@ -215,7 +201,6 @@ async function processImageWithGemini(imageData: string, isUrl: boolean): Promis
       items: extractedData.items || []
     };
   } catch (error) {
-    console.error('Gemini API error:', error);
     return fallbackOcrAnalysis(imageData);
   }
 }
