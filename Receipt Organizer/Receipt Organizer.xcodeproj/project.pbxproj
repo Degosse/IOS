@@ -1,0 +1,563 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		64111CBA2E44E9AD00EA2EAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 64111CA42E44E9AC00EA2EAA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 64111CAB2E44E9AC00EA2EAA;
+			remoteInfo = "Receipt Organizer";
+		};
+		64111CC42E44E9AD00EA2EAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 64111CA42E44E9AC00EA2EAA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 64111CAB2E44E9AC00EA2EAA;
+			remoteInfo = "Receipt Organizer";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		64111CAC2E44E9AC00EA2EAA /* Receipt Organizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Receipt Organizer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		64111CB92E44E9AD00EA2EAA /* Receipt OrganizerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Receipt OrganizerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		64111CC32E44E9AD00EA2EAA /* Receipt OrganizerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Receipt OrganizerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		64111CAE2E44E9AC00EA2EAA /* Receipt Organizer */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Receipt Organizer";
+			sourceTree = "<group>";
+		};
+		64111CBC2E44E9AD00EA2EAA /* Receipt OrganizerTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Receipt OrganizerTests";
+			sourceTree = "<group>";
+		};
+		64111CC62E44E9AD00EA2EAA /* Receipt OrganizerUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Receipt OrganizerUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		64111CA92E44E9AC00EA2EAA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64111CB62E44E9AD00EA2EAA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64111CC02E44E9AD00EA2EAA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		64111CA32E44E9AC00EA2EAA = {
+			isa = PBXGroup;
+			children = (
+				64111CAE2E44E9AC00EA2EAA /* Receipt Organizer */,
+				64111CBC2E44E9AD00EA2EAA /* Receipt OrganizerTests */,
+				64111CC62E44E9AD00EA2EAA /* Receipt OrganizerUITests */,
+				64111CAD2E44E9AC00EA2EAA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		64111CAD2E44E9AC00EA2EAA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				64111CAC2E44E9AC00EA2EAA /* Receipt Organizer.app */,
+				64111CB92E44E9AD00EA2EAA /* Receipt OrganizerTests.xctest */,
+				64111CC32E44E9AD00EA2EAA /* Receipt OrganizerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		64111CAB2E44E9AC00EA2EAA /* Receipt Organizer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 64111CCD2E44E9AD00EA2EAA /* Build configuration list for PBXNativeTarget "Receipt Organizer" */;
+			buildPhases = (
+				64111CA82E44E9AC00EA2EAA /* Sources */,
+				64111CA92E44E9AC00EA2EAA /* Frameworks */,
+				64111CAA2E44E9AC00EA2EAA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				64111CAE2E44E9AC00EA2EAA /* Receipt Organizer */,
+			);
+			name = "Receipt Organizer";
+			packageProductDependencies = (
+			);
+			productName = "Receipt Organizer";
+			productReference = 64111CAC2E44E9AC00EA2EAA /* Receipt Organizer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		64111CB82E44E9AD00EA2EAA /* Receipt OrganizerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 64111CD02E44E9AD00EA2EAA /* Build configuration list for PBXNativeTarget "Receipt OrganizerTests" */;
+			buildPhases = (
+				64111CB52E44E9AD00EA2EAA /* Sources */,
+				64111CB62E44E9AD00EA2EAA /* Frameworks */,
+				64111CB72E44E9AD00EA2EAA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				64111CBB2E44E9AD00EA2EAA /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				64111CBC2E44E9AD00EA2EAA /* Receipt OrganizerTests */,
+			);
+			name = "Receipt OrganizerTests";
+			packageProductDependencies = (
+			);
+			productName = "Receipt OrganizerTests";
+			productReference = 64111CB92E44E9AD00EA2EAA /* Receipt OrganizerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		64111CC22E44E9AD00EA2EAA /* Receipt OrganizerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 64111CD32E44E9AD00EA2EAA /* Build configuration list for PBXNativeTarget "Receipt OrganizerUITests" */;
+			buildPhases = (
+				64111CBF2E44E9AD00EA2EAA /* Sources */,
+				64111CC02E44E9AD00EA2EAA /* Frameworks */,
+				64111CC12E44E9AD00EA2EAA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				64111CC52E44E9AD00EA2EAA /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				64111CC62E44E9AD00EA2EAA /* Receipt OrganizerUITests */,
+			);
+			name = "Receipt OrganizerUITests";
+			packageProductDependencies = (
+			);
+			productName = "Receipt OrganizerUITests";
+			productReference = 64111CC32E44E9AD00EA2EAA /* Receipt OrganizerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		64111CA42E44E9AC00EA2EAA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					64111CAB2E44E9AC00EA2EAA = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					64111CB82E44E9AD00EA2EAA = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 64111CAB2E44E9AC00EA2EAA;
+					};
+					64111CC22E44E9AD00EA2EAA = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 64111CAB2E44E9AC00EA2EAA;
+					};
+				};
+			};
+			buildConfigurationList = 64111CA72E44E9AC00EA2EAA /* Build configuration list for PBXProject "Receipt Organizer" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 64111CA32E44E9AC00EA2EAA;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 64111CAD2E44E9AC00EA2EAA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				64111CAB2E44E9AC00EA2EAA /* Receipt Organizer */,
+				64111CB82E44E9AD00EA2EAA /* Receipt OrganizerTests */,
+				64111CC22E44E9AD00EA2EAA /* Receipt OrganizerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		64111CAA2E44E9AC00EA2EAA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64111CB72E44E9AD00EA2EAA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64111CC12E44E9AD00EA2EAA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		64111CA82E44E9AC00EA2EAA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64111CB52E44E9AD00EA2EAA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64111CBF2E44E9AD00EA2EAA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		64111CBB2E44E9AD00EA2EAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 64111CAB2E44E9AC00EA2EAA /* Receipt Organizer */;
+			targetProxy = 64111CBA2E44E9AD00EA2EAA /* PBXContainerItemProxy */;
+		};
+		64111CC52E44E9AD00EA2EAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 64111CAB2E44E9AC00EA2EAA /* Receipt Organizer */;
+			targetProxy = 64111CC42E44E9AD00EA2EAA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		64111CCB2E44E9AD00EA2EAA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = T2TQFW24V8;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		64111CCC2E44E9AD00EA2EAA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = T2TQFW24V8;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		64111CCE2E44E9AD00EA2EAA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T2TQFW24V8;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ngc.Receipt-Organizer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		64111CCF2E44E9AD00EA2EAA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T2TQFW24V8;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ngc.Receipt-Organizer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		64111CD12E44E9AD00EA2EAA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T2TQFW24V8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ngc.Receipt-OrganizerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Receipt Organizer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Receipt Organizer";
+			};
+			name = Debug;
+		};
+		64111CD22E44E9AD00EA2EAA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T2TQFW24V8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ngc.Receipt-OrganizerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Receipt Organizer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Receipt Organizer";
+			};
+			name = Release;
+		};
+		64111CD42E44E9AD00EA2EAA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T2TQFW24V8;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ngc.Receipt-OrganizerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Receipt Organizer";
+			};
+			name = Debug;
+		};
+		64111CD52E44E9AD00EA2EAA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T2TQFW24V8;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ngc.Receipt-OrganizerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Receipt Organizer";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		64111CA72E44E9AC00EA2EAA /* Build configuration list for PBXProject "Receipt Organizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64111CCB2E44E9AD00EA2EAA /* Debug */,
+				64111CCC2E44E9AD00EA2EAA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		64111CCD2E44E9AD00EA2EAA /* Build configuration list for PBXNativeTarget "Receipt Organizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64111CCE2E44E9AD00EA2EAA /* Debug */,
+				64111CCF2E44E9AD00EA2EAA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		64111CD02E44E9AD00EA2EAA /* Build configuration list for PBXNativeTarget "Receipt OrganizerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64111CD12E44E9AD00EA2EAA /* Debug */,
+				64111CD22E44E9AD00EA2EAA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		64111CD32E44E9AD00EA2EAA /* Build configuration list for PBXNativeTarget "Receipt OrganizerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64111CD42E44E9AD00EA2EAA /* Debug */,
+				64111CD52E44E9AD00EA2EAA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 64111CA42E44E9AC00EA2EAA /* Project object */;
+}
