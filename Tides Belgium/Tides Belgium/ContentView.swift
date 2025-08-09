@@ -157,7 +157,8 @@ struct ContentView: View {
                                 TideChartView(
                                     tideData: tideService.allAvailableTideData, // Use all available data for smooth flow
                                     currentHeight: tideService.currentTideHeight,
-                                    selectedDate: Date() // Always start with today
+                                    selectedDate: Date(), // Always start with today
+                                    tideService: tideService // Pass the TideService reference
                                 )
                                 
                                 // Improved tide table with better spacing

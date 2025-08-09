@@ -12,6 +12,7 @@ struct TideChartView: View {
     let tideData: [TideData]
     let currentHeight: Double
     let selectedDate: Date
+    @ObservedObject var tideService: TideService // Add TideService reference
     @Environment(\.localizationManager) private var localizationManager
     @State private var selectedDay: DaySelection = .today
     
@@ -70,7 +71,7 @@ struct TideChartView: View {
                 chartTimeRange: chartTimeRange
             )
             
-            DaySelectionToggle(selectedDay: $selectedDay)
+            DaySelectionToggle(selectedDay: $selectedDay, tideService: tideService)
         }
         .padding(16)
         .background(
@@ -390,6 +391,7 @@ private struct DayDividerLine: View {
 
 private struct DaySelectionToggle: View {
     @Binding var selectedDay: TideChartView.DaySelection
+    @ObservedObject var tideService: TideService // Add TideService reference
     @Environment(\.localizationManager) private var localizationManager
     
     // MARK: - Constants
@@ -420,6 +422,13 @@ private struct DaySelectionToggle: View {
         Button(action: {
             withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                 selectedDay = day
+                
+                // Call the appropriate TideService method to update the filtered data
+                if day == .today {
+                    tideService.showToday()
+                } else {
+                    tideService.showTomorrow()
+                }
             }
         }) {
             VStack(spacing: 4) {
