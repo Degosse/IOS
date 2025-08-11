@@ -30,7 +30,8 @@ struct TideChartView: View {
     // MARK: - Computed Properties
     
     private var chartData: [TideData] {
-        let calendar = Calendar.current
+    var calendar = Calendar(identifier: .gregorian)
+    calendar.timeZone = TimeZone(identifier: "Europe/Brussels") ?? .current
         let today = calendar.startOfDay(for: Date())
         let dayAfter = calendar.date(byAdding: .day, value: 2, to: today)!
         
@@ -86,7 +87,8 @@ struct TideChartView: View {
     // MARK: - Helper Methods
     
     private func filterTideEvents(for day: DaySelection) -> [TideData] {
-        let calendar = Calendar.current
+    var calendar = Calendar(identifier: .gregorian)
+    calendar.timeZone = TimeZone(identifier: "Europe/Brussels") ?? .current
         let today = calendar.startOfDay(for: Date())
         let startDate = day == .today ? today : calendar.date(byAdding: .day, value: 1, to: today)!
         let endDate = calendar.date(byAdding: .day, value: 1, to: startDate)!
@@ -347,7 +349,9 @@ private struct DayDividerLine: View {
     private let labelOffsetY: CGFloat = 15
     
     private var tomorrow: Date {
-        Calendar.current.date(byAdding: .day, value: 1, to: Calendar.current.startOfDay(for: Date()))!
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone(identifier: "Europe/Brussels") ?? .current
+        return calendar.date(byAdding: .day, value: 1, to: calendar.startOfDay(for: Date()))!
     }
     
     private var isTomorrowVisible: Bool {
@@ -498,7 +502,8 @@ private struct DaySelectionToggle: View {
     }
     
     private func dateLabel(for day: TideChartView.DaySelection) -> String {
-        let calendar = Calendar.current
+    var calendar = Calendar(identifier: .gregorian)
+    calendar.timeZone = TimeZone(identifier: "Europe/Brussels") ?? .current
         let date = day == .today ? Date() : calendar.date(byAdding: .day, value: 1, to: Date())!
         return date.formatted(date: .abbreviated, time: .omitted)
     }
@@ -535,7 +540,7 @@ private struct DaySelectionToggle: View {
         TideData(time: today.addingTimeInterval(48*3600), height: 1.3, type: .regular)
     ]
     
-    TideChartView(tideData: sampleTides, currentHeight: 1.8, selectedDate: Date())
+    TideChartView(tideData: sampleTides, currentHeight: 1.8, selectedDate: Date(), tideService: TideService())
         .environmentObject(LocalizationManager())
         .padding()
 }

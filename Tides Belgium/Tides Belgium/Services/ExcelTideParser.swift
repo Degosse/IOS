@@ -109,7 +109,7 @@ class ExcelTideParser {
         formatter.dateFormat = "MMM d, yyyy"
         print("🎯 getRealTideData called for \(station.displayName) on \(formatter.string(from: date)) (Y:\(dateComponents.year ?? 0) M:\(dateComponents.month ?? 0) D:\(dateComponents.day ?? 0))")
         
-        // August 9, 2025 (Today)
+    // August 9, 2025 (reference sample)
         if dateComponents.year == 2025 && dateComponents.month == 8 && dateComponents.day == 9 {
             print("✅ MATCH: Using August 9, 2025 data for \(station.displayName)")
             switch station {
@@ -150,7 +150,7 @@ class ExcelTideParser {
                 ]
             }
         }
-        // August 10, 2025 (Tomorrow)
+    // August 10, 2025 (reference sample)
         else if dateComponents.year == 2025 && dateComponents.month == 8 && dateComponents.day == 10 {
             print("✅ MATCH: Using August 10, 2025 data for \(station.displayName)")
             switch station {
@@ -191,6 +191,44 @@ class ExcelTideParser {
                 ]
             }
         }
+        // August 11, 2025 (Nieuwpoort) - from official table
+        else if dateComponents.year == 2025 && dateComponents.month == 8 && dateComponents.day == 11 {
+            print("✅ MATCH: Using August 11, 2025 data for \(station.displayName)")
+            switch station {
+            case .nieuwpoort:
+                // High water: 02:55 (5.01m), 15:11 (4.95m)
+                // Low water: 09:42 (~0.30m placeholder), 22:11 (~0.25m placeholder)
+                return [
+                    createTideData(date: date, hour: 2, minute: 55, height: 5.01, type: .high),
+                    createTideData(date: date, hour: 9, minute: 42, height: 0.30, type: .low),
+                    createTideData(date: date, hour: 15, minute: 11, height: 4.95, type: .high),
+                    createTideData(date: date, hour: 22, minute: 11, height: 0.25, type: .low)
+                ]
+            default:
+                // Other stations: use pattern for now
+                let tidePatterns = getTidePatterns(for: station)
+                return createDailyTides(for: date, station: station, patterns: tidePatterns)
+            }
+        }
+        // August 12, 2025 (Nieuwpoort) - from official table
+        else if dateComponents.year == 2025 && dateComponents.month == 8 && dateComponents.day == 12 {
+            print("✅ MATCH: Using August 12, 2025 data for \(station.displayName)")
+            switch station {
+            case .nieuwpoort:
+                // High water: 03:34 (5.12m), 15:49 (5.06m)
+                // Low water: 10:24 (~0.28m placeholder), 22:52 (~0.20m placeholder)
+                return [
+                    createTideData(date: date, hour: 3, minute: 34, height: 5.12, type: .high),
+                    createTideData(date: date, hour: 10, minute: 24, height: 0.28, type: .low),
+                    createTideData(date: date, hour: 15, minute: 49, height: 5.06, type: .high),
+                    createTideData(date: date, hour: 22, minute: 52, height: 0.20, type: .low)
+                ]
+            default:
+                // Other stations: use pattern for now
+                let tidePatterns = getTidePatterns(for: station)
+                return createDailyTides(for: date, station: station, patterns: tidePatterns)
+            }
+        }
         // For other dates, use pattern-based generation
         else {
             let formatter2 = DateFormatter()
@@ -204,7 +242,8 @@ class ExcelTideParser {
     
     // Helper function to create TideData
     private static func createTideData(date: Date, hour: Int, minute: Int, height: Double, type: TideData.TideType) -> TideData {
-        let calendar = Calendar.current
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone(identifier: "Europe/Brussels") ?? .current
         let tideTime = calendar.date(bySettingHour: hour, minute: minute, second: 0, of: date)!
         return TideData(time: tideTime, height: max(0.0, height), type: type)
     }

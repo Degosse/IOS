@@ -85,36 +85,29 @@ class TideService: ObservableObject {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
             
-            let calendar = Calendar.current
+            var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone(identifier: "Europe/Brussels") ?? .current
         let today = calendar.startOfDay(for: Date())
         let tomorrow = calendar.date(byAdding: .day, value: 1, to: today)!
         
         print("🔄 Loading tide data for \(station.displayName) for today and tomorrow")
         print("📅 Today date: \(today)")
         print("📅 Tomorrow date: \(tomorrow)")
+        // Compute current year early for logging
+    let currentYear = calendar.component(.year, from: today)
+        if let docsDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            print("📂 App Documents directory: \(docsDir.path)")
+            print("👉 Place JSON files here to side-load (e.g., \(station.rawValue)_\(currentYear).json)")
+        }
         
-        // Try JSON parser first, then fallback to Excel parser (sample data)
-        let currentYear = calendar.component(.year, from: today)
+        // Use JSONTideParser first; it looks in Bundle and Documents and falls back to Excel sample data internally
             let jsonFileName = "\(station.rawValue)_\(currentYear).json"
-            
-            var parsedTides: [TideData] = []
-            
-            // Check if JSON file exists
-            if Bundle.main.path(forResource: jsonFileName.replacingOccurrences(of: ".json", with: ""), ofType: "json") != nil {
-                print("📊 Using JSON tide data")
-                parsedTides = JSONTideParser.parseTideData(
-                    for: ExcelTideParser.SupportedStation(rawValue: station.rawValue) ?? .oostende,
-                    startDate: today,
-                    endDate: tomorrow
-                )
-            } else {
-                print("📊 JSON file not found, using sample data")
-                parsedTides = ExcelTideParser.parseTideData(
-                    for: ExcelTideParser.SupportedStation(rawValue: station.rawValue) ?? .oostende,
-                    startDate: today,
-                    endDate: tomorrow
-                )
-            }
+            print("🔎 Looking for JSON: \(jsonFileName) in Bundle or Documents…")
+            let parsedTides: [TideData] = JSONTideParser.parseTideData(
+                for: ExcelTideParser.SupportedStation(rawValue: station.rawValue) ?? .oostende,
+                startDate: today,
+                endDate: tomorrow
+            )
             
             DispatchQueue.main.async {
                 if parsedTides.isEmpty {

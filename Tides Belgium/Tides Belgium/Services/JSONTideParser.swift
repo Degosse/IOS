@@ -25,16 +25,33 @@ class JSONTideParser {
         // Get the JSON file name
         let fileName = "\(station.rawValue)_\(currentYear).json"
         
-        guard let jsonPath = Bundle.main.path(forResource: fileName.replacingOccurrences(of: ".json", with: ""), ofType: "json") else {
-            print("❌ JSON file not found: \(fileName)")
+        // 1) Try bundled resource
+        var jsonURL: URL? = Bundle.main.url(
+            forResource: fileName.replacingOccurrences(of: ".json", with: ""),
+            withExtension: "json"
+        )
+        
+        // 2) If not bundled, try Documents directory (allows side-loading real data without editing Xcode project)
+        if jsonURL == nil {
+            if let docsDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+                let candidate = docsDir.appendingPathComponent(fileName)
+                if FileManager.default.fileExists(atPath: candidate.path) {
+                    jsonURL = candidate
+                    print("📄 Using JSON from Documents: \(candidate.path)")
+                }
+            }
+        }
+        
+        guard let finalJSONURL = jsonURL else {
+            print("❌ JSON file not found (bundle or Documents): \(fileName)")
             // Fallback to sample data
             return ExcelTideParser.parseTideData(for: station, startDate: startDate, endDate: endDate)
         }
         
-        print("📁 Found JSON file: \(jsonPath)")
+        print("📁 Found JSON file: \(finalJSONURL.path)")
         
         do {
-            let jsonData = try Data(contentsOf: URL(fileURLWithPath: jsonPath))
+            let jsonData = try Data(contentsOf: finalJSONURL)
             let jsonEntries = try JSONDecoder().decode([JSONTideEntry].self, from: jsonData)
             
             return parseJSONEntries(jsonEntries, startDate: startDate, endDate: endDate, stationName: station.displayName)
@@ -49,13 +66,17 @@ class JSONTideParser {
     // Parse JSON entries into TideData objects
     private static func parseJSONEntries(_ entries: [JSONTideEntry], startDate: Date, endDate: Date, stationName: String) -> [TideData] {
         var tides: [TideData] = []
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+    let tz = TimeZone(identifier: "Europe/Brussels") ?? .current
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    dateFormatter.timeZone = tz
         
-        let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = "HH:mm"
+    let timeFormatter = DateFormatter()
+    timeFormatter.dateFormat = "HH:mm"
+    timeFormatter.timeZone = tz
         
-        let calendar = Calendar.current
+    var calendar = Calendar(identifier: .gregorian)
+    calendar.timeZone = tz
         
         for entry in entries {
             // Parse date
@@ -102,8 +123,9 @@ class JSONTideParser {
         let sortedTides = tides.sorted { $0.time < $1.time }
         
         // Log results
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMM d, HH:mm"
+    let formatter = DateFormatter()
+    formatter.dateFormat = "MMM d, HH:mm"
+    formatter.timeZone = tz
         for tide in sortedTides {
             let dayStr = calendar.isDateInTomorrow(tide.time) ? "TOMORROW" : "TODAY"
             print("📈 Parsed JSON tide (\(dayStr)): \(formatter.string(from: tide.time)) - \(String(format: "%.2f", tide.height))m (\(tide.type == .high ? "HIGH" : "LOW"))")
