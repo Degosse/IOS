@@ -26,144 +26,70 @@ class ExcelTideParser {
             case .zeebrugge: return "Zeebrugge"
             }
         }
-        
-        func getDataFileName(for year: Int) -> String {
-            switch self {
-            case .antwerpen:
-                return year == 2025 ? "antwerpen_2025_data.txt" : "antwerpen_\(year)_data.txt"
-            case .blankenberge:
-                return "blankenberge_\(year)_data.txt"
-            case .nieuwpoort:
-                return "nieuwpoort_\(year)_data.txt"
-            case .oostende:
-                return "oostende_\(year)_data.txt"
-            case .zeebrugge:
-                return "zeebrugge_\(year)_data.txt"
-            }
-        }
     }
     
     // Parse tide data for a specific station and date range
+    // NOTE: This is now a fallback - JSONTideParser should be used for real data
     static func parseTideData(for station: SupportedStation, startDate: Date, endDate: Date) -> [TideData] {
-        let calendar = Calendar.current
-        let currentYear = calendar.component(.year, from: startDate)
+        print("⚠️ ExcelTideParser fallback: Creating basic tide pattern for \(station.displayName)")
+        print("⚠️ This should only be used when JSON data is unavailable")
         
-        print("📊 Creating tide data for \(station.displayName) based on real Excel data patterns (year: \(currentYear))")
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm"
-        print("📊 ExcelTideParser: startDate = \(formatter.string(from: startDate))")
-        print("📊 ExcelTideParser: endDate = \(formatter.string(from: endDate))")
-        
-        var tides: [TideData] = []
-        
-        var currentDate = startDate
-        while currentDate <= endDate {
-            print("📊 ExcelTideParser: Processing date = \(formatter.string(from: currentDate))")
-            // Get real tide data for this specific date if we have it
-            let dailyTides = getRealTideData(for: currentDate, station: station)
-            print("📊 ExcelTideParser: Got \(dailyTides.count) tides for \(formatter.string(from: currentDate))")
-            
-            // Log each tide for debugging
-            for (index, tide) in dailyTides.enumerated() {
-                let tideFormatter = DateFormatter()
-                tideFormatter.dateFormat = "MMM d, HH:mm"
-                print("📊 ExcelTideParser: Tide \(index + 1): \(tideFormatter.string(from: tide.time)) - \(String(format: "%.2f", tide.height))m (\(tide.type == .high ? "HIGH" : "LOW"))")
-            }
-            tides.append(contentsOf: dailyTides)
-            
-            // Break if we've processed the end date
-            if calendar.isDate(currentDate, inSameDayAs: endDate) {
-                break
-            }
-            
-            currentDate = calendar.date(byAdding: .day, value: 1, to: currentDate)!
-        }
-        
-        let sortedTides = tides.sorted { $0.time < $1.time }
-        print("📊 ExcelTideParser: Final sorted tides count: \(sortedTides.count)")
-        
-        // Log final sorted tides
-        for (index, tide) in sortedTides.enumerated() {
-            let tideFormatter = DateFormatter()
-            tideFormatter.dateFormat = "MMM d, HH:mm"
-            print("📊 ExcelTideParser: Final Tide \(index + 1): \(tideFormatter.string(from: tide.time)) - \(String(format: "%.2f", tide.height))m (\(tide.type == .high ? "HIGH" : "LOW"))")
-        }
-        
-        // Log the generated data for verification
-        for tide in sortedTides {
-            let dayStr = calendar.isDateInTomorrow(tide.time) ? "TOMORROW" : "TODAY"
-            print("📈 Real tide data (\(dayStr)): \(formatter.string(from: tide.time)) - \(String(format: "%.2f", tide.height))m (\(tide.type == .high ? "HIGH" : "LOW"))")
-        }
-        
-        print("📊 Total tides generated for \(station.displayName): \(sortedTides.count)")
-        return sortedTides
+        return createBasicTidePattern(for: station, startDate: startDate, endDate: endDate)
     }
     
-    // Get real tide data for specific dates based on Excel data
-    private static func getRealTideData(for date: Date, station: SupportedStation) -> [TideData] {
+    // Create a basic tide pattern as fallback when real data is unavailable
+    private static func createBasicTidePattern(for station: SupportedStation, startDate: Date, endDate: Date) -> [TideData] {
+        var tides: [TideData] = []
         let calendar = Calendar.current
-        let dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
+        var currentDate = startDate
         
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMM d, yyyy"
-        print("🎯 getRealTideData called for \(station.displayName) on \(formatter.string(from: date)) (Y:\(dateComponents.year ?? 0) M:\(dateComponents.month ?? 0) D:\(dateComponents.day ?? 0))")
+        // Basic tide pattern: 2 high and 2 low tides per day
+        let baseTimes = [(6, 30, true), (12, 45, false), (19, 15, true), (1, 0, false)] // (hour, minute, isHigh)
         
-    // August 9, 2025 (reference sample)
-        if dateComponents.year == 2025 && dateComponents.month == 8 && dateComponents.day == 9 {
-            print("✅ MATCH: Using August 9, 2025 data for \(station.displayName)")
-            switch station {
-            case .nieuwpoort:
-                return [
-                    createTideData(date: date, hour: 1, minute: 48, height: 4.55, type: .high),
-                    createTideData(date: date, hour: 8, minute: 26, height: 0.47, type: .low),
-                    createTideData(date: date, hour: 14, minute: 3, height: 4.54, type: .high),
-                    createTideData(date: date, hour: 20, minute: 54, height: 0.11, type: .low)
-                ]
-            case .oostende:
-                return [
-                    createTideData(date: date, hour: 1, minute: 15, height: 4.29, type: .high),
-                    createTideData(date: date, hour: 7, minute: 51, height: 0.65, type: .low),
-                    createTideData(date: date, hour: 13, minute: 34, height: 4.32, type: .high),
-                    createTideData(date: date, hour: 20, minute: 19, height: 0.34, type: .low)
-                ]
-            case .zeebrugge:
-                return [
-                    createTideData(date: date, hour: 1, minute: 44, height: 4.74, type: .high),
-                    createTideData(date: date, hour: 8, minute: 20, height: 0.45, type: .low),
-                    createTideData(date: date, hour: 13, minute: 57, height: 4.67, type: .high),
-                    createTideData(date: date, hour: 20, minute: 47, height: 0.09, type: .low)
-                ]
-            case .blankenberge:
-                return [
-                    createTideData(date: date, hour: 1, minute: 30, height: 4.45, type: .high),
-                    createTideData(date: date, hour: 8, minute: 0, height: 0.55, type: .low),
-                    createTideData(date: date, hour: 13, minute: 45, height: 4.48, type: .high),
-                    createTideData(date: date, hour: 20, minute: 30, height: 0.25, type: .low)
-                ]
-            case .antwerpen:
-                return [
-                    createTideData(date: date, hour: 2, minute: 15, height: 5.15, type: .high),
-                    createTideData(date: date, hour: 8, minute: 45, height: 0.75, type: .low),
-                    createTideData(date: date, hour: 14, minute: 30, height: 5.20, type: .high),
-                    createTideData(date: date, hour: 21, minute: 15, height: 0.65, type: .low)
-                ]
+        while currentDate <= endDate {
+            for (hour, minute, isHigh) in baseTimes {
+                var tideDate = currentDate
+                if hour < 6 { // Early morning tide belongs to next day
+                    tideDate = calendar.date(byAdding: .day, value: 1, to: currentDate) ?? currentDate
+                }
+                
+                let tideTime = calendar.date(bySettingHour: hour, minute: minute, second: 0, of: tideDate) ?? tideDate
+                
+                let height = isHigh ? getStationHighTideHeight(for: station) : getStationLowTideHeight(for: station)
+                let type: TideType = isHigh ? .high : .low
+                
+                tides.append(TideData(time: tideTime, height: height, type: type))
             }
+            
+            currentDate = calendar.date(byAdding: .day, value: 1, to: currentDate) ?? currentDate
+            if calendar.isDate(currentDate, inSameDayAs: endDate) { break }
         }
-    // August 10, 2025 (reference sample)
-        else if dateComponents.year == 2025 && dateComponents.month == 8 && dateComponents.day == 10 {
-            print("✅ MATCH: Using August 10, 2025 data for \(station.displayName)")
-            switch station {
-            case .nieuwpoort:
-                return [
-                    createTideData(date: date, hour: 2, minute: 20, height: 4.80, type: .high),
-                    createTideData(date: date, hour: 9, minute: 3, height: 0.29, type: .low),
-                    createTideData(date: date, hour: 14, minute: 35, height: 4.76, type: .high),
-                    createTideData(date: date, hour: 21, minute: 31, height: -0.10, type: .low)
-                ]
-            case .oostende:
-                return [
-                    createTideData(date: date, hour: 1, minute: 50, height: 4.55, type: .high),
+        
+        return tides.sorted { $0.time < $1.time }
+    }
+    
+    // Get typical high tide height for each station
+    private static func getStationHighTideHeight(for station: SupportedStation) -> Double {
+        switch station {
+        case .antwerpen: return 5.2
+        case .blankenberge: return 4.3
+        case .nieuwpoort: return 4.5
+        case .oostende: return 4.4
+        case .zeebrugge: return 4.6
+        }
+    }
+    
+    // Get typical low tide height for each station
+    private static func getStationLowTideHeight(for station: SupportedStation) -> Double {
+        switch station {
+        case .antwerpen: return 0.5
+        case .blankenberge: return 0.6
+        case .nieuwpoort: return 0.4
+        case .oostende: return 0.5
+        case .zeebrugge: return 0.3
+        }
+    }
+}
                     createTideData(date: date, hour: 8, minute: 25, height: 0.45, type: .low),
                     createTideData(date: date, hour: 14, minute: 10, height: 4.58, type: .high),
                     createTideData(date: date, hour: 20, minute: 55, height: 0.15, type: .low)
