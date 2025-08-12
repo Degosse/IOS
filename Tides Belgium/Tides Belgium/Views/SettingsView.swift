@@ -57,6 +57,25 @@ struct SettingsView: View {
                         .font(.headline)
                         .foregroundColor(.primary)
                 }
+                
+                Section {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(localizationManager.localizedString(for: "data_disclaimer"))
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    .padding(.vertical, 4)
+                } header: {
+                    HStack {
+                        Image(systemName: "info.circle")
+                            .foregroundColor(.blue)
+                        Text(localizationManager.localizedString(for: "data_source"))
+                            .textCase(.none)
+                            .font(.headline)
+                            .foregroundColor(.primary)
+                    }
+                }
             }
             .navigationTitle(localizationManager.localizedString(for: "settings"))
             .navigationBarTitleDisplayMode(.inline)

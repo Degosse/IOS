@@ -101,7 +101,7 @@ def extract_station_data(excel_path, station_name, year):
                     if month_idx == 0:  # First month (e.g., July in jul-aug)
                         tide_columns = [(3, 4), (5, 6)]
                     else:  # Second month (e.g., August in jul-aug)
-                        tide_columns = [(10, 11)]
+                        tide_columns = [(17, 18), (19, 20)]  # Fixed: August data in columns 17-20
                     
                     # Extract tides from main row
                     for time_col, height_col in tide_columns:
@@ -174,11 +174,11 @@ def main():
     
     # Station configurations
     stations = [
-        {'name': 'nieuwpoort', 'excel_pattern': 'Nieuwpoort{year}_mTAW.xlsx'},
-        {'name': 'oostende', 'excel_pattern': 'Oostende{year}_mTAW.xlsx'},
-        {'name': 'blankenberge', 'excel_pattern': 'Blankenberge{year}_mTAW.xlsx'},
-        {'name': 'zeebrugge', 'excel_pattern': 'Zeebrugge{year}_mTAW.xlsx'},
-        {'name': 'antwerpen', 'excel_pattern': 'Antwerpen{year}_mTAW.xlsx'},
+        {'name': 'nieuwpoort'},
+        {'name': 'oostende'},
+        {'name': 'blankenberge'},
+        {'name': 'zeebrugge'},
+        {'name': 'antwerpen'},
     ]
     
     excel_folder = f"xlsx-getijtabellen-taw-{year}"
@@ -196,9 +196,28 @@ def main():
     successful_extractions = 0
     
     for station in stations:
-        # Build Excel file path
-        excel_filename = station['excel_pattern'].format(year=year)
-        excel_path = os.path.join(excel_folder, excel_filename)
+        # Try different filename patterns for different years
+        station_name_title = station['name'].title()
+        possible_patterns = [
+            f"{station_name_title}{year}_mTAW.xlsx",  # 2025 format
+            f"{station_name_title}_{year}_mTAW.xlsx",  # 2026 format
+        ]
+        
+        excel_path = None
+        for pattern in possible_patterns:
+            potential_path = os.path.join(excel_folder, pattern)
+            if os.path.exists(potential_path):
+                excel_path = potential_path
+                break
+        
+        if not excel_path:
+            print(f"Processing {station['name'].upper()} for year {year}...")
+            print(f"  ❌ Excel file not found. Tried patterns:")
+            for pattern in possible_patterns:
+                print(f"     - {pattern}")
+            print(f"  ❌ No data extracted for {station['name']}")
+            print()
+            continue
         
         tides = extract_station_data(excel_path, station['name'], year)
         

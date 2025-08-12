@@ -62,7 +62,7 @@ struct TideChartView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            ChartHeaderView(currentHeight: currentHeight)
+            ChartHeaderView(currentHeight: currentHeight, selectedDay: selectedDay)
             
             TideContinuousChartView(
                 chartData: chartData, 
@@ -109,6 +109,7 @@ struct TideChartView: View {
 
 private struct ChartHeaderView: View {
     let currentHeight: Double
+    let selectedDay: TideChartView.DaySelection
     @Environment(\.localizationManager) private var localizationManager
     @Environment(\.colorScheme) private var colorScheme
 
@@ -118,6 +119,8 @@ private struct ChartHeaderView: View {
                 Text(L("tide_chart_48h"))
                     .font(.title3)
                     .fontWeight(.bold)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
                     .foregroundStyle(
                         LinearGradient(
                             colors: [.blue, .cyan],
@@ -130,23 +133,37 @@ private struct ChartHeaderView: View {
             Spacer()
             
             VStack(alignment: .trailing, spacing: 2) {
-                Text("\(currentHeight, specifier: "%.1f")m")
-                    .font(.title3)
-                    .fontWeight(.bold)
-                    .foregroundColor(.blue)
-                
-                Text(L("current_level"))
-                    .font(.caption2)
-                    .foregroundColor(.secondary)
-                    .textCase(.uppercase)
-                    .tracking(0.5)
+                if selectedDay == .today {
+                    Text("\(currentHeight, specifier: "%.1f")m")
+                        .font(.title3)
+                        .fontWeight(.bold)
+                        .foregroundColor(.blue)
+                    
+                    Text(L("current_level"))
+                        .font(.caption2)
+                        .foregroundColor(.secondary)
+                        .textCase(.uppercase)
+                        .tracking(0.5)
+                } else {
+                    // Invisible placeholder to maintain consistent height
+                    Text("0.0m")
+                        .font(.title3)
+                        .fontWeight(.bold)
+                        .opacity(0)
+                    
+                    Text("CURRENT LEVEL")
+                        .font(.caption2)
+                        .textCase(.uppercase)
+                        .tracking(0.5)
+                        .opacity(0)
+                }
             }
             .padding(.horizontal, 10)
             .padding(.vertical, 6)
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(.blue.opacity(0.1))
-                    .stroke(.blue.opacity(0.3), lineWidth: 1)
+                    .fill(selectedDay == .today ? .blue.opacity(0.1) : .clear)
+                    .stroke(selectedDay == .today ? .blue.opacity(0.3) : .clear, lineWidth: 1)
             )
         }
     }

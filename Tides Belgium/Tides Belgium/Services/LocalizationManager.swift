@@ -159,6 +159,7 @@ struct LocalizedStrings {
         "tomorrow": "Tomorrow",
         
         // Stations
+        "antwerpen": "Antwerpen",
         "oostende": "Ostend",
         "zeebrugge": "Zeebrugge",
         "nieuwpoort": "Nieuwpoort",
@@ -186,7 +187,11 @@ struct LocalizedStrings {
         "highest": "Highest:",
         "lowest": "Lowest:",
         "next": "Next:",
-        "no_data": "No data"
+        "no_data": "No data",
+        
+        // Data Source Disclaimer
+        "data_source": "Data Source",
+        "data_disclaimer": "All tide data is static data based on the official 'Getij Tafels' (Tide Tables) published by the Flemish Government. This data is provided for informational purposes only."
     ]
     
     // MARK: - Dutch Translations
@@ -245,6 +250,7 @@ struct LocalizedStrings {
         "tomorrow": "Morgen",
         
         // Stations
+        "antwerpen": "Antwerpen",
         "oostende": "Oostende",
         "zeebrugge": "Zeebrugge",
         "nieuwpoort": "Nieuwpoort",
@@ -272,7 +278,11 @@ struct LocalizedStrings {
         "highest": "Hoogste:",
         "lowest": "Laagste:",
         "next": "Volgende:",
-        "no_data": "Geen gegevens"
+        "no_data": "Geen gegevens",
+        
+        // Data Source Disclaimer
+        "data_source": "Gegevensbron",
+        "data_disclaimer": "Alle getijdengegevens zijn statische gegevens gebaseerd op de officiële 'Getij Tafels' uitgegeven door de Vlaamse Regering. Deze gegevens worden alleen ter informatie verstrekt."
     ]
     
     // MARK: - French Translations
@@ -331,6 +341,7 @@ struct LocalizedStrings {
         "tomorrow": "Demain",
         
         // Stations
+        "antwerpen": "Anvers",
         "oostende": "Ostende",
         "zeebrugge": "Zeebruges",
         "nieuwpoort": "Nieuport",
@@ -358,7 +369,11 @@ struct LocalizedStrings {
         "highest": "Plus haute:",
         "lowest": "Plus basse:",
         "next": "Prochaine:",
-        "no_data": "Aucune donnée"
+        "no_data": "Aucune donnée",
+        
+        // Data Source Disclaimer
+        "data_source": "Source de Données",
+        "data_disclaimer": "Toutes les données de marée sont des données statiques basées sur les 'Tables de Marée' officielles publiées par le Gouvernement Flamand. Ces données sont fournies à titre informatif uniquement."
     ]
     
     // MARK: - German Translations
@@ -417,6 +432,7 @@ struct LocalizedStrings {
         "tomorrow": "Morgen",
         
         // Stations
+        "antwerpen": "Antwerpen",
         "oostende": "Ostende",
         "zeebrugge": "Zeebrügge",
         "nieuwpoort": "Nieuwpoort",
@@ -444,6 +460,10 @@ struct LocalizedStrings {
         "highest": "Höchste:",
         "lowest": "Niedrigste:",
         "next": "Nächste:",
-        "no_data": "Keine Daten"
+        "no_data": "Keine Daten",
+        
+        // Data Source Disclaimer
+        "data_source": "Datenquelle",
+        "data_disclaimer": "Alle Gezeitendaten sind statische Daten basierend auf den offiziellen 'Gezeiten Tafeln', die von der Flämischen Regierung veröffentlicht wurden. Diese Daten werden nur zu Informationszwecken bereitgestellt."
     ]
 }

@@ -343,177 +343,351 @@
   },
   {
     "date": "2026-02-01",
-    "time": "00:13",
-    "height": 3.79,
+    "time": "00:53",
+    "height": 4.06,
     "type": "high"
   },
   {
     "date": "2026-02-01",
-    "time": "12:33",
-    "height": 3.86,
+    "time": "07:13",
+    "height": 0.48,
+    "type": "low"
+  },
+  {
+    "date": "2026-02-01",
+    "time": "13:14",
+    "height": 4.39,
+    "type": "high"
+  },
+  {
+    "date": "2026-02-01",
+    "time": "19:31",
+    "height": 0.71,
+    "type": "low"
+  },
+  {
+    "date": "2026-02-02",
+    "time": "01:33",
+    "height": 4.23,
     "type": "high"
   },
   {
     "date": "2026-02-02",
-    "time": "00:56",
-    "height": 3.91,
+    "time": "07:55",
+    "height": 0.28,
+    "type": "low"
+  },
+  {
+    "date": "2026-02-02",
+    "time": "13:55",
+    "height": 4.54,
     "type": "high"
   },
   {
     "date": "2026-02-02",
-    "time": "13:12",
-    "height": 4.0,
+    "time": "20:11",
+    "height": 0.64,
+    "type": "low"
+  },
+  {
+    "date": "2026-02-03",
+    "time": "02:12",
+    "height": 4.39,
     "type": "high"
   },
   {
     "date": "2026-02-03",
-    "time": "01:31",
-    "height": 4.0,
+    "time": "08:36",
+    "height": 0.11,
+    "type": "low"
+  },
+  {
+    "date": "2026-02-03",
+    "time": "14:35",
+    "height": 4.65,
     "type": "high"
   },
   {
     "date": "2026-02-03",
-    "time": "13:44",
-    "height": 4.12,
+    "time": "20:50",
+    "height": 0.56,
+    "type": "low"
+  },
+  {
+    "date": "2026-02-04",
+    "time": "02:51",
+    "height": 4.53,
     "type": "high"
   },
   {
     "date": "2026-02-04",
-    "time": "02:00",
-    "height": 4.08,
+    "time": "09:17",
+    "height": -0.02,
+    "type": "low"
+  },
+  {
+    "date": "2026-02-04",
+    "time": "15:15",
+    "height": 4.71,
     "type": "high"
   },
   {
     "date": "2026-02-04",
-    "time": "14:13",
-    "height": 4.25,
+    "time": "21:29",
+    "height": 0.49,
+    "type": "low"
+  },
+  {
+    "date": "2026-02-05",
+    "time": "03:31",
+    "height": 4.62,
     "type": "high"
   },
   {
     "date": "2026-02-05",
-    "time": "02:27",
-    "height": 4.19,
+    "time": "09:58",
+    "height": -0.06,
+    "type": "low"
+  },
+  {
+    "date": "2026-02-05",
+    "time": "15:57",
+    "height": 4.69,
     "type": "high"
   },
   {
     "date": "2026-02-05",
-    "time": "14:44",
-    "height": 4.4,
+    "time": "22:09",
+    "height": 0.47,
+    "type": "low"
+  },
+  {
+    "date": "2026-02-06",
+    "time": "04:12",
+    "height": 4.62,
     "type": "high"
   },
   {
     "date": "2026-02-06",
-    "time": "02:57",
+    "time": "10:40",
+    "height": 0.01,
+    "type": "low"
+  },
+  {
+    "date": "2026-02-06",
+    "time": "16:39",
+    "height": 4.58,
+    "type": "high"
+  },
+  {
+    "date": "2026-02-06",
+    "time": "22:48",
+    "height": 0.52,
+    "type": "low"
+  },
+  {
+    "date": "2026-02-07",
+    "time": "04:54",
+    "height": 4.51,
+    "type": "high"
+  },
+  {
+    "date": "2026-02-07",
+    "time": "11:21",
+    "height": 0.18,
+    "type": "low"
+  },
+  {
+    "date": "2026-02-07",
+    "time": "17:22",
+    "height": 4.38,
+    "type": "high"
+  },
+  {
+    "date": "2026-02-07",
+    "time": "23:26",
+    "height": 0.66,
+    "type": "low"
+  },
+  {
+    "date": "2026-02-08",
+    "time": "05:35",
     "height": 4.31,
     "type": "high"
   },
   {
-    "date": "2026-02-06",
-    "time": "15:18",
-    "height": 4.53,
-    "type": "high"
-  },
-  {
-    "date": "2026-02-07",
-    "time": "03:32",
-    "height": 4.41,
-    "type": "high"
-  },
-  {
-    "date": "2026-02-07",
-    "time": "15:56",
-    "height": 4.61,
-    "type": "high"
+    "date": "2026-02-08",
+    "time": "12:02",
+    "height": 0.45,
+    "type": "low"
   },
   {
     "date": "2026-02-08",
-    "time": "04:10",
-    "height": 4.47,
-    "type": "high"
-  },
-  {
-    "date": "2026-02-08",
-    "time": "16:37",
-    "height": 4.61,
+    "time": "18:04",
+    "height": 4.11,
     "type": "high"
   },
   {
     "date": "2026-02-09",
-    "time": "04:52",
-    "height": 4.47,
+    "time": "00:04",
+    "height": 0.87,
+    "type": "low"
+  },
+  {
+    "date": "2026-02-09",
+    "time": "06:17",
+    "height": 4.03,
     "type": "high"
   },
   {
     "date": "2026-02-09",
-    "time": "17:22",
-    "height": 4.53,
+    "time": "12:44",
+    "height": 0.77,
+    "type": "low"
+  },
+  {
+    "date": "2026-02-09",
+    "time": "18:48",
+    "height": 3.79,
     "type": "high"
   },
   {
     "date": "2026-02-10",
-    "time": "05:39",
-    "height": 4.41,
-    "type": "high"
+    "time": "00:46",
+    "height": 1.12,
+    "type": "low"
   },
   {
     "date": "2026-02-10",
-    "time": "18:12",
-    "height": 4.37,
-    "type": "high"
-  },
-  {
-    "date": "2026-02-11",
-    "time": "06:31",
-    "height": 4.26,
-    "type": "high"
-  },
-  {
-    "date": "2026-02-11",
-    "time": "19:09",
-    "height": 4.14,
-    "type": "high"
-  },
-  {
-    "date": "2026-02-12",
-    "time": "07:32",
-    "height": 4.05,
-    "type": "high"
-  },
-  {
-    "date": "2026-02-12",
-    "time": "20:17",
-    "height": 3.88,
-    "type": "high"
-  },
-  {
-    "date": "2026-02-13",
-    "time": "08:46",
-    "height": 3.86,
-    "type": "high"
-  },
-  {
-    "date": "2026-02-13",
-    "time": "21:36",
-    "height": 3.69,
-    "type": "high"
-  },
-  {
-    "date": "2026-02-14",
-    "time": "10:10",
-    "height": 3.8,
-    "type": "high"
-  },
-  {
-    "date": "2026-02-14",
-    "time": "22:57",
+    "time": "07:05",
     "height": 3.7,
     "type": "high"
   },
   {
-    "date": "2026-02-15",
-    "time": "11:28",
-    "height": 3.95,
+    "date": "2026-02-10",
+    "time": "13:46",
+    "height": 1.1,
+    "type": "low"
+  },
+  {
+    "date": "2026-02-10",
+    "time": "19:45",
+    "height": 3.47,
     "type": "high"
+  },
+  {
+    "date": "2026-02-11",
+    "time": "02:21",
+    "height": 1.37,
+    "type": "low"
+  },
+  {
+    "date": "2026-02-11",
+    "time": "08:16",
+    "height": 3.38,
+    "type": "high"
+  },
+  {
+    "date": "2026-02-11",
+    "time": "15:14",
+    "height": 1.31,
+    "type": "low"
+  },
+  {
+    "date": "2026-02-11",
+    "time": "21:13",
+    "height": 3.24,
+    "type": "high"
+  },
+  {
+    "date": "2026-02-12",
+    "time": "03:56",
+    "height": 1.39,
+    "type": "low"
+  },
+  {
+    "date": "2026-02-12",
+    "time": "09:54",
+    "height": 3.26,
+    "type": "high"
+  },
+  {
+    "date": "2026-02-12",
+    "time": "16:24",
+    "height": 1.35,
+    "type": "low"
+  },
+  {
+    "date": "2026-02-12",
+    "time": "22:40",
+    "height": 3.28,
+    "type": "high"
+  },
+  {
+    "date": "2026-02-13",
+    "time": "05:07",
+    "height": 1.25,
+    "type": "low"
+  },
+  {
+    "date": "2026-02-13",
+    "time": "11:13",
+    "height": 3.41,
+    "type": "high"
+  },
+  {
+    "date": "2026-02-13",
+    "time": "17:28",
+    "height": 1.26,
+    "type": "low"
+  },
+  {
+    "date": "2026-02-13",
+    "time": "23:44",
+    "height": 3.49,
+    "type": "high"
+  },
+  {
+    "date": "2026-02-14",
+    "time": "06:06",
+    "height": 1.04,
+    "type": "low"
+  },
+  {
+    "date": "2026-02-14",
+    "time": "12:06",
+    "height": 3.68,
+    "type": "high"
+  },
+  {
+    "date": "2026-02-14",
+    "time": "18:18",
+    "height": 1.12,
+    "type": "low"
+  },
+  {
+    "date": "2026-02-15",
+    "time": "00:29",
+    "height": 3.73,
+    "type": "high"
+  },
+  {
+    "date": "2026-02-15",
+    "time": "06:48",
+    "height": 0.82,
+    "type": "low"
+  },
+  {
+    "date": "2026-02-15",
+    "time": "12:46",
+    "height": 3.94,
+    "type": "high"
+  },
+  {
+    "date": "2026-02-15",
+    "time": "18:52",
+    "height": 0.97,
+    "type": "low"
   },
   {
     "date": "2026-03-01",
@@ -865,171 +1039,351 @@
   },
   {
     "date": "2026-04-01",
-    "time": "12:09",
+    "time": "01:53",
+    "height": 4.32,
+    "type": "high"
+  },
+  {
+    "date": "2026-04-01",
+    "time": "08:16",
+    "height": 0.12,
+    "type": "low"
+  },
+  {
+    "date": "2026-04-01",
+    "time": "14:17",
+    "height": 4.54,
+    "type": "high"
+  },
+  {
+    "date": "2026-04-01",
+    "time": "20:30",
+    "height": 0.52,
+    "type": "low"
+  },
+  {
+    "date": "2026-04-02",
+    "time": "02:29",
+    "height": 4.49,
+    "type": "high"
+  },
+  {
+    "date": "2026-04-02",
+    "time": "08:53",
+    "height": 0.04,
+    "type": "low"
+  },
+  {
+    "date": "2026-04-02",
+    "time": "14:53",
+    "height": 4.6,
+    "type": "high"
+  },
+  {
+    "date": "2026-04-02",
+    "time": "21:05",
+    "height": 0.4,
+    "type": "low"
+  },
+  {
+    "date": "2026-04-03",
+    "time": "03:06",
+    "height": 4.59,
+    "type": "high"
+  },
+  {
+    "date": "2026-04-03",
+    "time": "09:29",
+    "height": 0.03,
+    "type": "low"
+  },
+  {
+    "date": "2026-04-03",
+    "time": "15:29",
+    "height": 4.6,
+    "type": "high"
+  },
+  {
+    "date": "2026-04-03",
+    "time": "21:40",
+    "height": 0.32,
+    "type": "low"
+  },
+  {
+    "date": "2026-04-04",
+    "time": "03:42",
+    "height": 4.62,
+    "type": "high"
+  },
+  {
+    "date": "2026-04-04",
+    "time": "10:05",
+    "height": 0.09,
+    "type": "low"
+  },
+  {
+    "date": "2026-04-04",
+    "time": "16:06",
+    "height": 4.53,
+    "type": "high"
+  },
+  {
+    "date": "2026-04-04",
+    "time": "22:15",
+    "height": 0.32,
+    "type": "low"
+  },
+  {
+    "date": "2026-04-05",
+    "time": "04:19",
+    "height": 4.54,
+    "type": "high"
+  },
+  {
+    "date": "2026-04-05",
+    "time": "10:39",
+    "height": 0.24,
+    "type": "low"
+  },
+  {
+    "date": "2026-04-05",
+    "time": "16:41",
+    "height": 4.38,
+    "type": "high"
+  },
+  {
+    "date": "2026-04-05",
+    "time": "22:47",
+    "height": 0.39,
+    "type": "low"
+  },
+  {
+    "date": "2026-04-06",
+    "time": "04:52",
+    "height": 4.39,
+    "type": "high"
+  },
+  {
+    "date": "2026-04-06",
+    "time": "11:09",
+    "height": 0.45,
+    "type": "low"
+  },
+  {
+    "date": "2026-04-06",
+    "time": "17:12",
+    "height": 4.17,
+    "type": "high"
+  },
+  {
+    "date": "2026-04-06",
+    "time": "23:17",
+    "height": 0.52,
+    "type": "low"
+  },
+  {
+    "date": "2026-04-07",
+    "time": "05:23",
+    "height": 4.2,
+    "type": "high"
+  },
+  {
+    "date": "2026-04-07",
+    "time": "11:36",
+    "height": 0.67,
+    "type": "low"
+  },
+  {
+    "date": "2026-04-07",
+    "time": "17:39",
     "height": 3.97,
     "type": "high"
   },
   {
-    "date": "2026-04-02",
-    "time": "00:25",
-    "height": 3.95,
-    "type": "high"
-  },
-  {
-    "date": "2026-04-02",
-    "time": "12:44",
-    "height": 4.3,
-    "type": "high"
-  },
-  {
-    "date": "2026-04-03",
-    "time": "00:58",
-    "height": 4.24,
-    "type": "high"
-  },
-  {
-    "date": "2026-04-03",
-    "time": "13:18",
-    "height": 4.57,
-    "type": "high"
-  },
-  {
-    "date": "2026-04-04",
-    "time": "01:31",
-    "height": 4.5,
-    "type": "high"
-  },
-  {
-    "date": "2026-04-04",
-    "time": "13:54",
-    "height": 4.77,
-    "type": "high"
-  },
-  {
-    "date": "2026-04-05",
-    "time": "02:08",
-    "height": 4.7,
-    "type": "high"
-  },
-  {
-    "date": "2026-04-05",
-    "time": "14:32",
-    "height": 4.87,
-    "type": "high"
-  },
-  {
-    "date": "2026-04-06",
-    "time": "02:46",
-    "height": 4.8,
-    "type": "high"
-  },
-  {
-    "date": "2026-04-06",
-    "time": "15:12",
-    "height": 4.83,
-    "type": "high"
-  },
-  {
     "date": "2026-04-07",
-    "time": "03:27",
-    "height": 4.8,
-    "type": "high"
+    "time": "23:46",
+    "height": 0.67,
+    "type": "low"
   },
   {
-    "date": "2026-04-07",
-    "time": "15:52",
-    "height": 4.68,
+    "date": "2026-04-08",
+    "time": "05:53",
+    "height": 4.0,
     "type": "high"
   },
   {
     "date": "2026-04-08",
-    "time": "04:08",
-    "height": 4.69,
-    "type": "high"
+    "time": "12:03",
+    "height": 0.88,
+    "type": "low"
   },
   {
     "date": "2026-04-08",
-    "time": "16:34",
-    "height": 4.45,
+    "time": "18:08",
+    "height": 3.78,
     "type": "high"
   },
   {
     "date": "2026-04-09",
-    "time": "04:52",
-    "height": 4.51,
+    "time": "00:16",
+    "height": 0.85,
+    "type": "low"
+  },
+  {
+    "date": "2026-04-09",
+    "time": "06:27",
+    "height": 3.78,
     "type": "high"
   },
   {
     "date": "2026-04-09",
-    "time": "17:19",
-    "height": 4.16,
+    "time": "12:35",
+    "height": 1.1,
+    "type": "low"
+  },
+  {
+    "date": "2026-04-09",
+    "time": "18:43",
+    "height": 3.55,
     "type": "high"
   },
   {
     "date": "2026-04-10",
-    "time": "05:41",
-    "height": 4.24,
+    "time": "00:56",
+    "height": 1.08,
+    "type": "low"
+  },
+  {
+    "date": "2026-04-10",
+    "time": "07:14",
+    "height": 3.52,
     "type": "high"
   },
   {
     "date": "2026-04-10",
-    "time": "18:11",
-    "height": 3.81,
+    "time": "13:22",
+    "height": 1.35,
+    "type": "low"
+  },
+  {
+    "date": "2026-04-10",
+    "time": "19:35",
+    "height": 3.27,
     "type": "high"
   },
   {
     "date": "2026-04-11",
-    "time": "06:42",
-    "height": 3.9,
+    "time": "02:15",
+    "height": 1.32,
+    "type": "low"
+  },
+  {
+    "date": "2026-04-11",
+    "time": "08:45",
+    "height": 3.27,
     "type": "high"
   },
   {
     "date": "2026-04-11",
-    "time": "19:24",
-    "height": 3.46,
+    "time": "15:51",
+    "height": 1.48,
+    "type": "low"
+  },
+  {
+    "date": "2026-04-11",
+    "time": "21:49",
+    "height": 3.12,
     "type": "high"
   },
   {
     "date": "2026-04-12",
-    "time": "08:14",
-    "height": 3.62,
+    "time": "04:33",
+    "height": 1.18,
+    "type": "low"
+  },
+  {
+    "date": "2026-04-12",
+    "time": "10:35",
+    "height": 3.38,
     "type": "high"
   },
   {
     "date": "2026-04-12",
-    "time": "21:05",
-    "height": 3.32,
+    "time": "16:56",
+    "height": 1.31,
+    "type": "low"
+  },
+  {
+    "date": "2026-04-12",
+    "time": "23:07",
+    "height": 3.33,
     "type": "high"
   },
   {
     "date": "2026-04-13",
-    "time": "09:53",
-    "height": 3.67,
+    "time": "05:29",
+    "height": 0.94,
+    "type": "low"
+  },
+  {
+    "date": "2026-04-13",
+    "time": "11:39",
+    "height": 3.7,
     "type": "high"
   },
   {
     "date": "2026-04-13",
-    "time": "22:30",
-    "height": 3.5,
+    "time": "17:50",
+    "height": 1.07,
+    "type": "low"
+  },
+  {
+    "date": "2026-04-14",
+    "time": "00:01",
+    "height": 3.66,
     "type": "high"
   },
   {
     "date": "2026-04-14",
-    "time": "12:08",
-    "height": 3.95,
+    "time": "06:19",
+    "height": 0.66,
+    "type": "low"
+  },
+  {
+    "date": "2026-04-14",
+    "time": "12:27",
+    "height": 4.06,
+    "type": "high"
+  },
+  {
+    "date": "2026-04-14",
+    "time": "18:36",
+    "height": 0.81,
+    "type": "low"
+  },
+  {
+    "date": "2026-04-15",
+    "time": "00:44",
+    "height": 4.0,
     "type": "high"
   },
   {
     "date": "2026-04-15",
-    "time": "00:31",
-    "height": 3.81,
+    "time": "07:03",
+    "height": 0.39,
+    "type": "low"
+  },
+  {
+    "date": "2026-04-15",
+    "time": "13:08",
+    "height": 4.39,
     "type": "high"
   },
   {
     "date": "2026-04-15",
-    "time": "13:00",
-    "height": 4.23,
-    "type": "high"
+    "time": "19:19",
+    "height": 0.57,
+    "type": "low"
   },
   {
     "date": "2026-05-01",
@@ -1381,177 +1735,351 @@
   },
   {
     "date": "2026-06-01",
-    "time": "01:35",
-    "height": 4.52,
-    "type": "high"
-  },
-  {
-    "date": "2026-06-01",
-    "time": "14:02",
-    "height": 4.6,
-    "type": "high"
-  },
-  {
-    "date": "2026-06-02",
-    "time": "02:19",
-    "height": 4.63,
-    "type": "high"
-  },
-  {
-    "date": "2026-06-02",
-    "time": "14:46",
-    "height": 4.57,
-    "type": "high"
-  },
-  {
-    "date": "2026-06-03",
-    "time": "03:04",
-    "height": 4.66,
-    "type": "high"
-  },
-  {
-    "date": "2026-06-03",
-    "time": "15:31",
-    "height": 4.47,
-    "type": "high"
-  },
-  {
-    "date": "2026-06-04",
-    "time": "03:50",
-    "height": 4.62,
-    "type": "high"
-  },
-  {
-    "date": "2026-06-04",
-    "time": "16:16",
-    "height": 4.33,
-    "type": "high"
-  },
-  {
-    "date": "2026-06-05",
-    "time": "04:37",
-    "height": 4.52,
-    "type": "high"
-  },
-  {
-    "date": "2026-06-05",
-    "time": "17:02",
+    "time": "03:06",
     "height": 4.18,
     "type": "high"
   },
   {
+    "date": "2026-06-01",
+    "time": "09:14",
+    "height": 0.68,
+    "type": "low"
+  },
+  {
+    "date": "2026-06-01",
+    "time": "15:26",
+    "height": 4.09,
+    "type": "high"
+  },
+  {
+    "date": "2026-06-01",
+    "time": "21:32",
+    "height": 0.56,
+    "type": "low"
+  },
+  {
+    "date": "2026-06-02",
+    "time": "03:39",
+    "height": 4.12,
+    "type": "high"
+  },
+  {
+    "date": "2026-06-02",
+    "time": "09:42",
+    "height": 0.75,
+    "type": "low"
+  },
+  {
+    "date": "2026-06-02",
+    "time": "15:57",
+    "height": 4.01,
+    "type": "high"
+  },
+  {
+    "date": "2026-06-02",
+    "time": "22:02",
+    "height": 0.56,
+    "type": "low"
+  },
+  {
+    "date": "2026-06-03",
+    "time": "04:10",
+    "height": 4.08,
+    "type": "high"
+  },
+  {
+    "date": "2026-06-03",
+    "time": "10:11",
+    "height": 0.8,
+    "type": "low"
+  },
+  {
+    "date": "2026-06-03",
+    "time": "16:24",
+    "height": 3.96,
+    "type": "high"
+  },
+  {
+    "date": "2026-06-03",
+    "time": "22:33",
+    "height": 0.57,
+    "type": "low"
+  },
+  {
+    "date": "2026-06-04",
+    "time": "04:40",
+    "height": 4.06,
+    "type": "high"
+  },
+  {
+    "date": "2026-06-04",
+    "time": "10:41",
+    "height": 0.82,
+    "type": "low"
+  },
+  {
+    "date": "2026-06-04",
+    "time": "16:52",
+    "height": 3.94,
+    "type": "high"
+  },
+  {
+    "date": "2026-06-04",
+    "time": "23:06",
+    "height": 0.57,
+    "type": "low"
+  },
+  {
+    "date": "2026-06-05",
+    "time": "05:13",
+    "height": 4.07,
+    "type": "high"
+  },
+  {
+    "date": "2026-06-05",
+    "time": "11:16",
+    "height": 0.84,
+    "type": "low"
+  },
+  {
+    "date": "2026-06-05",
+    "time": "17:26",
+    "height": 3.94,
+    "type": "high"
+  },
+  {
+    "date": "2026-06-05",
+    "time": "23:43",
+    "height": 0.59,
+    "type": "low"
+  },
+  {
     "date": "2026-06-06",
-    "time": "05:27",
-    "height": 4.38,
+    "time": "05:53",
+    "height": 4.07,
     "type": "high"
   },
   {
     "date": "2026-06-06",
-    "time": "17:52",
-    "height": 4.02,
+    "time": "11:56",
+    "height": 0.88,
+    "type": "low"
+  },
+  {
+    "date": "2026-06-06",
+    "time": "18:08",
+    "height": 3.91,
     "type": "high"
   },
   {
     "date": "2026-06-07",
-    "time": "06:22",
-    "height": 4.22,
+    "time": "00:29",
+    "height": 0.62,
+    "type": "low"
+  },
+  {
+    "date": "2026-06-07",
+    "time": "06:41",
+    "height": 4.04,
     "type": "high"
   },
   {
     "date": "2026-06-07",
-    "time": "18:48",
+    "time": "12:45",
+    "height": 0.95,
+    "type": "low"
+  },
+  {
+    "date": "2026-06-07",
+    "time": "19:00",
     "height": 3.86,
     "type": "high"
   },
   {
     "date": "2026-06-08",
-    "time": "07:27",
-    "height": 4.06,
+    "time": "01:28",
+    "height": 0.66,
+    "type": "low"
+  },
+  {
+    "date": "2026-06-08",
+    "time": "07:42",
+    "height": 3.99,
     "type": "high"
   },
   {
     "date": "2026-06-08",
-    "time": "19:55",
-    "height": 3.75,
+    "time": "13:50",
+    "height": 1.01,
+    "type": "low"
+  },
+  {
+    "date": "2026-06-08",
+    "time": "20:06",
+    "height": 3.8,
     "type": "high"
   },
   {
     "date": "2026-06-09",
-    "time": "08:40",
-    "height": 3.95,
+    "time": "02:43",
+    "height": 0.65,
+    "type": "low"
+  },
+  {
+    "date": "2026-06-09",
+    "time": "08:53",
+    "height": 3.99,
     "type": "high"
   },
   {
     "date": "2026-06-09",
-    "time": "21:08",
-    "height": 3.71,
+    "time": "15:08",
+    "height": 1.01,
+    "type": "low"
+  },
+  {
+    "date": "2026-06-09",
+    "time": "21:18",
+    "height": 3.83,
     "type": "high"
   },
   {
     "date": "2026-06-10",
-    "time": "09:52",
-    "height": 3.94,
-    "type": "high"
+    "time": "03:51",
+    "height": 0.59,
+    "type": "low"
   },
   {
     "date": "2026-06-10",
-    "time": "22:18",
-    "height": 3.77,
-    "type": "high"
-  },
-  {
-    "date": "2026-06-11",
-    "time": "10:59",
-    "height": 4.0,
-    "type": "high"
-  },
-  {
-    "date": "2026-06-11",
-    "time": "23:21",
-    "height": 3.91,
-    "type": "high"
-  },
-  {
-    "date": "2026-06-12",
-    "time": "11:58",
-    "height": 4.1,
-    "type": "high"
-  },
-  {
-    "date": "2026-06-13",
-    "time": "00:17",
+    "time": "10:00",
     "height": 4.05,
     "type": "high"
   },
   {
-    "date": "2026-06-13",
-    "time": "12:49",
-    "height": 4.19,
+    "date": "2026-06-10",
+    "time": "16:17",
+    "height": 0.93,
+    "type": "low"
+  },
+  {
+    "date": "2026-06-10",
+    "time": "22:24",
+    "height": 3.93,
     "type": "high"
   },
   {
-    "date": "2026-06-14",
-    "time": "01:06",
-    "height": 4.16,
+    "date": "2026-06-11",
+    "time": "04:51",
+    "height": 0.5,
+    "type": "low"
+  },
+  {
+    "date": "2026-06-11",
+    "time": "11:01",
+    "height": 4.14,
     "type": "high"
   },
   {
-    "date": "2026-06-14",
-    "time": "13:34",
+    "date": "2026-06-11",
+    "time": "17:19",
+    "height": 0.82,
+    "type": "low"
+  },
+  {
+    "date": "2026-06-11",
+    "time": "23:24",
+    "height": 4.07,
+    "type": "high"
+  },
+  {
+    "date": "2026-06-12",
+    "time": "05:50",
+    "height": 0.43,
+    "type": "low"
+  },
+  {
+    "date": "2026-06-12",
+    "time": "11:59",
     "height": 4.23,
     "type": "high"
   },
   {
+    "date": "2026-06-12",
+    "time": "18:18",
+    "height": 0.69,
+    "type": "low"
+  },
+  {
+    "date": "2026-06-13",
+    "time": "00:20",
+    "height": 4.23,
+    "type": "high"
+  },
+  {
+    "date": "2026-06-13",
+    "time": "06:46",
+    "height": 0.38,
+    "type": "low"
+  },
+  {
+    "date": "2026-06-13",
+    "time": "12:53",
+    "height": 4.3,
+    "type": "high"
+  },
+  {
+    "date": "2026-06-13",
+    "time": "19:13",
+    "height": 0.57,
+    "type": "low"
+  },
+  {
+    "date": "2026-06-14",
+    "time": "01:13",
+    "height": 4.36,
+    "type": "high"
+  },
+  {
+    "date": "2026-06-14",
+    "time": "07:38",
+    "height": 0.36,
+    "type": "low"
+  },
+  {
+    "date": "2026-06-14",
+    "time": "13:43",
+    "height": 4.33,
+    "type": "high"
+  },
+  {
+    "date": "2026-06-14",
+    "time": "20:04",
+    "height": 0.45,
+    "type": "low"
+  },
+  {
     "date": "2026-06-15",
-    "time": "01:50",
-    "height": 4.22,
+    "time": "02:03",
+    "height": 4.47,
     "type": "high"
   },
   {
     "date": "2026-06-15",
-    "time": "14:15",
-    "height": 4.22,
+    "time": "08:27",
+    "height": 0.39,
+    "type": "low"
+  },
+  {
+    "date": "2026-06-15",
+    "time": "14:31",
+    "height": 4.33,
     "type": "high"
+  },
+  {
+    "date": "2026-06-15",
+    "time": "20:52",
+    "height": 0.36,
+    "type": "low"
   },
   {
     "date": "2026-07-01",
@@ -1903,177 +2431,351 @@
   },
   {
     "date": "2026-08-01",
-    "time": "03:26",
-    "height": 4.62,
+    "time": "04:02",
+    "height": 4.53,
     "type": "high"
   },
   {
     "date": "2026-08-01",
-    "time": "15:45",
-    "height": 4.43,
+    "time": "10:05",
+    "height": 0.55,
+    "type": "low"
+  },
+  {
+    "date": "2026-08-01",
+    "time": "16:14",
+    "height": 4.46,
+    "type": "high"
+  },
+  {
+    "date": "2026-08-01",
+    "time": "22:35",
+    "height": 0.19,
+    "type": "low"
+  },
+  {
+    "date": "2026-08-02",
+    "time": "04:37",
+    "height": 4.64,
     "type": "high"
   },
   {
     "date": "2026-08-02",
-    "time": "04:10",
-    "height": 4.69,
-    "type": "high"
+    "time": "10:45",
+    "height": 0.49,
+    "type": "low"
   },
   {
     "date": "2026-08-02",
-    "time": "16:29",
-    "height": 4.51,
-    "type": "high"
-  },
-  {
-    "date": "2026-08-03",
-    "time": "04:56",
-    "height": 4.7,
-    "type": "high"
-  },
-  {
-    "date": "2026-08-03",
-    "time": "17:14",
+    "time": "16:50",
     "height": 4.54,
     "type": "high"
   },
   {
+    "date": "2026-08-02",
+    "time": "23:14",
+    "height": 0.15,
+    "type": "low"
+  },
+  {
+    "date": "2026-08-03",
+    "time": "05:15",
+    "height": 4.67,
+    "type": "high"
+  },
+  {
+    "date": "2026-08-03",
+    "time": "11:25",
+    "height": 0.49,
+    "type": "low"
+  },
+  {
+    "date": "2026-08-03",
+    "time": "17:29",
+    "height": 4.58,
+    "type": "high"
+  },
+  {
+    "date": "2026-08-03",
+    "time": "23:55",
+    "height": 0.17,
+    "type": "low"
+  },
+  {
     "date": "2026-08-04",
-    "time": "05:44",
+    "time": "05:56",
     "height": 4.63,
     "type": "high"
   },
   {
     "date": "2026-08-04",
-    "time": "18:01",
-    "height": 4.49,
+    "time": "12:07",
+    "height": 0.55,
+    "type": "low"
+  },
+  {
+    "date": "2026-08-04",
+    "time": "18:12",
+    "height": 4.55,
     "type": "high"
   },
   {
     "date": "2026-08-05",
-    "time": "06:33",
-    "height": 4.49,
+    "time": "00:37",
+    "height": 0.26,
+    "type": "low"
+  },
+  {
+    "date": "2026-08-05",
+    "time": "06:41",
+    "height": 4.51,
     "type": "high"
   },
   {
     "date": "2026-08-05",
-    "time": "18:50",
-    "height": 4.37,
+    "time": "12:51",
+    "height": 0.65,
+    "type": "low"
+  },
+  {
+    "date": "2026-08-05",
+    "time": "18:59",
+    "height": 4.43,
     "type": "high"
   },
   {
     "date": "2026-08-06",
-    "time": "07:25",
-    "height": 4.28,
+    "time": "01:25",
+    "height": 0.41,
+    "type": "low"
+  },
+  {
+    "date": "2026-08-06",
+    "time": "07:32",
+    "height": 4.3,
     "type": "high"
   },
   {
     "date": "2026-08-06",
-    "time": "19:43",
-    "height": 4.17,
+    "time": "13:41",
+    "height": 0.81,
+    "type": "low"
+  },
+  {
+    "date": "2026-08-06",
+    "time": "19:54",
+    "height": 4.24,
     "type": "high"
   },
   {
     "date": "2026-08-07",
-    "time": "08:20",
+    "time": "02:22",
+    "height": 0.62,
+    "type": "low"
+  },
+  {
+    "date": "2026-08-07",
+    "time": "08:33",
     "height": 4.03,
     "type": "high"
   },
   {
     "date": "2026-08-07",
-    "time": "20:41",
-    "height": 3.93,
+    "time": "14:47",
+    "height": 0.99,
+    "type": "low"
+  },
+  {
+    "date": "2026-08-07",
+    "time": "21:02",
+    "height": 4.01,
     "type": "high"
   },
   {
     "date": "2026-08-08",
-    "time": "09:23",
-    "height": 3.77,
+    "time": "03:40",
+    "height": 0.83,
+    "type": "low"
+  },
+  {
+    "date": "2026-08-08",
+    "time": "09:49",
+    "height": 3.79,
     "type": "high"
   },
   {
     "date": "2026-08-08",
-    "time": "21:50",
-    "height": 3.7,
+    "time": "16:19",
+    "height": 1.07,
+    "type": "low"
+  },
+  {
+    "date": "2026-08-08",
+    "time": "22:25",
+    "height": 3.87,
     "type": "high"
   },
   {
     "date": "2026-08-09",
-    "time": "10:35",
-    "height": 3.6,
+    "time": "05:00",
+    "height": 0.91,
+    "type": "low"
+  },
+  {
+    "date": "2026-08-09",
+    "time": "11:13",
+    "height": 3.71,
     "type": "high"
   },
   {
     "date": "2026-08-09",
-    "time": "23:09",
-    "height": 3.61,
+    "time": "17:40",
+    "height": 0.97,
+    "type": "low"
+  },
+  {
+    "date": "2026-08-09",
+    "time": "23:47",
+    "height": 3.94,
     "type": "high"
   },
   {
     "date": "2026-08-10",
-    "time": "11:50",
-    "height": 3.61,
+    "time": "06:11",
+    "height": 0.89,
+    "type": "low"
+  },
+  {
+    "date": "2026-08-10",
+    "time": "12:26",
+    "height": 3.84,
+    "type": "high"
+  },
+  {
+    "date": "2026-08-10",
+    "time": "18:47",
+    "height": 0.75,
+    "type": "low"
+  },
+  {
+    "date": "2026-08-11",
+    "time": "00:54",
+    "height": 4.17,
     "type": "high"
   },
   {
     "date": "2026-08-11",
-    "time": "00:20",
-    "height": 3.69,
+    "time": "07:11",
+    "height": 0.81,
+    "type": "low"
+  },
+  {
+    "date": "2026-08-11",
+    "time": "13:21",
+    "height": 4.05,
     "type": "high"
   },
   {
     "date": "2026-08-11",
-    "time": "12:51",
-    "height": 3.74,
+    "time": "19:41",
+    "height": 0.52,
+    "type": "low"
+  },
+  {
+    "date": "2026-08-12",
+    "time": "01:44",
+    "height": 4.41,
     "type": "high"
   },
   {
     "date": "2026-08-12",
-    "time": "01:14",
-    "height": 3.85,
+    "time": "08:00",
+    "height": 0.71,
+    "type": "low"
+  },
+  {
+    "date": "2026-08-12",
+    "time": "14:05",
+    "height": 4.27,
     "type": "high"
   },
   {
     "date": "2026-08-12",
-    "time": "13:38",
-    "height": 3.88,
+    "time": "20:27",
+    "height": 0.3,
+    "type": "low"
+  },
+  {
+    "date": "2026-08-13",
+    "time": "02:27",
+    "height": 4.61,
     "type": "high"
   },
   {
     "date": "2026-08-13",
-    "time": "01:56",
-    "height": 3.99,
-    "type": "high"
+    "time": "08:43",
+    "height": 0.62,
+    "type": "low"
   },
   {
     "date": "2026-08-13",
-    "time": "14:15",
-    "height": 3.98,
-    "type": "high"
-  },
-  {
-    "date": "2026-08-14",
-    "time": "02:30",
-    "height": 4.11,
-    "type": "high"
-  },
-  {
-    "date": "2026-08-14",
     "time": "14:45",
-    "height": 4.08,
+    "height": 4.46,
+    "type": "high"
+  },
+  {
+    "date": "2026-08-13",
+    "time": "21:09",
+    "height": 0.11,
+    "type": "low"
+  },
+  {
+    "date": "2026-08-14",
+    "time": "03:09",
+    "height": 4.76,
+    "type": "high"
+  },
+  {
+    "date": "2026-08-14",
+    "time": "09:24",
+    "height": 0.52,
+    "type": "low"
+  },
+  {
+    "date": "2026-08-14",
+    "time": "15:25",
+    "height": 4.64,
+    "type": "high"
+  },
+  {
+    "date": "2026-08-14",
+    "time": "21:51",
+    "height": -0.04,
+    "type": "low"
+  },
+  {
+    "date": "2026-08-15",
+    "time": "03:50",
+    "height": 4.84,
     "type": "high"
   },
   {
     "date": "2026-08-15",
-    "time": "03:00",
-    "height": 4.24,
+    "time": "10:05",
+    "height": 0.43,
+    "type": "low"
+  },
+  {
+    "date": "2026-08-15",
+    "time": "16:06",
+    "height": 4.76,
     "type": "high"
   },
   {
     "date": "2026-08-15",
-    "time": "15:13",
-    "height": 4.19,
-    "type": "high"
+    "time": "22:34",
+    "height": -0.11,
+    "type": "low"
   },
   {
     "date": "2026-09-01",
@@ -2425,177 +3127,351 @@
   },
   {
     "date": "2026-10-01",
-    "time": "05:27",
-    "height": 4.52,
+    "time": "05:08",
+    "height": 4.63,
     "type": "high"
   },
   {
     "date": "2026-10-01",
-    "time": "17:41",
-    "height": 4.52,
+    "time": "11:25",
+    "height": 0.48,
+    "type": "low"
+  },
+  {
+    "date": "2026-10-01",
+    "time": "17:26",
+    "height": 4.7,
+    "type": "high"
+  },
+  {
+    "date": "2026-10-01",
+    "time": "23:51",
+    "height": 0.48,
+    "type": "low"
+  },
+  {
+    "date": "2026-10-02",
+    "time": "05:51",
+    "height": 4.38,
     "type": "high"
   },
   {
     "date": "2026-10-02",
-    "time": "06:04",
-    "height": 4.24,
-    "type": "high"
+    "time": "12:07",
+    "height": 0.64,
+    "type": "low"
   },
   {
     "date": "2026-10-02",
-    "time": "18:18",
-    "height": 4.23,
+    "time": "18:12",
+    "height": 4.47,
     "type": "high"
+  },
+  {
+    "date": "2026-10-03",
+    "time": "00:37",
+    "height": 0.75,
+    "type": "low"
   },
   {
     "date": "2026-10-03",
     "time": "06:39",
-    "height": 3.93,
+    "height": 4.07,
     "type": "high"
   },
   {
     "date": "2026-10-03",
-    "time": "18:56",
-    "height": 3.91,
+    "time": "12:57",
+    "height": 0.84,
+    "type": "low"
+  },
+  {
+    "date": "2026-10-03",
+    "time": "19:08",
+    "height": 4.17,
     "type": "high"
   },
   {
     "date": "2026-10-04",
-    "time": "07:17",
-    "height": 3.61,
+    "time": "01:36",
+    "height": 1.04,
+    "type": "low"
+  },
+  {
+    "date": "2026-10-04",
+    "time": "07:42",
+    "height": 3.74,
     "type": "high"
   },
   {
     "date": "2026-10-04",
-    "time": "19:46",
-    "height": 3.56,
+    "time": "14:13",
+    "height": 1.03,
+    "type": "low"
+  },
+  {
+    "date": "2026-10-04",
+    "time": "20:27",
+    "height": 3.89,
     "type": "high"
   },
   {
     "date": "2026-10-05",
-    "time": "08:26",
-    "height": 3.3,
+    "time": "03:07",
+    "height": 1.24,
+    "type": "low"
+  },
+  {
+    "date": "2026-10-05",
+    "time": "09:16",
+    "height": 3.53,
     "type": "high"
   },
   {
     "date": "2026-10-05",
-    "time": "21:37",
-    "height": 3.32,
+    "time": "15:50",
+    "height": 1.02,
+    "type": "low"
+  },
+  {
+    "date": "2026-10-05",
+    "time": "22:05",
+    "height": 3.84,
     "type": "high"
   },
   {
     "date": "2026-10-06",
-    "time": "10:26",
-    "height": 3.23,
+    "time": "04:28",
+    "height": 1.22,
+    "type": "low"
+  },
+  {
+    "date": "2026-10-06",
+    "time": "10:45",
+    "height": 3.63,
     "type": "high"
   },
   {
     "date": "2026-10-06",
-    "time": "23:06",
-    "height": 3.44,
+    "time": "17:04",
+    "height": 0.83,
+    "type": "low"
+  },
+  {
+    "date": "2026-10-06",
+    "time": "23:25",
+    "height": 4.06,
     "type": "high"
   },
   {
     "date": "2026-10-07",
-    "time": "11:38",
-    "height": 3.45,
+    "time": "05:38",
+    "height": 1.08,
+    "type": "low"
+  },
+  {
+    "date": "2026-10-07",
+    "time": "11:52",
+    "height": 3.92,
     "type": "high"
+  },
+  {
+    "date": "2026-10-07",
+    "time": "18:09",
+    "height": 0.58,
+    "type": "low"
   },
   {
     "date": "2026-10-08",
-    "time": "00:07",
-    "height": 3.75,
-    "type": "high"
-  },
-  {
-    "date": "2026-10-08",
-    "time": "12:29",
-    "height": 3.77,
-    "type": "high"
-  },
-  {
-    "date": "2026-10-09",
-    "time": "00:51",
-    "height": 4.09,
-    "type": "high"
-  },
-  {
-    "date": "2026-10-09",
-    "time": "13:07",
-    "height": 4.08,
-    "type": "high"
-  },
-  {
-    "date": "2026-10-10",
-    "time": "01:27",
-    "height": 4.4,
-    "type": "high"
-  },
-  {
-    "date": "2026-10-10",
-    "time": "13:40",
+    "time": "00:25",
     "height": 4.36,
     "type": "high"
   },
   {
+    "date": "2026-10-08",
+    "time": "06:38",
+    "height": 0.89,
+    "type": "low"
+  },
+  {
+    "date": "2026-10-08",
+    "time": "12:44",
+    "height": 4.24,
+    "type": "high"
+  },
+  {
+    "date": "2026-10-08",
+    "time": "19:03",
+    "height": 0.34,
+    "type": "low"
+  },
+  {
+    "date": "2026-10-09",
+    "time": "01:11",
+    "height": 4.59,
+    "type": "high"
+  },
+  {
+    "date": "2026-10-09",
+    "time": "07:24",
+    "height": 0.71,
+    "type": "low"
+  },
+  {
+    "date": "2026-10-09",
+    "time": "13:26",
+    "height": 4.5,
+    "type": "high"
+  },
+  {
+    "date": "2026-10-09",
+    "time": "19:48",
+    "height": 0.18,
+    "type": "low"
+  },
+  {
+    "date": "2026-10-10",
+    "time": "01:51",
+    "height": 4.74,
+    "type": "high"
+  },
+  {
+    "date": "2026-10-10",
+    "time": "08:04",
+    "height": 0.56,
+    "type": "low"
+  },
+  {
+    "date": "2026-10-10",
+    "time": "14:04",
+    "height": 4.69,
+    "type": "high"
+  },
+  {
+    "date": "2026-10-10",
+    "time": "20:28",
+    "height": 0.1,
+    "type": "low"
+  },
+  {
     "date": "2026-10-11",
-    "time": "02:00",
-    "height": 4.67,
+    "time": "02:29",
+    "height": 4.81,
     "type": "high"
   },
   {
     "date": "2026-10-11",
-    "time": "14:12",
-    "height": 4.62,
+    "time": "08:42",
+    "height": 0.45,
+    "type": "low"
+  },
+  {
+    "date": "2026-10-11",
+    "time": "14:43",
+    "height": 4.8,
+    "type": "high"
+  },
+  {
+    "date": "2026-10-11",
+    "time": "21:06",
+    "height": 0.09,
+    "type": "low"
+  },
+  {
+    "date": "2026-10-12",
+    "time": "03:07",
+    "height": 4.81,
     "type": "high"
   },
   {
     "date": "2026-10-12",
-    "time": "02:34",
-    "height": 4.87,
+    "time": "09:19",
+    "height": 0.37,
+    "type": "low"
+  },
+  {
+    "date": "2026-10-12",
+    "time": "15:21",
+    "height": 4.83,
     "type": "high"
   },
   {
     "date": "2026-10-12",
-    "time": "14:47",
-    "height": 4.82,
+    "time": "21:44",
+    "height": 0.15,
+    "type": "low"
+  },
+  {
+    "date": "2026-10-13",
+    "time": "03:45",
+    "height": 4.73,
     "type": "high"
   },
   {
     "date": "2026-10-13",
-    "time": "03:10",
-    "height": 4.98,
+    "time": "09:56",
+    "height": 0.36,
+    "type": "low"
+  },
+  {
+    "date": "2026-10-13",
+    "time": "16:00",
+    "height": 4.77,
     "type": "high"
   },
   {
     "date": "2026-10-13",
-    "time": "15:24",
-    "height": 4.93,
+    "time": "22:21",
+    "height": 0.3,
+    "type": "low"
+  },
+  {
+    "date": "2026-10-14",
+    "time": "04:23",
+    "height": 4.58,
     "type": "high"
   },
   {
     "date": "2026-10-14",
-    "time": "03:48",
-    "height": 4.96,
+    "time": "10:32",
+    "height": 0.43,
+    "type": "low"
+  },
+  {
+    "date": "2026-10-14",
+    "time": "16:37",
+    "height": 4.61,
     "type": "high"
   },
   {
     "date": "2026-10-14",
-    "time": "16:03",
-    "height": 4.94,
+    "time": "22:54",
+    "height": 0.52,
+    "type": "low"
+  },
+  {
+    "date": "2026-10-15",
+    "time": "04:58",
+    "height": 4.36,
     "type": "high"
   },
   {
     "date": "2026-10-15",
-    "time": "04:27",
-    "height": 4.84,
+    "time": "11:05",
+    "height": 0.56,
+    "type": "low"
+  },
+  {
+    "date": "2026-10-15",
+    "time": "17:12",
+    "height": 4.39,
     "type": "high"
   },
   {
     "date": "2026-10-15",
-    "time": "16:43",
-    "height": 4.86,
-    "type": "high"
+    "time": "23:24",
+    "height": 0.76,
+    "type": "low"
   },
   {
     "date": "2026-11-01",
@@ -2947,176 +3823,356 @@
   },
   {
     "date": "2026-12-01",
-    "time": "05:10",
-    "height": 3.82,
+    "time": "00:12",
+    "height": 1.01,
+    "type": "low"
+  },
+  {
+    "date": "2026-12-01",
+    "time": "06:19",
+    "height": 3.99,
     "type": "high"
   },
   {
     "date": "2026-12-01",
-    "time": "17:43",
-    "height": 3.87,
+    "time": "12:51",
+    "height": 0.54,
+    "type": "low"
+  },
+  {
+    "date": "2026-12-01",
+    "time": "19:02",
+    "height": 4.17,
     "type": "high"
   },
   {
     "date": "2026-12-02",
-    "time": "06:00",
-    "height": 3.68,
+    "time": "01:18",
+    "height": 1.1,
+    "type": "low"
+  },
+  {
+    "date": "2026-12-02",
+    "time": "07:29",
+    "height": 3.91,
     "type": "high"
   },
   {
     "date": "2026-12-02",
-    "time": "18:48",
-    "height": 3.75,
+    "time": "13:57",
+    "height": 0.57,
+    "type": "low"
+  },
+  {
+    "date": "2026-12-02",
+    "time": "20:14",
+    "height": 4.1,
     "type": "high"
   },
   {
     "date": "2026-12-03",
-    "time": "07:18",
-    "height": 3.56,
-    "type": "high"
+    "time": "02:25",
+    "height": 1.12,
+    "type": "low"
   },
   {
     "date": "2026-12-03",
-    "time": "20:13",
-    "height": 3.75,
-    "type": "high"
-  },
-  {
-    "date": "2026-12-04",
-    "time": "08:43",
-    "height": 3.62,
-    "type": "high"
-  },
-  {
-    "date": "2026-12-04",
-    "time": "21:22",
+    "time": "08:40",
     "height": 3.92,
     "type": "high"
   },
   {
-    "date": "2026-12-05",
-    "time": "09:46",
-    "height": 3.82,
-    "type": "high"
+    "date": "2026-12-03",
+    "time": "15:02",
+    "height": 0.58,
+    "type": "low"
   },
   {
-    "date": "2026-12-05",
-    "time": "22:20",
-    "height": 4.15,
-    "type": "high"
-  },
-  {
-    "date": "2026-12-06",
-    "time": "10:40",
-    "height": 4.08,
-    "type": "high"
-  },
-  {
-    "date": "2026-12-06",
-    "time": "23:10",
-    "height": 4.38,
-    "type": "high"
-  },
-  {
-    "date": "2026-12-07",
-    "time": "11:28",
-    "height": 4.33,
-    "type": "high"
-  },
-  {
-    "date": "2026-12-07",
-    "time": "23:57",
-    "height": 4.55,
-    "type": "high"
-  },
-  {
-    "date": "2026-12-08",
-    "time": "12:14",
-    "height": 4.54,
-    "type": "high"
-  },
-  {
-    "date": "2026-12-09",
-    "time": "00:42",
-    "height": 4.65,
-    "type": "high"
-  },
-  {
-    "date": "2026-12-09",
-    "time": "12:59",
-    "height": 4.69,
-    "type": "high"
-  },
-  {
-    "date": "2026-12-10",
-    "time": "01:25",
-    "height": 4.66,
-    "type": "high"
-  },
-  {
-    "date": "2026-12-10",
-    "time": "13:43",
-    "height": 4.75,
-    "type": "high"
-  },
-  {
-    "date": "2026-12-11",
-    "time": "02:09",
-    "height": 4.61,
-    "type": "high"
-  },
-  {
-    "date": "2026-12-11",
-    "time": "14:28",
-    "height": 4.75,
-    "type": "high"
-  },
-  {
-    "date": "2026-12-12",
-    "time": "02:52",
-    "height": 4.5,
-    "type": "high"
-  },
-  {
-    "date": "2026-12-12",
-    "time": "15:14",
-    "height": 4.69,
-    "type": "high"
-  },
-  {
-    "date": "2026-12-13",
-    "time": "03:37",
-    "height": 4.38,
-    "type": "high"
-  },
-  {
-    "date": "2026-12-13",
-    "time": "16:02",
-    "height": 4.59,
-    "type": "high"
-  },
-  {
-    "date": "2026-12-14",
-    "time": "04:25",
-    "height": 4.25,
-    "type": "high"
-  },
-  {
-    "date": "2026-12-14",
-    "time": "16:54",
-    "height": 4.46,
-    "type": "high"
-  },
-  {
-    "date": "2026-12-15",
-    "time": "05:18",
+    "date": "2026-12-03",
+    "time": "21:23",
     "height": 4.11,
     "type": "high"
   },
   {
-    "date": "2026-12-15",
-    "time": "17:53",
+    "date": "2026-12-04",
+    "time": "03:34",
+    "height": 1.09,
+    "type": "low"
+  },
+  {
+    "date": "2026-12-04",
+    "time": "09:47",
+    "height": 4.0,
+    "type": "high"
+  },
+  {
+    "date": "2026-12-04",
+    "time": "16:09",
+    "height": 0.57,
+    "type": "low"
+  },
+  {
+    "date": "2026-12-04",
+    "time": "22:28",
+    "height": 4.17,
+    "type": "high"
+  },
+  {
+    "date": "2026-12-05",
+    "time": "04:44",
+    "height": 0.98,
+    "type": "low"
+  },
+  {
+    "date": "2026-12-05",
+    "time": "10:50",
+    "height": 4.12,
+    "type": "high"
+  },
+  {
+    "date": "2026-12-05",
+    "time": "17:13",
+    "height": 0.55,
+    "type": "low"
+  },
+  {
+    "date": "2026-12-05",
+    "time": "23:27",
+    "height": 4.26,
+    "type": "high"
+  },
+  {
+    "date": "2026-12-06",
+    "time": "05:45",
+    "height": 0.84,
+    "type": "low"
+  },
+  {
+    "date": "2026-12-06",
+    "time": "11:46",
+    "height": 4.25,
+    "type": "high"
+  },
+  {
+    "date": "2026-12-06",
+    "time": "18:08",
+    "height": 0.54,
+    "type": "low"
+  },
+  {
+    "date": "2026-12-07",
+    "time": "00:17",
+    "height": 4.32,
+    "type": "high"
+  },
+  {
+    "date": "2026-12-07",
+    "time": "06:34",
+    "height": 0.72,
+    "type": "low"
+  },
+  {
+    "date": "2026-12-07",
+    "time": "12:34",
+    "height": 4.34,
+    "type": "high"
+  },
+  {
+    "date": "2026-12-07",
+    "time": "18:54",
+    "height": 0.57,
+    "type": "low"
+  },
+  {
+    "date": "2026-12-08",
+    "time": "01:01",
+    "height": 4.34,
+    "type": "high"
+  },
+  {
+    "date": "2026-12-08",
+    "time": "07:15",
+    "height": 0.64,
+    "type": "low"
+  },
+  {
+    "date": "2026-12-08",
+    "time": "13:17",
+    "height": 4.37,
+    "type": "high"
+  },
+  {
+    "date": "2026-12-08",
+    "time": "19:33",
+    "height": 0.65,
+    "type": "low"
+  },
+  {
+    "date": "2026-12-09",
+    "time": "01:40",
+    "height": 4.31,
+    "type": "high"
+  },
+  {
+    "date": "2026-12-09",
+    "time": "07:52",
+    "height": 0.6,
+    "type": "low"
+  },
+  {
+    "date": "2026-12-09",
+    "time": "13:55",
+    "height": 4.35,
+    "type": "high"
+  },
+  {
+    "date": "2026-12-09",
+    "time": "20:06",
+    "height": 0.75,
+    "type": "low"
+  },
+  {
+    "date": "2026-12-10",
+    "time": "02:16",
+    "height": 4.25,
+    "type": "high"
+  },
+  {
+    "date": "2026-12-10",
+    "time": "08:26",
+    "height": 0.59,
+    "type": "low"
+  },
+  {
+    "date": "2026-12-10",
+    "time": "14:31",
     "height": 4.3,
     "type": "high"
+  },
+  {
+    "date": "2026-12-10",
+    "time": "20:36",
+    "height": 0.83,
+    "type": "low"
+  },
+  {
+    "date": "2026-12-11",
+    "time": "02:49",
+    "height": 4.18,
+    "type": "high"
+  },
+  {
+    "date": "2026-12-11",
+    "time": "08:56",
+    "height": 0.59,
+    "type": "low"
+  },
+  {
+    "date": "2026-12-11",
+    "time": "15:04",
+    "height": 4.24,
+    "type": "high"
+  },
+  {
+    "date": "2026-12-11",
+    "time": "21:03",
+    "height": 0.89,
+    "type": "low"
+  },
+  {
+    "date": "2026-12-12",
+    "time": "03:19",
+    "height": 4.11,
+    "type": "high"
+  },
+  {
+    "date": "2026-12-12",
+    "time": "09:26",
+    "height": 0.6,
+    "type": "low"
+  },
+  {
+    "date": "2026-12-12",
+    "time": "15:35",
+    "height": 4.2,
+    "type": "high"
+  },
+  {
+    "date": "2026-12-12",
+    "time": "21:32",
+    "height": 0.91,
+    "type": "low"
+  },
+  {
+    "date": "2026-12-13",
+    "time": "03:47",
+    "height": 4.08,
+    "type": "high"
+  },
+  {
+    "date": "2026-12-13",
+    "time": "09:58",
+    "height": 0.61,
+    "type": "low"
+  },
+  {
+    "date": "2026-12-13",
+    "time": "16:06",
+    "height": 4.18,
+    "type": "high"
+  },
+  {
+    "date": "2026-12-13",
+    "time": "22:04",
+    "height": 0.92,
+    "type": "low"
+  },
+  {
+    "date": "2026-12-14",
+    "time": "04:17",
+    "height": 4.06,
+    "type": "high"
+  },
+  {
+    "date": "2026-12-14",
+    "time": "10:33",
+    "height": 0.63,
+    "type": "low"
+  },
+  {
+    "date": "2026-12-14",
+    "time": "16:41",
+    "height": 4.17,
+    "type": "high"
+  },
+  {
+    "date": "2026-12-14",
+    "time": "22:41",
+    "height": 0.95,
+    "type": "low"
+  },
+  {
+    "date": "2026-12-15",
+    "time": "04:54",
+    "height": 4.05,
+    "type": "high"
+  },
+  {
+    "date": "2026-12-15",
+    "time": "11:13",
+    "height": 0.68,
+    "type": "low"
+  },
+  {
+    "date": "2026-12-15",
+    "time": "17:23",
+    "height": 4.15,
+    "type": "high"
+  },
+  {
+    "date": "2026-12-15",
+    "time": "23:24",
+    "height": 1.01,
+    "type": "low"
   }
 ]
