@@ -181,8 +181,8 @@ def main():
         {'name': 'antwerpen'},
     ]
     
-    excel_folder = f"xlsx-getijtabellen-taw-{year}"
-    output_folder = f"Data/{year}"
+    excel_folder = f"../SourceData/xlsx-getijtabellen-taw-{year}"
+    output_folder = f"../Data/{year}"
     
     # Create output folder
     os.makedirs(output_folder, exist_ok=True)
