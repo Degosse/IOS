@@ -1,0 +1,167 @@
+2025-08-13 14:15:29 +0000 [MT] Initial pipeline context: <IDEDistributionProcessingPipelineContext: 0x1167ed7f0; archive(resolved)="<IDEArchive: 0x115b2f7c0>", distributionTask(resolved)="2", distributionDestination(resolved)="1", distributionMethod(resolved)="<IDEDistributionMethodiOSAppStoreDistribution: 0x14b7f3c70>", team(resolved)="<IDEProvisioningBasicTeam: 0x14b7c7290; teamID='T2TQFW24V8', teamName='(null)'>">
+	Chain (15, self inclusive):
+	<IDEDistributionProcessingPipelineContext: 0x1167ed7f0; archive = "<IDEArchive: 0x115b2f7c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x14b7f3c70>", team="<IDEProvisioningBasicTeam: 0x14b7c7290; teamID='T2TQFW24V8', teamName='(null)'>">
+	<IDEDistributionProcessingPipelineContext: 0x11e414550; archive = "<IDEArchive: 0x115b2f7c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x14b7f3c70>", team="<IDEProvisioningBasicTeam: 0x14b7c7290; teamID='T2TQFW24V8', teamName='(null)'>">
+	<IDEDistributionContext: 0x11e411b70; archive = "<IDEArchive: 0x115b2f7c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x14b7f3c70>", team="<IDEProvisioningBasicTeam: 0x14b7c7290; teamID='T2TQFW24V8', teamName='(null)'>">
+	<IDEDistributionContext: 0x1167e9b90; archive = "<IDEArchive: 0x115b2f7c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x14b7f3c70>", team="<IDEProvisioningBasicTeam: 0x14b7c7290; teamID='T2TQFW24V8', teamName='(null)'>">
+	<IDEDistributionContext: 0x1167e9900; archive = "<IDEArchive: 0x115b2f7c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x14b7f3c70>", team="<IDEProvisioningBasicTeam: 0x14b7c7290; teamID='T2TQFW24V8', teamName='(null)'>">
+	<IDEDistributionContext: 0x1153a48e0; archive = "<IDEArchive: 0x115b2f7c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x14b7f3c70>", team="<IDEProvisioningBasicTeam: 0x14b7c7290; teamID='T2TQFW24V8', teamName='(null)'>">
+	<IDEDistributionContext: 0x115b9ec90; archive = "<IDEArchive: 0x115b2f7c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x14b7f3c70>", team="<IDEProvisioningBasicTeam: 0x14b7c7290; teamID='T2TQFW24V8', teamName='(null)'>">
+	<IDEDistributionContext: 0x1153a3ec0; archive = "<IDEArchive: 0x115b2f7c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x14b7f3c70>", team="<IDEProvisioningBasicTeam: 0x14b7c7290; teamID='T2TQFW24V8', teamName='(null)'>">
+	<IDEDistributionContext: 0x115b756f0; archive = "<IDEArchive: 0x115b2f7c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x14b7f3c70>", team="<IDEProvisioningBasicTeam: 0x14b7c7290; teamID='T2TQFW24V8', teamName='(null)'>">
+	<IDEDistributionContext: 0x14b7fe200; archive = "<IDEArchive: 0x115b2f7c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x14b7f3c70>", team="<IDEProvisioningBasicTeam: 0x14b7c7290; teamID='T2TQFW24V8', teamName='(null)'>">
+	<IDEDistributionContext: 0x14b7fd9e0; archive = "<IDEArchive: 0x115b2f7c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x14b7f3c70>", team="<IDEProvisioningBasicTeam: 0x14b7c7290; teamID='T2TQFW24V8', teamName='(null)'>">
+	<IDEDistributionContext: 0x14b7f90b0; archive = "<IDEArchive: 0x115b2f7c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x14b7f3c70>", team="<IDEProvisioningBasicTeam: 0x14b7c7290; teamID='T2TQFW24V8', teamName='(null)'>">
+	<IDEDistributionContext: 0x14b7f8700; archive = "<IDEArchive: 0x115b2f7c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x14b7f3c70>", team="(null)">
+	<IDEDistributionContext: 0x11b307ef0; archive = "<IDEArchive: 0x115b2f7c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x14b7f3c70>", team="(null)">
+	<IDEDistributionContext: 0x14b607cd0; archive = "<IDEArchive: 0x115b2f7c0>", distributionMethod="(null)", team="(null)">
+</IDEDistributionProcessingPipelineContext: 0x1167ed7f0>
+2025-08-13 14:15:29 +0000 [MT] Processing step: IDEDistributionCreateDestRootStep
+2025-08-13 14:15:29 +0000 [MT] Processing step: IDEDistributionCopyItemStep
+2025-08-13 14:15:29 +0000 [MT] Running /usr/bin/ditto '-V' '/Users/nicolaigosselin/Documents/Github/Persoonlijk/IOS/Tides Belgium/TidesBelgium.xcarchive/Products/Applications/Tides Belgium.app' '/var/folders/3z/9g4v_stn01sdw48d2qm9_7w80000gn/T/XcodeDistPipeline.~~~RM0fqy/Root/Payload/Tides Belgium.app'
+2025-08-13 14:15:29 +0000  >>> Copying /Users/nicolaigosselin/Documents/Github/Persoonlijk/IOS/Tides Belgium/TidesBelgium.xcarchive/Products/Applications/Tides Belgium.app 
+2025-08-13 14:15:29 +0000  copying file ./_CodeSignature/CodeResources ... 
+2025-08-13 14:15:29 +0000  3901 bytes for ./_CodeSignature/CodeResources
+2025-08-13 14:15:29 +0000  copying file ./nieuwpoort_2025.json ... 
+2025-08-13 14:15:29 +0000  65866 bytes for ./nieuwpoort_2025.json
+2025-08-13 14:15:29 +0000  copying file ./blankenberge_2025.json ... 
+2025-08-13 14:15:29 +0000  65820 bytes for ./blankenberge_2025.json
+2025-08-13 14:15:29 +0000  copying file ./AppIcon60x60@2x.png ... 
+2025-08-13 14:15:29 +0000  28306 bytes for ./AppIcon60x60@2x.png
+2025-08-13 14:15:29 +0000  copying file ./Tides Belgium ... 
+2025-08-13 14:15:29 +0000  529296 bytes for ./Tides Belgium
+2025-08-13 14:15:29 +0000  copying file ./Assets.car ... 
+2025-08-13 14:15:29 +0000  1627535 bytes for ./Assets.car
+2025-08-13 14:15:29 +0000  copying file ./AppIcon76x76@2x~ipad.png ... 
+2025-08-13 14:15:29 +0000  43161 bytes for ./AppIcon76x76@2x~ipad.png
+2025-08-13 14:15:29 +0000  copying file ./zeebrugge_2025.json ... 
+2025-08-13 14:15:29 +0000  65710 bytes for ./zeebrugge_2025.json
+2025-08-13 14:15:29 +0000  copying file ./oostende_2025.json ... 
+2025-08-13 14:15:29 +0000  65839 bytes for ./oostende_2025.json
+2025-08-13 14:15:29 +0000  copying file ./embedded.mobileprovision ... 
+2025-08-13 14:15:29 +0000  12321 bytes for ./embedded.mobileprovision
+2025-08-13 14:15:29 +0000  copying file ./Info.plist ... 
+2025-08-13 14:15:29 +0000  1736 bytes for ./Info.plist
+2025-08-13 14:15:29 +0000  copying file ./PkgInfo ... 
+2025-08-13 14:15:29 +0000  8 bytes for ./PkgInfo
+2025-08-13 14:15:29 +0000  copying file ./antwerpen_2025.json ... 
+2025-08-13 14:15:29 +0000  65674 bytes for ./antwerpen_2025.json
+2025-08-13 14:15:29 +0000 [MT] /usr/bin/ditto exited with 0
+2025-08-13 14:15:29 +0000 [MT] Processing step: IDEDistributionEmbedProfileStep
+2025-08-13 14:15:29 +0000 [MT] Processing step: IDEDistributionInfoPlistStep
+2025-08-13 14:15:29 +0000 [MT] Skipping setting DTXcodeBuildDistribution because toolsBuildVersionName was nil.
+2025-08-13 14:15:29 +0000 [MT] Processing step: IDEDistributionItemRemovalStep
+2025-08-13 14:15:29 +0000 [MT] Processing step: IDEDistributionAppThinningPlistStep
+2025-08-13 14:15:29 +0000 [MT] Skipping step: IDEDistributionAppThinningPlistStep because it said so
+2025-08-13 14:15:29 +0000 [MT] Processing step: IDEDistributionSymbolsStep
+2025-08-13 14:15:29 +0000 [MT] Writing /var/folders/3z/9g4v_stn01sdw48d2qm9_7w80000gn/T/XcodeDistPipeline.~~~RM0fqy/Symbols/63837FB5-3871-366E-A192-F947B6C89A31.symbols
+2025-08-13 14:15:29 +0000 [MT] Processing step: IDEDistributionCopyAppleProvidedContentStep
+2025-08-13 14:15:29 +0000 [MT] Processing step: IDEDistributionAppThinningStep
+2025-08-13 14:15:29 +0000 [MT] Skipping step: IDEDistributionAppThinningStep because it said so
+2025-08-13 14:15:29 +0000 [MT] Processing step: IDEDistributionArchThinningStep
+2025-08-13 14:15:29 +0000 [MT] Item /Users/nicolaigosselin/Documents/Github/Persoonlijk/IOS/Tides Belgium/TidesBelgium.xcarchive/Products/Applications/Tides Belgium.app doesn't have the entitlement com.apple.developer.web-browser-engine.host enabled, returning ["arm64e"]
+2025-08-13 14:15:29 +0000 [MT] Archs to thin for item /Users/nicolaigosselin/Documents/Github/Persoonlijk/IOS/Tides Belgium/TidesBelgium.xcarchive/Products/Applications/Tides Belgium.app are ["arm64e"]
+2025-08-13 14:15:29 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/3z/9g4v_stn01sdw48d2qm9_7w80000gn/T/XcodeDistPipeline.~~~RM0fqy/Root/Payload/Tides Belgium.app/Tides Belgium' '-verify_arch' 'arm64e'
+2025-08-13 14:15:29 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 1
+2025-08-13 14:15:29 +0000 [MT] Skipping architecture thinning for item "Tides Belgium" because arch "arm64e" wasn't found
+2025-08-13 14:15:29 +0000 [MT] Processing step: IDEDistributionODRStep
+2025-08-13 14:15:29 +0000 [MT] Processing step: IDEDistributionStripXattrsStep
+2025-08-13 14:15:29 +0000 [MT] Skipping stripping extended attributes because the codesign step will strip them.
+2025-08-13 14:15:29 +0000 [MT] Processing step: IDEDistributionCodesignStep
+2025-08-13 14:15:29 +0000 [MT] Entitlements for <IDEDistributionItem: 0x1167d3d90; bundleID='ngc.TidesBE', path='<DVTFilePath:0x14b6073c0:'/Users/nicolaigosselin/Documents/Github/Persoonlijk/IOS/Tides Belgium/TidesBelgium.xcarchive/Products/Applications/Tides Belgium.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x11b306610; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x11e409a20; name='Apple Development: nicolai.gosselin@outlook.be (49899XTQ7X)', hash='ACF99533A6E14983E0E0573C1431BAA37441D985', serialNumber='5A9CB3082B1B21788BFD34FDF5BD6E0E', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2025-07-28 20:30:43 +0000''>', entitlements='{
+    "application-identifier" = "T2TQFW24V8.ngc.TidesBE";
+    "com.apple.developer.team-identifier" = T2TQFW24V8;
+    "get-task-allow" = 1;
+}', teamID='T2TQFW24V8', identifier='ngc.TidesBE', executablePath='<DVTFilePath:0x12c098440:'/Users/nicolaigosselin/Documents/Github/Persoonlijk/IOS/Tides Belgium/TidesBelgium.xcarchive/Products/Applications/Tides Belgium.app/Tides Belgium'>', hardenedRuntime='0'>'>: {
+    "application-identifier" = "T2TQFW24V8.ngc.TidesBE";
+    "beta-reports-active" = 1;
+    "com.apple.developer.team-identifier" = T2TQFW24V8;
+    "get-task-allow" = 0;
+}
+2025-08-13 14:15:29 +0000 [MT] Associated App Clip Identifiers Filter: Skipping because "com.apple.developer.associated-appclip-app-identifiers" is not present
+2025-08-13 14:15:29 +0000 [MT] Entitlements for <IDEDistributionItem: 0x1167d3d90; bundleID='ngc.TidesBE', path='<DVTFilePath:0x14b6073c0:'/Users/nicolaigosselin/Documents/Github/Persoonlijk/IOS/Tides Belgium/TidesBelgium.xcarchive/Products/Applications/Tides Belgium.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x11b306610; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x11e42ba50; name='Apple Development: nicolai.gosselin@outlook.be (49899XTQ7X)', hash='ACF99533A6E14983E0E0573C1431BAA37441D985', serialNumber='5A9CB3082B1B21788BFD34FDF5BD6E0E', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2025-07-28 20:30:43 +0000''>', entitlements='{
+    "application-identifier" = "T2TQFW24V8.ngc.TidesBE";
+    "com.apple.developer.team-identifier" = T2TQFW24V8;
+    "get-task-allow" = 1;
+}', teamID='T2TQFW24V8', identifier='ngc.TidesBE', executablePath='<DVTFilePath:0x12c098440:'/Users/nicolaigosselin/Documents/Github/Persoonlijk/IOS/Tides Belgium/TidesBelgium.xcarchive/Products/Applications/Tides Belgium.app/Tides Belgium'>', hardenedRuntime='0'>'> are: {
+    "application-identifier" = "T2TQFW24V8.ngc.TidesBE";
+    "beta-reports-active" = 1;
+    "com.apple.developer.team-identifier" = T2TQFW24V8;
+    "get-task-allow" = 0;
+}
+2025-08-13 14:15:29 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x1167d3d90; bundleID='ngc.TidesBE', path='<DVTFilePath:0x14b6073c0:'/Users/nicolaigosselin/Documents/Github/Persoonlijk/IOS/Tides Belgium/TidesBelgium.xcarchive/Products/Applications/Tides Belgium.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x11b306610; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x11e429f60; name='Apple Development: nicolai.gosselin@outlook.be (49899XTQ7X)', hash='ACF99533A6E14983E0E0573C1431BAA37441D985', serialNumber='5A9CB3082B1B21788BFD34FDF5BD6E0E', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2025-07-28 20:30:43 +0000''>', entitlements='{
+    "application-identifier" = "T2TQFW24V8.ngc.TidesBE";
+    "com.apple.developer.team-identifier" = T2TQFW24V8;
+    "get-task-allow" = 1;
+}', teamID='T2TQFW24V8', identifier='ngc.TidesBE', executablePath='<DVTFilePath:0x12c098440:'/Users/nicolaigosselin/Documents/Github/Persoonlijk/IOS/Tides Belgium/TidesBelgium.xcarchive/Products/Applications/Tides Belgium.app/Tides Belgium'>', hardenedRuntime='0'>'> to: /var/folders/3z/9g4v_stn01sdw48d2qm9_7w80000gn/T/XcodeDistPipeline.~~~RM0fqy/entitlements~~~88wGYp
+2025-08-13 14:15:29 +0000 [MT] invoking codesign: <NSConcreteTask: 0x11e4277f0; launchPath='/usr/bin/codesign', arguments='(
+    "-f",
+    "-s",
+    D23DA4BB26BD57F73564A35D445305F068C4B200,
+    "--entitlements",
+    "/var/folders/3z/9g4v_stn01sdw48d2qm9_7w80000gn/T/XcodeDistPipeline.~~~RM0fqy/entitlements~~~88wGYp",
+    "--preserve-metadata=identifier,flags,runtime",
+    "--generate-entitlement-der",
+    "--strip-disallowed-xattrs",
+    "-vvv",
+    "/var/folders/3z/9g4v_stn01sdw48d2qm9_7w80000gn/T/XcodeDistPipeline.~~~RM0fqy/Root/Payload/Tides Belgium.app"
+)'>
+2025-08-13 14:15:36 +0000 [MT] codesign output: /var/folders/3z/9g4v_stn01sdw48d2qm9_7w80000gn/T/XcodeDistPipeline.~~~RM0fqy/Root/Payload/Tides Belgium.app: replacing existing signature
+/var/folders/3z/9g4v_stn01sdw48d2qm9_7w80000gn/T/XcodeDistPipeline.~~~RM0fqy/Root/Payload/Tides Belgium.app: signed app bundle with Mach-O thin (arm64) [ngc.TidesBE]
+2025-08-13 14:15:36 +0000 [MT] Processing step: IDEDistributionZipODRItemStep
+2025-08-13 14:15:36 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2025-08-13 14:15:36 +0000 [MT] Processing step: IDEDistributionCreateIPAStep
+2025-08-13 14:15:36 +0000 [MT] Running /usr/bin/rsync '-8aPhhE' '/var/folders/3z/9g4v_stn01sdw48d2qm9_7w80000gn/T/XcodeDistPipeline.~~~RM0fqy/Symbols' '--link-dest' '/var/folders/3z/9g4v_stn01sdw48d2qm9_7w80000gn/T/XcodeDistPipeline.~~~RM0fqy' '/var/folders/3z/9g4v_stn01sdw48d2qm9_7w80000gn/T/XcodeDistPipeline.~~~RM0fqy/Root'
+2025-08-13 14:15:36 +0000  Symbols/
+._Symbols
+            163 170%    2.29MB/s   00:00:00 (xfer#1, to-check=0/4)
+2025-08-13 14:15:36 +0000  Symbols/63837FB5-3871-366E-A192-F947B6C89A31.symbols
+Symbols/._63837FB5-3871-366E-A192-F947B6C89A31.symbols
+            163   0%  295.29KB/s   00:00:00 (xfer#2, to-check=2/4)
+2025-08-13 14:15:36 +0000 [MT] /usr/bin/rsync exited with 0
+2025-08-13 14:15:36 +0000 [MT] Running /usr/bin/ditto '-V' '-c' '-k' '--norsrc' '/var/folders/3z/9g4v_stn01sdw48d2qm9_7w80000gn/T/XcodeDistPipeline.~~~RM0fqy/Root' '/var/folders/3z/9g4v_stn01sdw48d2qm9_7w80000gn/T/XcodeDistPipeline.~~~RM0fqy/Packages/Tides Belgium.ipa'
+2025-08-13 14:15:36 +0000  >>> Copying /var/folders/3z/9g4v_stn01sdw48d2qm9_7w80000gn/T/XcodeDistPipeline.~~~RM0fqy/Root 
+2025-08-13 14:15:36 +0000  copying file ./Payload/Tides Belgium.app/_CodeSignature/CodeResources ... 
+2025-08-13 14:15:36 +0000  3901 bytes for ./Payload/Tides Belgium.app/_CodeSignature/CodeResources
+2025-08-13 14:15:36 +0000  copying file ./Payload/Tides Belgium.app/nieuwpoort_2025.json ... 
+2025-08-13 14:15:36 +0000  65866 bytes for ./Payload/Tides Belgium.app/nieuwpoort_2025.json
+2025-08-13 14:15:36 +0000  copying file ./Payload/Tides Belgium.app/blankenberge_2025.json ... 
+2025-08-13 14:15:36 +0000  65820 bytes for ./Payload/Tides Belgium.app/blankenberge_2025.json
+2025-08-13 14:15:36 +0000  copying file ./Payload/Tides Belgium.app/AppIcon60x60@2x.png ... 
+2025-08-13 14:15:36 +0000  28306 bytes for ./Payload/Tides Belgium.app/AppIcon60x60@2x.png
+2025-08-13 14:15:36 +0000  copying file ./Payload/Tides Belgium.app/Tides Belgium ... 
+2025-08-13 14:15:36 +0000  529344 bytes for ./Payload/Tides Belgium.app/Tides Belgium
+2025-08-13 14:15:36 +0000  copying file ./Payload/Tides Belgium.app/Assets.car ... 
+2025-08-13 14:15:36 +0000  1627535 bytes for ./Payload/Tides Belgium.app/Assets.car
+2025-08-13 14:15:36 +0000  copying file ./Payload/Tides Belgium.app/AppIcon76x76@2x~ipad.png ... 
+2025-08-13 14:15:36 +0000  43161 bytes for ./Payload/Tides Belgium.app/AppIcon76x76@2x~ipad.png
+2025-08-13 14:15:36 +0000  copying file ./Payload/Tides Belgium.app/zeebrugge_2025.json ... 
+2025-08-13 14:15:36 +0000  65710 bytes for ./Payload/Tides Belgium.app/zeebrugge_2025.json
+2025-08-13 14:15:36 +0000  copying file ./Payload/Tides Belgium.app/oostende_2025.json ... 
+2025-08-13 14:15:36 +0000  65839 bytes for ./Payload/Tides Belgium.app/oostende_2025.json
+2025-08-13 14:15:36 +0000  copying file ./Payload/Tides Belgium.app/embedded.mobileprovision ... 
+2025-08-13 14:15:36 +0000  14287 bytes for ./Payload/Tides Belgium.app/embedded.mobileprovision
+2025-08-13 14:15:36 +0000  copying file ./Payload/Tides Belgium.app/Info.plist ... 
+2025-08-13 14:15:36 +0000  1736 bytes for ./Payload/Tides Belgium.app/Info.plist
+2025-08-13 14:15:36 +0000  copying file ./Payload/Tides Belgium.app/PkgInfo ... 
+2025-08-13 14:15:36 +0000  8 bytes for ./Payload/Tides Belgium.app/PkgInfo
+2025-08-13 14:15:36 +0000  copying file ./Payload/Tides Belgium.app/antwerpen_2025.json ... 
+2025-08-13 14:15:36 +0000  65674 bytes for ./Payload/Tides Belgium.app/antwerpen_2025.json
+2025-08-13 14:15:36 +0000  copying file ./Symbols/63837FB5-3871-366E-A192-F947B6C89A31.symbols ... 
+2025-08-13 14:15:36 +0000  1056956 bytes for ./Symbols/63837FB5-3871-366E-A192-F947B6C89A31.symbols
+2025-08-13 14:15:36 +0000 [MT] /usr/bin/ditto exited with 0
+2025-08-13 14:15:36 +0000 [MT] Processing step: IDEDistributionAppStoreInformationStep
+2025-08-13 14:15:36 +0000 [MT] Skipping step: IDEDistributionAppStoreInformationStep because it said so
+2025-08-13 14:15:36 +0000 [MT] Processing step: IDEDistributionGenerateProcessedDistributionItems
+2025-08-13 14:15:36 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x1167e9df0:'/var/folders/3z/9g4v_stn01sdw48d2qm9_7w80000gn/T/XcodeDistPipeline.~~~RM0fqy/Root/Payload/Tides Belgium.app'>
+2025-08-13 14:15:36 +0000 [MT] Processing step: IDEDistributionCreateManifestStep
+2025-08-13 14:15:36 +0000 [MT] Skipping step: IDEDistributionCreateManifestStep because it said so
