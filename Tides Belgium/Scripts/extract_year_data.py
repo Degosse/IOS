@@ -97,20 +97,34 @@ def extract_station_data(excel_path, station_name, year):
                     datetime(year, month, day)
                     date_str = f'{year}-{month:02d}-{day:02d}'
                     
-                    # Column mapping based on month within sheet
+                    # Column mapping based on month within sheet INCLUDING day column per block
+                    # Each tuple: (time_col, height_col, day_col)
                     if month_idx == 0:  # First month (e.g., July in jul-aug)
-                        tide_columns = [(3, 4), (5, 6)]
+                        # First half (days 1–15): times/heights in cols 3-6, day in col 1
+                        # Second half (days 16–31): times/heights in cols 10-13, day in col 15
+                        column_sets = [(3, 4, 1), (5, 6, 1), (10, 11, 15), (12, 13, 15)]
                     else:  # Second month (e.g., August in jul-aug)
-                        tide_columns = [(17, 18), (19, 20)]  # Fixed: August data in columns 17-20
+                        # First half (days 1–15): times/heights in cols 17-20, day in col 8
+                        # Second half (days 16–31): times/heights in cols 24-27, day in col 22
+                        column_sets = [(17, 18, 8), (19, 20, 8), (24, 25, 22), (26, 27, 22)]
                     
                     # Extract tides from main row
-                    for time_col, height_col in tide_columns:
+                    for time_col, height_col, day_col in column_sets:
+                        # Day may be repeated in alternative columns depending on block
+                        day_source = ws.cell(row=row, column=day_col).value
+                        if isinstance(day_source, (int, float)) and 1 <= int(day_source) <= 31:
+                            day_for_block = int(day_source)
+                        else:
+                            # Fallback to primary day detected earlier
+                            day_for_block = day
+                        date_str = f'{year}-{month:02d}-{day_for_block:02d}'
+
                         time_val = ws.cell(row=row, column=time_col).value
                         height_val = ws.cell(row=row, column=height_col).value
-                        
+
                         time_str = parse_time(time_val)
                         height = parse_height(height_val)
-                        
+
                         if time_str and height is not None:
                             tide_type = 'high' if height >= 2.5 else 'low'
                             all_tides.append({
@@ -125,13 +139,20 @@ def extract_station_data(excel_path, station_name, year):
                     if next_row <= ws.max_row:
                         next_day_val = ws.cell(row=next_row, column=1).value
                         if not isinstance(next_day_val, (int, float)):
-                            for time_col, height_col in tide_columns:
+                            for time_col, height_col, day_col in column_sets:
+                                day_source = ws.cell(row=row, column=day_col).value
+                                if isinstance(day_source, (int, float)) and 1 <= int(day_source) <= 31:
+                                    day_for_block = int(day_source)
+                                else:
+                                    day_for_block = day
+                                date_str = f'{year}-{month:02d}-{day_for_block:02d}'
+
                                 time_val = ws.cell(row=next_row, column=time_col).value
                                 height_val = ws.cell(row=next_row, column=height_col).value
-                                
+
                                 time_str = parse_time(time_val)
                                 height = parse_height(height_val)
-                                
+
                                 if time_str and height is not None:
                                     tide_type = 'high' if height >= 2.5 else 'low'
                                     all_tides.append({
@@ -156,8 +177,87 @@ def extract_station_data(excel_path, station_name, year):
             seen.add(key)
             unique_tides.append(tide)
     
+    # Post-process: collapse near-duplicates within the same day and cap to 4 tides/day
+    final_tides = []
+    from collections import defaultdict
+    by_date: dict = defaultdict(list)
+    for t in unique_tides:
+        by_date[t['date']].append(t)
+
+    def time_to_minutes(tstr: str) -> int:
+        h, m = tstr.split(':')
+        return int(h) * 60 + int(m)
+
+    def dedupe_cluster(entries, is_high: bool):
+        if not entries:
+            return []
+        entries = sorted(entries, key=lambda x: time_to_minutes(x['time']))
+        result = []
+        used = [False] * len(entries)
+        T_WINDOW = 60  # minutes
+        H_WINDOW = 0.4   # meters
+        for i, a in enumerate(entries):
+            if used[i]:
+                continue
+            cluster = [i]
+            for j in range(i + 1, len(entries)):
+                if used[j]:
+                    continue
+                b = entries[j]
+                if abs(time_to_minutes(a['time']) - time_to_minutes(b['time'])) <= T_WINDOW \
+                   and abs(a['height'] - b['height']) <= H_WINDOW:
+                    cluster.append(j)
+            # pick representative: extreme height for highs, opposite for lows
+            pick = entries[cluster[0]]
+            for k in cluster[1:]:
+                cand = entries[k]
+                if is_high:
+                    if cand['height'] > pick['height']:
+                        pick = cand
+                else:
+                    if cand['height'] < pick['height']:
+                        pick = cand
+                used[k] = True
+            used[i] = True
+            result.append(pick)
+        return result
+
+    for date, tides in by_date.items():
+        # Separate by type using the precomputed 'type'
+        highs = [x for x in tides if x['type'] == 'high']
+        lows = [x for x in tides if x['type'] == 'low']
+
+        highs = dedupe_cluster(highs, True)
+        lows = dedupe_cluster(lows, False)
+
+        # Limit to at most two highs and two lows per day (keep earliest two by time)
+        highs = sorted(highs, key=lambda x: time_to_minutes(x['time']))[:2]
+        lows = sorted(lows, key=lambda x: time_to_minutes(x['time']))[:2]
+
+        merged = sorted(highs + lows, key=lambda x: time_to_minutes(x['time']))
+
+        # Enforce alternation: remove consecutive same-type entries, keep more extreme/earlier
+        alt = []
+        for e in merged:
+            if not alt:
+                alt.append(e)
+                continue
+            if alt[-1]['type'] == e['type']:
+                # Same type back-to-back, keep more extreme (higher high or lower low)
+                if e['type'] == 'high':
+                    alt[-1] = e if e['height'] > alt[-1]['height'] else alt[-1]
+                else:
+                    alt[-1] = e if e['height'] < alt[-1]['height'] else alt[-1]
+            else:
+                alt.append(e)
+
+        final_tides.extend(alt[:4])  # cap at 4 per day just in case
+
+    final_tides.sort(key=lambda x: (x['date'], x['time']))
+
     print(f"  ✅ Extracted {len(unique_tides)} unique tides")
-    return unique_tides
+    print(f"  🔎 After per-day dedupe/cap: {len(final_tides)} entries")
+    return final_tides
 
 def main():
     # Get year from command line argument
