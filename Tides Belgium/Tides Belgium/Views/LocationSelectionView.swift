@@ -16,6 +16,7 @@ struct LocationSelectionView: View {
     
     @State private var searchText = ""
     @State private var showingLocationPermissionAlert = false
+    @State private var hasRequestedLocation = false
     
     private var filteredStations: [TideStation] {
         if searchText.isEmpty {
@@ -48,6 +49,7 @@ struct LocationSelectionView: View {
                     if locationManager.authorizationStatus == .denied {
                         showingLocationPermissionAlert = true
                     } else {
+                        hasRequestedLocation = true
                         locationManager.requestLocation()
                     }
                 }) {
@@ -106,7 +108,7 @@ struct LocationSelectionView: View {
             }
         }
         .onReceive(locationManager.$nearestStation) { nearestStation in
-            if let station = nearestStation {
+            if let station = nearestStation, hasRequestedLocation {
                 userPreferences.selectedStation = station
                 dismiss()
             }

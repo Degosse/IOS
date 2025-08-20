@@ -68,7 +68,7 @@ open "Tides Belgium.xcodeproj"
 
 **App Store Description**:
 ```
-Accurate tide predictions for Belgian coastal stations. Get precise high and low tide times for Nieuwpoort, Oostende, Blankenberge, Zeebrugge, and Antwerpen.
+Accurate tide predictions for Belgian coastal stations. Get precise high and low tide times for Nieuwpoort, Oostende, Blankenberge, and Zeebrugge.
 
 Features:
 • Real-time tide charts with current position indicator

@@ -34,7 +34,6 @@ struct TideStation: Codable, Identifiable {
     
     // Belgian tide stations (only supported cities with Excel data)
     static let belgianStations = [
-        TideStation(id: "antwerpen", name: "Antwerpen", latitude: 51.2213, longitude: 4.3960, country: "Belgium"),
         TideStation(id: "blankenberge", name: "Blankenberge", latitude: 51.3137, longitude: 3.1305, country: "Belgium"),
         TideStation(id: "nieuwpoort", name: "Nieuwpoort", latitude: 51.1343, longitude: 2.7574, country: "Belgium"),
         TideStation(id: "oostende", name: "Oostende", latitude: 51.2194, longitude: 2.9185, country: "Belgium"),

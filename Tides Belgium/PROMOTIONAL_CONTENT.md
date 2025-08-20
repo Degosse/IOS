@@ -7,12 +7,11 @@
 Navigate Belgium's beautiful coastline with confidence using official tide data from the Flemish Government. Tides Belgium delivers precise high and low tide predictions for all major Belgian coastal stations in a beautifully designed, easy-to-use app.
 
 **🏖️ Complete Belgian Coast Coverage**
-Get accurate tide information for all 5 major Belgian stations:
+Get accurate tide information for all 4 major Belgian stations:
 • Nieuwpoort - Perfect for marina access and sailing
 • Oostende - Belgium's premier coastal city
 • Blankenberge - Family-friendly beach destination  
 • Zeebrugge - Major port and ferry terminal
-• Antwerpen - Historic port city on the Scheldt
 
 **⚡ Key Features**
 • Real-time tide charts with current position indicator
@@ -44,7 +43,7 @@ Download Tides Belgium today and experience the most comprehensive and accurate 
 
 ## 🎯 Short App Store Description
 
-**Accurate Belgian tide predictions with official government data. Get precise high/low tide times for Nieuwpoort, Oostende, Blankenberge, Zeebrugge, and Antwerpen. Features real-time charts, offline functionality, and 4-language support. Perfect for sailors, fishermen, and coastal enthusiasts.**
+**Accurate Belgian tide predictions with official government data. Get precise high/low tide times for Nieuwpoort, Oostende, Blankenberge, and Zeebrugge. Features real-time charts, offline functionality, and 4-language support. Perfect for sailors, fishermen, and coastal enthusiasts.**
 
 ---
 
@@ -84,14 +83,14 @@ Perfect for your next coastal adventure! 📱
 ## 🎬 App Preview Video Script (60 seconds)
 
 **[Scene 1: Belgian coastline footage - 5 seconds]**
-*"Belgium's stunning coastline... from Nieuwpoort to Antwerpen"*
+*"Belgium's stunning coastline... from Nieuwpoort to Zeebrugge"*
 
 **[Scene 2: App icon and launch - 3 seconds]**
 *"Introducing Tides Belgium"*
 
 **[Scene 3: Location selection screen - 8 seconds]**
 *"Choose from 5 major Belgian coastal stations"*
-*Shows: Nieuwpoort, Oostende, Blankenberge, Zeebrugge, Antwerpen*
+*Shows: Nieuwpoort, Oostende, Blankenberge, Zeebrugge*
 
 **[Scene 4: Today's tide chart - 15 seconds]**
 *"Get real-time tide predictions with precise timing"*
@@ -132,7 +131,7 @@ Perfect for your next coastal adventure! 📱
 **BELGIUM** - August 13, 2025 - A new mobile application, Tides Belgium, launches today on the App Store, offering the most accurate and comprehensive tide prediction service for Belgium's coastline. The app provides real-time tide information for all five major Belgian coastal stations using official data from the Flemish Government.
 
 **Comprehensive Belgian Coast Coverage**
-Tides Belgium covers all major Belgian coastal locations including Nieuwpoort, Oostende, Blankenberge, Zeebrugge, and Antwerpen, making it the definitive tide prediction tool for Belgium's 67-kilometer coastline.
+Tides Belgium covers all major Belgian coastal locations including Nieuwpoort, Oostende, Blankenberge, and Zeebrugge, making it the definitive tide prediction tool for Belgium's 67-kilometer coastline.
 
 **Key Features Include:**
 • Real-time tide charts with current position indicators
@@ -174,7 +173,7 @@ For more information, visit [your website] or download the app from the App Stor
 • "Real-Time. Offline. Accurate."
 • "Five Stations. Four Languages. One App."
 • "Government Data. Mobile Convenience."
-• "From Nieuwpoort to Antwerpen"
+• "From Nieuwpoort to Zeebrugge"
 
 ### **Audience-Specific:**
 • "Built for Belgian Sailors" 
@@ -187,7 +186,7 @@ For more information, visit [your website] or download the app from the App Stor
 ## 📊 App Store Keywords & ASO
 
 **Primary Keywords:**
-tides, belgium, coast, sailing, fishing, marine, nautical, oostende, nieuwpoort, antwerpen, zeebrugge, blankenberge
+tides, belgium, coast, sailing, fishing, marine, nautical, oostende, nieuwpoort, zeebrugge, blankenberge
 
 **Long-tail Keywords:**
 belgian tide predictions, flemish coast tides, sailing belgium, fishing belgium, belgian maritime, coast navigation belgium

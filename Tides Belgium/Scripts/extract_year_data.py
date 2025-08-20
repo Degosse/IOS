@@ -81,35 +81,34 @@ def extract_station_data(excel_path, station_name, year):
         print(f"  📋 Processing sheet: {sheet_name}")
         ws = wb[sheet_name]
         
-        # Start from row 4 (after headers)
-        for row in range(4, ws.max_row + 1):
-            day_val = ws.cell(row=row, column=1).value
+        # Process both months in this sheet  
+        for month_idx, month in enumerate(months):
+            print(f"    📅 Processing month {month}")
             
-            if not isinstance(day_val, (int, float)) or day_val <= 0 or day_val > 31:
-                continue
-                
-            day = int(day_val)
+            # Determine day columns and column sets for this month
+            if month_idx == 0:  # First month (e.g., July in jul-aug)
+                # Days 1-15 in col 1, days 16-31 in col 8
+                day_columns_map = {1: [(3, 4, 1), (5, 6, 1)], 8: [(10, 11, 8), (12, 13, 8)]}
+            else:  # Second month (e.g., August in jul-aug)
+                # Days 1-15 in col 8, days 16-31 in col 22  
+                day_columns_map = {8: [(17, 18, 8), (19, 20, 8)], 22: [(24, 25, 22), (26, 27, 22)]}
             
-            # Extract data for each month in this sheet
-            for month_idx, month in enumerate(months):
-                try:
-                    # Validate date exists
-                    datetime(year, month, day)
-                    date_str = f'{year}-{month:02d}-{day:02d}'
+            # Process each day column for this month
+            for day_col, column_sets in day_columns_map.items():
+                for row in range(4, ws.max_row + 1):
+                    day_val = ws.cell(row=row, column=day_col).value
                     
-                    # Column mapping based on month within sheet INCLUDING day column per block
-                    # Each tuple: (time_col, height_col, day_col)
-                    if month_idx == 0:  # First month (e.g., July in jul-aug)
-                        # First half (days 1–15): times/heights in cols 3-6, day in col 1
-                        # Second half (days 16–31): times/heights in cols 10-13, day in col 15
-                        column_sets = [(3, 4, 1), (5, 6, 1), (10, 11, 15), (12, 13, 15)]
-                    else:  # Second month (e.g., August in jul-aug)
-                        # First half (days 1–15): times/heights in cols 17-20, day in col 8
-                        # Second half (days 16–31): times/heights in cols 24-27, day in col 22
-                        column_sets = [(17, 18, 8), (19, 20, 8), (24, 25, 22), (26, 27, 22)]
-                    
-                    # Extract tides from main row
-                    for time_col, height_col, day_col in column_sets:
+                    if not isinstance(day_val, (int, float)) or day_val <= 0 or day_val > 31:
+                        continue
+                        
+                    day = int(day_val)
+                    try:
+                        # Validate date exists
+                        datetime(year, month, day)
+                        date_str = f'{year}-{month:02d}-{day:02d}'
+                        
+                        # Extract tides from main row
+                        for time_col, height_col, day_col in column_sets:
                         # Day may be repeated in alternative columns depending on block
                         day_source = ws.cell(row=row, column=day_col).value
                         if isinstance(day_source, (int, float)) and 1 <= int(day_source) <= 31:
@@ -274,11 +273,10 @@ def main():
     
     # Station configurations
     stations = [
+        {'name': 'blankenberge'},
         {'name': 'nieuwpoort'},
         {'name': 'oostende'},
-        {'name': 'blankenberge'},
-        {'name': 'zeebrugge'},
-        {'name': 'antwerpen'},
+        {'name': 'zeebrugge'}
     ]
     
     excel_folder = f"../SourceData/xlsx-getijtabellen-taw-{year}"

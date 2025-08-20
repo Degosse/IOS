@@ -11,7 +11,6 @@ class ExcelTideParser {
     
     // Supported stations mapping to Excel file names
     enum SupportedStation: String, CaseIterable {
-        case antwerpen = "antwerpen"
         case blankenberge = "blankenberge"
         case nieuwpoort = "nieuwpoort"
         case oostende = "oostende"
@@ -19,7 +18,6 @@ class ExcelTideParser {
         
         var displayName: String {
             switch self {
-            case .antwerpen: return "Antwerpen"
             case .blankenberge: return "Blankenberge"
             case .nieuwpoort: return "Nieuwpoort"
             case .oostende: return "Oostende"
@@ -72,7 +70,6 @@ class ExcelTideParser {
     // Get typical high tide height for each station
     private static func getStationHighTideHeight(for station: SupportedStation) -> Double {
         switch station {
-        case .antwerpen: return 5.2
         case .blankenberge: return 4.3
         case .nieuwpoort: return 4.5
         case .oostende: return 4.4
@@ -83,7 +80,6 @@ class ExcelTideParser {
     // Get typical low tide height for each station
     private static func getStationLowTideHeight(for station: SupportedStation) -> Double {
         switch station {
-        case .antwerpen: return 0.5
         case .blankenberge: return 0.6
         case .nieuwpoort: return 0.4
         case .oostende: return 0.5

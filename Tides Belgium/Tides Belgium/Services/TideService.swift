@@ -24,9 +24,8 @@ class TideService: ObservableObject {
         return allTideData
     }
     
-    // Only support these 5 stations with Excel data
+    // Only support these 4 stations with Excel data
     enum SupportedStation: String, CaseIterable {
-        case antwerpen
         case blankenberge
         case nieuwpoort
         case oostende
@@ -34,7 +33,6 @@ class TideService: ObservableObject {
         
         var displayName: String {
             switch self {
-            case .antwerpen: return "Antwerpen"
             case .blankenberge: return "Blankenberge"
             case .nieuwpoort: return "Nieuwpoort"
             case .oostende: return "Oostende"
@@ -55,8 +53,6 @@ class TideService: ObservableObject {
         // Map station IDs to supported stations
         let supportedStation: SupportedStation?
         switch station.id.lowercased() {
-        case "antwerpen":
-            supportedStation = .antwerpen
         case "blankenberge":
             supportedStation = .blankenberge
         case "nieuwpoort":
@@ -71,7 +67,7 @@ class TideService: ObservableObject {
         
         guard let supported = supportedStation else {
             print("❌ Station \(station.id) is not supported")
-            self.error = "Unsupported station: \(station.name). Only Antwerpen, Blankenberge, Nieuwpoort, Oostende, and Zeebrugge are supported."
+            self.error = "Unsupported station: \(station.name). Only Blankenberge, Nieuwpoort, Oostende, and Zeebrugge are supported."
             self.isLoading = false
             return
         }

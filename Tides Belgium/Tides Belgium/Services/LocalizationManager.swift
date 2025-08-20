@@ -159,7 +159,6 @@ struct LocalizedStrings {
         "tomorrow": "Tomorrow",
         
         // Stations
-        "antwerpen": "Antwerpen",
         "oostende": "Ostend",
         "zeebrugge": "Zeebrugge",
         "nieuwpoort": "Nieuwpoort",
@@ -250,7 +249,6 @@ struct LocalizedStrings {
         "tomorrow": "Morgen",
         
         // Stations
-        "antwerpen": "Antwerpen",
         "oostende": "Oostende",
         "zeebrugge": "Zeebrugge",
         "nieuwpoort": "Nieuwpoort",
@@ -341,7 +339,6 @@ struct LocalizedStrings {
         "tomorrow": "Demain",
         
         // Stations
-        "antwerpen": "Anvers",
         "oostende": "Ostende",
         "zeebrugge": "Zeebruges",
         "nieuwpoort": "Nieuport",
@@ -432,7 +429,6 @@ struct LocalizedStrings {
         "tomorrow": "Morgen",
         
         // Stations
-        "antwerpen": "Antwerpen",
         "oostende": "Ostende",
         "zeebrugge": "Zeebrügge",
         "nieuwpoort": "Nieuwpoort",
