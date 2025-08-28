@@ -1,11 +1,25 @@
 {
-  "sourceLanguage" : "en",
+  "sourceLanguage" : "nl",
   "strings" : {
     "%lld" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        }
+      }
     },
     "%lld." : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld."
+          }
+        }
+      }
     },
     "Add Receipt" : {
       "localizations" : {
@@ -18,10 +32,24 @@
       }
     },
     "Add Receipt Photo" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bon Foto Toevoegen"
+          }
+        }
+      }
     },
     "All Receipts (%lld)" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle Bonnen (%lld)"
+          }
+        }
+      }
     },
     "Amount" : {
       "comment" : "PDF header",
@@ -56,10 +84,24 @@
       }
     },
     "Analyzing receipt with AI..." : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bon analyseren met AI..."
+          }
+        }
+      }
     },
     "Average per receipt:" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gemiddelde per bon:"
+          }
+        }
+      }
     },
     "Camera" : {
       "comment" : "Camera tab",
@@ -121,7 +163,14 @@
       }
     },
     "Choose Photo" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Foto Kiezen"
+          }
+        }
+      }
     },
     "Close" : {
       "comment" : "Close button",
@@ -135,7 +184,14 @@
       }
     },
     "Crop" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bijsnijden"
+          }
+        }
+      }
     },
     "Crop Image" : {
       "localizations" : {
@@ -191,7 +247,14 @@
       }
     },
     "Edit" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bewerken"
+          }
+        }
+      }
     },
     "Edit Image" : {
       "localizations" : {
@@ -214,10 +277,24 @@
       }
     },
     "Enter restaurant name" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voer restaurantnaam in"
+          }
+        }
+      }
     },
     "Enter total amount" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voer totaalbedrag in"
+          }
+        }
+      }
     },
     "Expense Report" : {
       "comment" : "PDF title",
@@ -231,7 +308,15 @@
       }
     },
     "Export Error" : {
-      "comment" : "Alert title"
+      "comment" : "Alert title",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Export Fout"
+          }
+        }
+      }
     },
     "Export Options" : {
       "comment" : "Export action sheet title",
@@ -291,7 +376,15 @@
       }
     },
     "Failed to prepare document for sharing" : {
-      "comment" : "Export error"
+      "comment" : "Export error",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Document voorbereiden voor delen mislukt"
+          }
+        }
+      }
     },
     "Failed to prepare images for sharing" : {
       "comment" : "Export error",
@@ -339,7 +432,14 @@
       }
     },
     "Month" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maand"
+          }
+        }
+      }
     },
     "Monthly" : {
       "comment" : "Report period",
@@ -353,16 +453,44 @@
       }
     },
     "Monthly Breakdown" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maandelijkse Uitsplitsing"
+          }
+        }
+      }
     },
     "No data available" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geen gegevens beschikbaar"
+          }
+        }
+      }
     },
     "No image available" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geen afbeelding beschikbaar"
+          }
+        }
+      }
     },
     "No Image Available" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geen Afbeelding Beschikbaar"
+          }
+        }
+      }
     },
     "No images to export." : {
       "comment" : "Export error",
@@ -387,10 +515,24 @@
       }
     },
     "No receipts found for the selected period" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geen bonnen gevonden voor de geselecteerde periode"
+          }
+        }
+      }
     },
     "No Receipts Yet" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nog Geen Bonnen"
+          }
+        }
+      }
     },
     "Number of Receipts" : {
       "comment" : "PDF summary",
@@ -406,9 +548,9 @@
     "ok" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "en" : {
+        "nl" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "OK"
           }
         }
@@ -436,7 +578,14 @@
       }
     },
     "Period" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Periode"
+          }
+        }
+      }
     },
     "Photo library access denied. Please enable it in Settings." : {
       "comment" : "Photo access error",
@@ -461,10 +610,24 @@
       }
     },
     "Q%lld" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "K%lld"
+          }
+        }
+      }
     },
     "Quarter" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kwartaal"
+          }
+        }
+      }
     },
     "Quarterly" : {
       "comment" : "Report period",
@@ -478,7 +641,14 @@
       }
     },
     "Receipt Date" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bon Datum"
+          }
+        }
+      }
     },
     "Receipt Details" : {
       "comment" : "PDF section header",
@@ -556,10 +726,24 @@
       }
     },
     "Restaurant Name" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restaurantnaam"
+          }
+        }
+      }
     },
     "Retake Photo" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Foto Opnieuw Maken"
+          }
+        }
+      }
     },
     "Save" : {
       "localizations" : {
@@ -572,7 +756,14 @@
       }
     },
     "Save Changes" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wijzigingen Opslaan"
+          }
+        }
+      }
     },
     "Save Images to Photos" : {
       "comment" : "Export option",
@@ -586,7 +777,14 @@
       }
     },
     "Search receipts..." : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bonnen zoeken..."
+          }
+        }
+      }
     },
     "Select a photo of your receipt" : {
       "extractionState" : "stale",
@@ -622,13 +820,34 @@
       }
     },
     "Take a photo or choose from your library" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maak een foto of kies uit je bibliotheek"
+          }
+        }
+      }
     },
     "Take Photo" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Foto Maken"
+          }
+        }
+      }
     },
     "Tap the camera button to add your first receipt" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tik op de camera knop om je eerste bon toe te voegen"
+          }
+        }
+      }
     },
     "This will reset all changes made to the image." : {
       "extractionState" : "stale",
@@ -642,10 +861,24 @@
       }
     },
     "This will reset the image to its original state. All changes will be lost." : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dit zal de afbeelding resetten naar de oorspronkelijke staat. Alle wijzigingen gaan verloren."
+          }
+        }
+      }
     },
     "Top Expenses by Restaurant" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Top Uitgaven per Restaurant"
+          }
+        }
+      }
     },
     "Total Amount" : {
       "localizations" : {
@@ -669,7 +902,15 @@
       }
     },
     "Unable to share document" : {
-      "comment" : "Export error"
+      "comment" : "Export error",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kan document niet delen"
+          }
+        }
+      }
     },
     "Unknown" : {
       "comment" : "Unknown restaurant",

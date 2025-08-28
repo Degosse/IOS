@@ -401,9 +401,9 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs camera access to capture receipt photos for expense tracking.";
-				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "This app needs access to save and share PDF reports and receipt archives.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app needs photo library access to select receipt images for expense tracking.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Deze app heeft toegang tot de camera nodig om foto's van bonnen te maken voor uitgavenregistratie.";
+				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "Deze app heeft toegang nodig om PDF-rapporten en bonarchieven op te slaan en te delen.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Deze app heeft toegang tot de fotobibliotheek nodig om bonafbeeldingen te selecteren voor uitgavenregistratie.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UIFileSharingEnabled = YES;
@@ -434,9 +434,9 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs camera access to capture receipt photos for expense tracking.";
-				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "This app needs access to save and share PDF reports and receipt archives.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app needs photo library access to select receipt images for expense tracking.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Deze app heeft toegang tot de camera nodig om foto's van bonnen te maken voor uitgavenregistratie.";
+				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "Deze app heeft toegang nodig om PDF-rapporten en bonarchieven op te slaan en te delen.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Deze app heeft toegang tot de fotobibliotheek nodig om bonafbeeldingen te selecteren voor uitgavenregistratie.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UIFileSharingEnabled = YES;
