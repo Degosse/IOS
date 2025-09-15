@@ -9,39 +9,147 @@ import Foundation
 import UIKit
 
 class GeminiService: ObservableObject {
-    private let apiKey = "AIzaSyA0KAKmK7ffkuhs35f9XF1ZNqkn-Zp4hVk"
+    private let apiKey = "AIzaSyDnty6qTaxvDke-7bxl40SdRNp2PtHCdyw"
     private let baseURL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
+    
+    // Simple connectivity test
+    func testInternetConnectivity() async -> Bool {
+        guard let url = URL(string: "https://www.google.com") else { return false }
+        
+        do {
+            let (_, response) = try await URLSession.shared.data(from: url)
+            if let httpResponse = response as? HTTPURLResponse {
+                print("DEBUG: Internet connectivity test - Status: \(httpResponse.statusCode)")
+                return httpResponse.statusCode == 200
+            }
+        } catch {
+            print("DEBUG: Internet connectivity test failed: \(error)")
+        }
+        return false
+    }
     
     // Test method to verify API connection
     func testConnection() async throws -> Bool {
+        print("DEBUG: Testing Gemini API connection...")
+        print("DEBUG: API Key present: \(!apiKey.isEmpty)")
+        print("DEBUG: Base URL: \(baseURL)")
+        
         guard let url = URL(string: "\(baseURL)?key=\(apiKey)") else {
+            print("DEBUG: Failed to create URL")
             throw GeminiError.invalidURL
         }
         
         let testRequest = GeminiRequest(contents: [
             RequestContent(parts: [
-                RequestPart(text: "Test connection", inlineData: nil)
+                RequestPart(text: "Hello, can you respond with 'test successful'?", inlineData: nil)
             ])
         ])
         
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.timeoutInterval = 10.0
+        urlRequest.timeoutInterval = 15.0
         
         do {
             urlRequest.httpBody = try JSONEncoder().encode(testRequest)
-            let (_, response) = try await URLSession.shared.data(for: urlRequest)
+            print("DEBUG: Test request created successfully")
+            
+            let (data, response) = try await URLSession.shared.data(for: urlRequest)
             
             if let httpResponse = response as? HTTPURLResponse {
                 print("DEBUG: Test connection - HTTP Status: \(httpResponse.statusCode)")
-                return httpResponse.statusCode == 200
+                
+                if httpResponse.statusCode != 200 {
+                    if let responseString = String(data: data, encoding: .utf8) {
+                        print("DEBUG: Test error response: \(responseString)")
+                    }
+                    return false
+                }
+                
+                // Try to parse the response
+                if let responseString = String(data: data, encoding: .utf8) {
+                    print("DEBUG: Test success response: \(responseString)")
+                }
+                
+                return true
             }
             return false
         } catch {
             print("DEBUG: Test connection failed: \(error)")
+            if let urlError = error as? URLError {
+                print("DEBUG: URLError code: \(urlError.code.rawValue)")
+                print("DEBUG: URLError description: \(urlError.localizedDescription)")
+                
+                switch urlError.code {
+                case .notConnectedToInternet:
+                    print("DEBUG: No internet connection")
+                case .timedOut:
+                    print("DEBUG: Request timed out")
+                case .cannotFindHost:
+                    print("DEBUG: Cannot find host")
+                case .networkConnectionLost:
+                    print("DEBUG: Network connection lost")
+                default:
+                    print("DEBUG: Other network error: \(urlError.code)")
+                }
+            }
             throw error
         }
+    }
+    
+    // Comprehensive diagnostic method
+    func runDiagnostics() async {
+        print("=== GEMINI API DIAGNOSTICS ===")
+        
+        // Test 1: Internet connectivity
+        print("1. Testing internet connectivity...")
+        let hasInternet = await testInternetConnectivity()
+        print("   Internet connectivity: \(hasInternet ? "✓" : "✗")")
+        
+        if !hasInternet {
+            print("   ⚠️ No internet connection - this is likely the issue")
+            return
+        }
+        
+        // Test 2: API Key format validation
+        print("2. Validating API key format...")
+        let isValidFormat = apiKey.hasPrefix("AIza") && apiKey.count >= 35
+        print("   API key format: \(isValidFormat ? "✓" : "✗")")
+        
+        if !isValidFormat {
+            print("   ⚠️ API key format appears invalid")
+        }
+        
+        // Test 3: URL construction
+        print("3. Testing URL construction...")
+        if let _ = URL(string: "\(baseURL)?key=\(apiKey)") {
+            print("   URL construction: ✓")
+        } else {
+            print("   URL construction: ✗")
+            return
+        }
+        
+        // Test 4: API connection test
+        print("4. Testing Gemini API connection...")
+        do {
+            let success = try await testConnection()
+            print("   Gemini API connection: \(success ? "✓" : "✗")")
+        } catch {
+            print("   Gemini API connection: ✗")
+            print("   Error: \(error.localizedDescription)")
+            
+            if error.localizedDescription.contains("API limiet overschreden") {
+                print("")
+                print("   💡 SOLUTION NEEDED:")
+                print("   Your project has quota_limit_value: 0")
+                print("   → Option 1: Get API key from aistudio.google.com (new project)")
+                print("   → Option 2: Enable billing in Google Cloud Console")
+                print("   → Option 3: Request quota increase for project 939128185854")
+                print("")
+            }
+        }
+        
+        print("=== END DIAGNOSTICS ===")
     }
     
     func analyzeReceipt(image: UIImage) async throws -> ReceiptData {
@@ -111,6 +219,15 @@ class GeminiService: ObservableObject {
             if httpResponse.statusCode != 200 {
                 if let responseData = String(data: data, encoding: .utf8) {
                     print("DEBUG: Error Response Body: \(responseData)")
+                    
+                    // Check for specific error types
+                    if httpResponse.statusCode == 429 {
+                        throw GeminiError.quotaExceeded
+                    } else if httpResponse.statusCode == 401 {
+                        throw GeminiError.invalidAPIKey
+                    } else if httpResponse.statusCode == 403 {
+                        throw GeminiError.accessDenied
+                    }
                 }
                 throw GeminiError.networkError
             }
@@ -154,6 +271,9 @@ enum GeminiError: Error, LocalizedError {
     case invalidURL
     case encodingFailed
     case networkError
+    case quotaExceeded
+    case invalidAPIKey
+    case accessDenied
     case noResponse
     case invalidResponse
     case parsingFailed
@@ -168,6 +288,12 @@ enum GeminiError: Error, LocalizedError {
             return "Verzoek coderen mislukt"
         case .networkError:
             return "Netwerkverzoek mislukt"
+        case .quotaExceeded:
+            return "API limiet overschreden. Controleer je Google Cloud quota instellingen of probeer later opnieuw."
+        case .invalidAPIKey:
+            return "Ongeldige API sleutel. Controleer je API configuratie."
+        case .accessDenied:
+            return "Toegang geweigerd. Controleer of de Gemini API is ingeschakeld voor je project."
         case .noResponse:
             return "Geen respons van de API"
         case .invalidResponse:

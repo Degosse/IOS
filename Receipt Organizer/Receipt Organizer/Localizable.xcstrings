@@ -1,6 +1,18 @@
 {
   "sourceLanguage" : "nl",
   "strings" : {
+    "%@\n\n💡 Oplossing: Ga naar Google Cloud Console en verhoog je Gemini API quotum, of wacht een minuut en probeer opnieuw." : {
+
+    },
+    "%@\n\n💡 Oplossing: Genereer een nieuwe API sleutel in Google AI Studio of Cloud Console." : {
+
+    },
+    "%@\n\n💡 Oplossing: Schakel de Generative Language API in via Google Cloud Console." : {
+
+    },
+    "%@\n\n💡 Tip: Controleer je internetverbinding en probeer het opnieuw." : {
+
+    },
     "%lld" : {
       "localizations" : {
         "nl" : {
@@ -62,7 +74,11 @@
         }
       }
     },
+    "Analyse Fout" : {
+
+    },
     "Analysis Error" : {
+      "extractionState" : "stale",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
@@ -93,6 +109,9 @@
         }
       }
     },
+    "API Test" : {
+
+    },
     "Average per receipt:" : {
       "localizations" : {
         "nl" : {
@@ -117,7 +136,6 @@
     },
     "camera_unavailable_message" : {
       "comment" : "Camera unavailable alert message",
-      "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -135,7 +153,6 @@
     },
     "camera_unavailable_title" : {
       "comment" : "Camera unavailable alert title",
-      "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -245,6 +262,12 @@
           }
         }
       }
+    },
+    "Deze tool helpt bij het diagnosticeren van netwerkproblemen met de Gemini API." : {
+
+    },
+    "Diagnostiek uitvoeren..." : {
+
     },
     "Edit" : {
       "localizations" : {
@@ -462,6 +485,9 @@
         }
       }
     },
+    "Netwerk Diagnostiek" : {
+
+    },
     "No data available" : {
       "localizations" : {
         "nl" : {
@@ -546,7 +572,6 @@
       }
     },
     "ok" : {
-      "extractionState" : "extracted_with_value",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
@@ -566,6 +591,9 @@
           }
         }
       }
+    },
+    "Onbekende fout opgetreden" : {
+
     },
     "Orientation" : {
       "localizations" : {
@@ -807,6 +835,9 @@
           }
         }
       }
+    },
+    "Start Diagnostiek" : {
+
     },
     "Take a photo of your receipt" : {
       "extractionState" : "stale",

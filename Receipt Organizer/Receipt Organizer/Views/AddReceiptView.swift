@@ -2,7 +2,12 @@
 //  AddReceiptView.swift
 //  Receipt Organizer
 //
+//  Created by Nicola            //
+//  AddReceiptView.swift
+//  Receipt Organizer
+//
 //  Created by Nicolaï Gosselin on 07/08/2025.
+//selin on 07/08/2025.
 //
 
 import SwiftUI
@@ -72,10 +77,24 @@ struct AddReceiptView: View {
                     )
                 }
             }
-            .alert("Analysis Error", isPresented: $showingError) {
+            .alert("Analyse Fout", isPresented: $showingError) {
                 Button("OK") { }
             } message: {
-                Text(analysisError ?? "Unknown error occurred")
+                if let error = analysisError {
+                    if error.contains("API limiet overschreden") {
+                        Text("\(error)\n\n💡 Oplossing: Ga naar Google Cloud Console en verhoog je Gemini API quotum, of wacht een minuut en probeer opnieuw.")
+                    } else if error.contains("Ongeldige API sleutel") {
+                        Text("\(error)\n\n💡 Oplossing: Genereer een nieuwe API sleutel in Google AI Studio of Cloud Console.")
+                    } else if error.contains("Toegang geweigerd") {
+                        Text("\(error)\n\n💡 Oplossing: Schakel de Generative Language API in via Google Cloud Console.")
+                    } else if error.contains("Netwerkverzoek mislukt") {
+                        Text("\(error)\n\n💡 Tip: Controleer je internetverbinding en probeer het opnieuw.")
+                    } else {
+                        Text(error)
+                    }
+                } else {
+                    Text("Onbekende fout opgetreden")
+                }
             }
             .confirmationDialog("Crop Receipt?", isPresented: $showingCropConfirmation) {
                 Button("Crop Image") {

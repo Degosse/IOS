@@ -15,6 +15,7 @@ struct ReceiptListView: View {
     @State private var selectedSortOption = SortOption.dateDescending
     @State private var searchText = ""
     @State private var showingReports = false
+    @State private var showingNetworkTest = false
     
     private var filteredAndSortedReceipts: [Receipt] {
         let filtered = receipts.filter { receipt in
@@ -53,6 +54,13 @@ struct ReceiptListView: View {
             .navigationTitle("Receipts")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button(action: { showingNetworkTest = true }) {
+                        Image(systemName: "network")
+                            .foregroundStyle(.orange)
+                    }
+                }
+                
                 ToolbarItem(placement: .topBarTrailing) {
                     HStack(spacing: 8) {
                         Button(action: { showingReports = true }) {
@@ -73,6 +81,9 @@ struct ReceiptListView: View {
             }
             .sheet(isPresented: $showingReports) {
                 ReportsView()
+            }
+            .sheet(isPresented: $showingNetworkTest) {
+                NetworkTestView()
             }
         }
     }
