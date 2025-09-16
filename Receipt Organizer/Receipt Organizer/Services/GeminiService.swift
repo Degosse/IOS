@@ -9,8 +9,12 @@ import Foundation
 import UIKit
 
 class GeminiService: ObservableObject {
-    private let apiKey = "AIzaSyDnty6qTaxvDke-7bxl40SdRNp2PtHCdyw"
-    private let baseURL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
+    private let apiKey = APIConfiguration.geminiAPIKey
+    private let baseURL = APIConfiguration.geminiBaseURL
+    
+    // Retry configuration for quota errors
+    private let maxRetries = APIConfiguration.maxRetries
+    private let retryDelay = APIConfiguration.retryDelay
     
     // Simple connectivity test
     func testInternetConnectivity() async -> Bool {
@@ -62,6 +66,15 @@ class GeminiService: ObservableObject {
                 if httpResponse.statusCode != 200 {
                     if let responseString = String(data: data, encoding: .utf8) {
                         print("DEBUG: Test error response: \(responseString)")
+                        
+                        // Check for specific quota errors
+                        if httpResponse.statusCode == 429 && responseString.contains("RATE_LIMIT_EXCEEDED") {
+                            throw GeminiError.quotaExceeded
+                        } else if httpResponse.statusCode == 403 {
+                            throw GeminiError.accessDenied
+                        } else if httpResponse.statusCode == 401 {
+                            throw GeminiError.invalidAPIKey
+                        }
                     }
                     return false
                 }
@@ -113,11 +126,17 @@ class GeminiService: ObservableObject {
         
         // Test 2: API Key format validation
         print("2. Validating API key format...")
-        let isValidFormat = apiKey.hasPrefix("AIza") && apiKey.count >= 35
+        let isValidFormat = APIConfiguration.isValidAPIKey(apiKey)
+        let isConfigured = APIConfiguration.isConfigured()
         print("   API key format: \(isValidFormat ? "✓" : "✗")")
+        print("   API configured: \(isConfigured ? "✓" : "✗")")
         
         if !isValidFormat {
             print("   ⚠️ API key format appears invalid")
+        }
+        
+        if !isConfigured {
+            print("   ⚠️ API key appears to be a placeholder - check APIKeys.plist")
         }
         
         // Test 3: URL construction
@@ -136,20 +155,43 @@ class GeminiService: ObservableObject {
             print("   Gemini API connection: \(success ? "✓" : "✗")")
         } catch {
             print("   Gemini API connection: ✗")
-            print("   Error: \(error.localizedDescription)")
             
-            if error.localizedDescription.contains("API limiet overschreden") {
-                print("")
-                print("   💡 SOLUTION NEEDED:")
-                print("   Your project has quota_limit_value: 0")
-                print("   → Option 1: Get API key from aistudio.google.com (new project)")
-                print("   → Option 2: Enable billing in Google Cloud Console")
-                print("   → Option 3: Request quota increase for project 939128185854")
-                print("")
+            if let geminiError = error as? GeminiError {
+                switch geminiError {
+                case .quotaExceeded:
+                    print("   Error: Quota exceeded (Rate limit: 0 requests/minute)")
+                    print("")
+                    print("   💡 SOLUTIONS:")
+                    print("   → Option 1: Create new API key at https://aistudio.google.com")
+                    print("   → Option 2: Enable billing in Google Cloud Console")
+                    print("   → Option 3: Request quota increase for project 939128185854")
+                    print("   → Option 4: Wait and try again later")
+                    print("")
+                case .accessDenied:
+                    print("   Error: Access denied - API may not be enabled")
+                case .invalidAPIKey:
+                    print("   Error: Invalid API key")
+                default:
+                    print("   Error: \(error.localizedDescription)")
+                }
+            } else {
+                print("   Error: \(error.localizedDescription)")
             }
         }
         
         print("=== END DIAGNOSTICS ===")
+    }
+    
+    // Method to provide quota solutions to the user
+    func getQuotaSolutions() -> [String] {
+        return [
+            "🆕 Create a new API key at https://aistudio.google.com",
+            "💳 Enable billing in Google Cloud Console for project 939128185854",
+            "📈 Request a quota increase at https://cloud.google.com/docs/quotas/help/request_increase",
+            "⏰ Wait and try again later (rate limits may reset)",
+            "🌍 Try switching to a different Google Cloud region",
+            "🔄 Use a different Google account for a fresh API key"
+        ]
     }
     
     func analyzeReceipt(image: UIImage) async throws -> ReceiptData {
@@ -193,7 +235,7 @@ class GeminiService: ObservableObject {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.timeoutInterval = 30.0 // 30 seconds timeout
+        urlRequest.timeoutInterval = APIConfiguration.requestTimeout
         
         do {
             urlRequest.httpBody = try JSONEncoder().encode(request)
