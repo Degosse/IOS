@@ -1,5 +1,5 @@
 //
-//  GeminiService.swift
+//  MistralService.swift
 //  Receipt Organizer
 //
 //  Created by Nicolaï Gosselin on 07/08/2025.
@@ -8,9 +8,9 @@
 import Foundation
 import UIKit
 
-class GeminiService: ObservableObject {
-    private let apiKey = APIConfiguration.geminiAPIKey
-    private let baseURL = APIConfiguration.geminiBaseURL
+class MistralService: ObservableObject {
+    private let apiKey = APIConfiguration.mistralAPIKey
+    private let baseURL = APIConfiguration.mistralBaseURL
     
     // Retry configuration for quota errors
     private let maxRetries = APIConfiguration.maxRetries
@@ -34,24 +34,29 @@ class GeminiService: ObservableObject {
     
     // Test method to verify API connection
     func testConnection() async throws -> Bool {
-        print("DEBUG: Testing Gemini API connection...")
+        print("DEBUG: Testing Mistral API connection...")
         print("DEBUG: API Key present: \(!apiKey.isEmpty)")
         print("DEBUG: Base URL: \(baseURL)")
         
-        guard let url = URL(string: "\(baseURL)?key=\(apiKey)") else {
+        guard let url = URL(string: baseURL) else {
             print("DEBUG: Failed to create URL")
-            throw GeminiError.invalidURL
+            throw MistralError.invalidURL
         }
         
-        let testRequest = GeminiRequest(contents: [
-            RequestContent(parts: [
-                RequestPart(text: "Hello, can you respond with 'test successful'?", inlineData: nil)
-            ])
-        ])
+        let testRequest = MistralAPIRequest(
+            model: APIConfiguration.selectedModel.rawValue,
+            messages: [
+                MistralRequestMessage(role: "user", content: [
+                    MistralMessageContent(type: "text", text: "Hello, can you respond with 'test successful'?")
+                ])
+            ],
+            maxTokens: 100
+        )
         
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
         urlRequest.timeoutInterval = 15.0
         
         do {
@@ -68,12 +73,12 @@ class GeminiService: ObservableObject {
                         print("DEBUG: Test error response: \(responseString)")
                         
                         // Check for specific quota errors
-                        if httpResponse.statusCode == 429 && responseString.contains("RATE_LIMIT_EXCEEDED") {
-                            throw GeminiError.quotaExceeded
+                        if httpResponse.statusCode == 429 {
+                            throw MistralError.quotaExceeded
                         } else if httpResponse.statusCode == 403 {
-                            throw GeminiError.accessDenied
+                            throw MistralError.accessDenied
                         } else if httpResponse.statusCode == 401 {
-                            throw GeminiError.invalidAPIKey
+                            throw MistralError.invalidAPIKey
                         }
                     }
                     return false
@@ -112,7 +117,7 @@ class GeminiService: ObservableObject {
     
     // Comprehensive diagnostic method
     func runDiagnostics() async {
-        print("=== GEMINI API DIAGNOSTICS ===")
+        print("=== MISTRAL AI DIAGNOSTICS ===")
         
         // Test 1: Internet connectivity
         print("1. Testing internet connectivity...")
@@ -126,8 +131,8 @@ class GeminiService: ObservableObject {
         
         // Test 2: API Key format validation
         print("2. Validating API key format...")
-        let isValidFormat = APIConfiguration.isValidAPIKey(apiKey)
-        let isConfigured = APIConfiguration.isConfigured()
+        let isValidFormat = APIConfiguration.isValidMistralKey(apiKey)
+        let isConfigured = APIConfiguration.isMistralConfigured()
         print("   API key format: \(isValidFormat ? "✓" : "✗")")
         print("   API configured: \(isConfigured ? "✓" : "✗")")
         
@@ -141,7 +146,7 @@ class GeminiService: ObservableObject {
         
         // Test 3: URL construction
         print("3. Testing URL construction...")
-        if let _ = URL(string: "\(baseURL)?key=\(apiKey)") {
+        if let _ = URL(string: baseURL) {
             print("   URL construction: ✓")
         } else {
             print("   URL construction: ✗")
@@ -149,26 +154,25 @@ class GeminiService: ObservableObject {
         }
         
         // Test 4: API connection test
-        print("4. Testing Gemini API connection...")
+        print("4. Testing Mistral API connection...")
         do {
             let success = try await testConnection()
-            print("   Gemini API connection: \(success ? "✓" : "✗")")
+            print("   Mistral API connection: \(success ? "✓" : "✗")")
         } catch {
-            print("   Gemini API connection: ✗")
+            print("   Mistral API connection: ✗")
             
-            if let geminiError = error as? GeminiError {
-                switch geminiError {
+            if let mistralError = error as? MistralError {
+                switch mistralError {
                 case .quotaExceeded:
-                    print("   Error: Quota exceeded (Rate limit: 0 requests/minute)")
+                    print("   Error: Rate limit exceeded")
                     print("")
                     print("   💡 SOLUTIONS:")
-                    print("   → Option 1: Create new API key at https://aistudio.google.com")
-                    print("   → Option 2: Enable billing in Google Cloud Console")
-                    print("   → Option 3: Request quota increase for project 939128185854")
-                    print("   → Option 4: Wait and try again later")
+                    print("   → Option 1: Check your Mistral AI account usage")
+                    print("   → Option 2: Upgrade your plan at https://console.mistral.ai")
+                    print("   → Option 3: Wait and try again later")
                     print("")
                 case .accessDenied:
-                    print("   Error: Access denied - API may not be enabled")
+                    print("   Error: Access denied - Check API permissions")
                 case .invalidAPIKey:
                     print("   Error: Invalid API key")
                 default:
@@ -185,20 +189,109 @@ class GeminiService: ObservableObject {
     // Method to provide quota solutions to the user
     func getQuotaSolutions() -> [String] {
         return [
-            "🆕 Create a new API key at https://aistudio.google.com",
-            "💳 Enable billing in Google Cloud Console for project 939128185854",
-            "📈 Request a quota increase at https://cloud.google.com/docs/quotas/help/request_increase",
+            "🔑 Check your API key at https://console.mistral.ai",
+            "💳 Upgrade your plan at https://console.mistral.ai/plans",
+            "� Monitor usage at https://console.mistral.ai/usage",
             "⏰ Wait and try again later (rate limits may reset)",
-            "🌍 Try switching to a different Google Cloud region",
-            "🔄 Use a different Google account for a fresh API key"
+            "🔄 Generate a new API key if needed"
         ]
+    }
+    
+    // Simple API test that returns results instead of just console output
+    func performSimpleConnectionTest() async -> (success: Bool, message: String, details: String) {
+        var resultMessage = ""
+        var detailMessage = ""
+        
+        // Test 1: Internet connectivity
+        let hasInternet = await testInternetConnectivity()
+        if !hasInternet {
+            return (false, "❌ Geen internetverbinding", "Controleer je netwerkverbinding en probeer opnieuw.")
+        }
+        
+        // Test 2: API Key validation
+        let isValidFormat = APIConfiguration.isValidMistralKey(apiKey)
+        if !isValidFormat {
+            let keyPreview = apiKey.count > 10 ? "\(apiKey.prefix(10))..." : apiKey
+            let keySource = apiKey == "YOUR_MISTRAL_API_KEY_HERE" ? "APIKeys.plist (placeholder)" : 
+                           ProcessInfo.processInfo.environment["MISTRAL_API_KEY"] != nil ? "Environment variable" : 
+                           "APIKeys.plist of hardcoded"
+            
+            return (false, "❌ Ongeldige API key format", 
+                   """
+                   API key: \(keyPreview)
+                   Bron: \(keySource)
+                   Lengte: \(apiKey.count) karakters
+                   
+                   Vereisten:
+                   • Minimaal 20 karakters lang
+                   • Mag niet 'YOUR_MISTRAL_API_KEY_HERE' zijn
+                   
+                   Controleer APIKeys.plist en vervang de placeholder.
+                   """)
+        }
+        
+        // Test 3: Connection test
+        do {
+            let success = try await testConnection()
+            if success {
+                return (true, "✅ Mistral API verbinding succesvol!", 
+                       """
+                       Model: \(APIConfiguration.selectedModel.rawValue)
+                       Endpoint: \(baseURL)
+                       Status: Verbonden en werkend
+                       
+                       Je API verbinding werkt correct!
+                       """)
+            } else {
+                return (false, "❌ API verbinding mislukt", "Verbinding gemaakt maar geen geldig antwoord ontvangen.")
+            }
+        } catch {
+            if let mistralError = error as? MistralError {
+                switch mistralError {
+                case .quotaExceeded:
+                    return (false, "❌ API limiet overschreden", 
+                           """
+                           Rate limit bereikt voor Mistral API.
+                           
+                           Oplossingen:
+                           • Plan upgraden op https://console.mistral.ai/plans
+                           • Usage controleren op https://console.mistral.ai/usage
+                           • Later opnieuw proberen
+                           """)
+                case .invalidAPIKey:
+                    return (false, "❌ Ongeldige API key", 
+                           """
+                           Je API key is niet geldig.
+                           
+                           Controleer:
+                           • API key spelling in APIKeys.plist
+                           • Key is geactiveerd in Mistral Console
+                           • Key heeft correcte permissies
+                           """)
+                case .accessDenied:
+                    return (false, "❌ Toegang geweigerd", 
+                           """
+                           Geen toegang tot de Mistral API.
+                           
+                           Mogelijke oorzaken:
+                           • Account beperking
+                           • Regio restricties
+                           • Plan limitaties
+                           """)
+                default:
+                    return (false, "❌ API fout", "Error: \(error.localizedDescription)")
+                }
+            } else {
+                return (false, "❌ Netwerkfout", "Error: \(error.localizedDescription)")
+            }
+        }
     }
     
     func analyzeReceipt(image: UIImage) async throws -> ReceiptData {
         // Check image processing first
         guard let imageData = image.jpegData(compressionQuality: 0.8) else {
             print("DEBUG: Failed to convert image to JPEG data")
-            throw GeminiError.imageProcessingFailed
+            throw MistralError.imageProcessingFailed
         }
         
         print("DEBUG: Image data size: \(imageData.count) bytes")
@@ -221,27 +314,32 @@ class GeminiService: ObservableObject {
         Return ONLY the JSON object, no additional text.
         """
         
-        let request = GeminiRequest(contents: [
-            RequestContent(parts: [
-                RequestPart(text: prompt, inlineData: nil),
-                RequestPart(text: nil, inlineData: InlineData(mimeType: "image/jpeg", data: base64Image))
-            ])
-        ])
+        let request = MistralAPIRequest(
+            model: APIConfiguration.selectedModel.rawValue,
+            messages: [
+                MistralRequestMessage(role: "user", content: [
+                    MistralMessageContent(type: "text", text: prompt),
+                    MistralMessageContent(type: "image_url", imageUrl: MistralImageURL(url: "data:image/jpeg;base64,\(base64Image)"))
+                ])
+            ],
+            maxTokens: 1000
+        )
         
-        guard let url = URL(string: "\(baseURL)?key=\(apiKey)") else {
-            throw GeminiError.invalidURL
+        guard let url = URL(string: baseURL) else {
+            throw MistralError.invalidURL
         }
         
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
         urlRequest.timeoutInterval = APIConfiguration.requestTimeout
         
         do {
             urlRequest.httpBody = try JSONEncoder().encode(request)
         } catch {
             print("DEBUG: Encoding failed: \(error)")
-            throw GeminiError.encodingFailed
+            throw MistralError.encodingFailed
         }
         
         print("DEBUG: Making request to: \(url)")
@@ -252,7 +350,7 @@ class GeminiService: ObservableObject {
         
             guard let httpResponse = response as? HTTPURLResponse else {
                 print("DEBUG: Invalid response type")
-                throw GeminiError.networkError
+                throw MistralError.networkError
             }
             
             print("DEBUG: HTTP Status Code: \(httpResponse.statusCode)")
@@ -264,20 +362,20 @@ class GeminiService: ObservableObject {
                     
                     // Check for specific error types
                     if httpResponse.statusCode == 429 {
-                        throw GeminiError.quotaExceeded
+                        throw MistralError.quotaExceeded
                     } else if httpResponse.statusCode == 401 {
-                        throw GeminiError.invalidAPIKey
+                        throw MistralError.invalidAPIKey
                     } else if httpResponse.statusCode == 403 {
-                        throw GeminiError.accessDenied
+                        throw MistralError.accessDenied
                     }
                 }
-                throw GeminiError.networkError
+                throw MistralError.networkError
             }
         
-            let geminiResponse = try JSONDecoder().decode(GeminiResponse.self, from: data)
+            let mistralResponse = try JSONDecoder().decode(MistralAPIResponse.self, from: data)
             
-            guard let text = geminiResponse.candidates.first?.content.parts.first?.text else {
-                throw GeminiError.noResponse
+            guard let text = mistralResponse.choices.first?.message.content else {
+                throw MistralError.noResponse
             }
             
             // Clean the response text and parse JSON
@@ -287,7 +385,7 @@ class GeminiService: ObservableObject {
                 .trimmingCharacters(in: .whitespacesAndNewlines)
             
             guard let jsonData = cleanedText.data(using: .utf8) else {
-                throw GeminiError.invalidResponse
+                throw MistralError.invalidResponse
             }
             
             do {
@@ -295,7 +393,7 @@ class GeminiService: ObservableObject {
             } catch {
                 print("DEBUG: JSON parsing failed: \(error)")
                 print("DEBUG: Cleaned text: \(cleanedText)")
-                throw GeminiError.parsingFailed
+                throw MistralError.parsingFailed
             }
         } catch {
             print("DEBUG: URLSession error: \(error)")
@@ -303,12 +401,12 @@ class GeminiService: ObservableObject {
                 print("DEBUG: URLError code: \(urlError.code)")
                 print("DEBUG: URLError description: \(urlError.localizedDescription)")
             }
-            throw GeminiError.networkError
+            throw MistralError.networkError
         }
     }
 }
 
-enum GeminiError: Error, LocalizedError {
+enum MistralError: Error, LocalizedError {
     case imageProcessingFailed
     case invalidURL
     case encodingFailed
@@ -331,11 +429,11 @@ enum GeminiError: Error, LocalizedError {
         case .networkError:
             return "Netwerkverzoek mislukt"
         case .quotaExceeded:
-            return "API limiet overschreden. Controleer je Google Cloud quota instellingen of probeer later opnieuw."
+            return "API limiet overschreden. Controleer je Mistral AI account of probeer later opnieuw."
         case .invalidAPIKey:
-            return "Ongeldige API sleutel. Controleer je API configuratie."
+            return "Ongeldige API sleutel. Controleer je Mistral API configuratie."
         case .accessDenied:
-            return "Toegang geweigerd. Controleer of de Gemini API is ingeschakeld voor je project."
+            return "Toegang geweigerd. Controleer of de Mistral API key correct is geconfigureerd."
         case .noResponse:
             return "Geen respons van de API"
         case .invalidResponse:

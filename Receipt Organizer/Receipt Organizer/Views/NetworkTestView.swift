@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NetworkTestView: View {
-    @StateObject private var geminiService = GeminiService()
+    @StateObject private var mistralService = MistralService()
     @State private var isRunningTest = false
     @State private var testResults = ""
     @State private var showResults = false
@@ -20,9 +20,9 @@ struct NetworkTestView: View {
                     .font(.title)
                     .padding()
                 
-                Text("Deze tool helpt bij het diagnosticeren van netwerkproblemen met de Gemini API.")
+                Text("Test of de Mistral AI API verbinding werkt en controleer voor quota problemen.")
+                    .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
-                    .padding()
                 
                 Button(action: runDiagnostics) {
                     HStack {
@@ -30,7 +30,7 @@ struct NetworkTestView: View {
                             ProgressView()
                                 .scaleEffect(0.8)
                         }
-                        Text(isRunningTest ? "Diagnostiek uitvoeren..." : "Start Diagnostiek")
+                        Text(isRunningTest ? "API verbinding testen..." : "Test Mistral API")
                     }
                     .frame(maxWidth: .infinity)
                     .padding()
@@ -65,12 +65,15 @@ struct NetworkTestView: View {
         showResults = false
         
         Task {
-            // Capture console output
-            await geminiService.runDiagnostics()
+            // Run simple connection test
+            let result = await mistralService.performSimpleConnectionTest()
             
-            // Simple connection test
             await MainActor.run {
-                testResults = "Diagnostiek voltooid. Controleer de Xcode console voor gedetailleerde resultaten."
+                testResults = """
+                \(result.message)
+                
+                \(result.details)
+                """
                 showResults = true
                 isRunningTest = false
             }

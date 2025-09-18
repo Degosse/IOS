@@ -1,7 +1,7 @@
 {
   "sourceLanguage" : "nl",
   "strings" : {
-    "%@\n\n💡 Oplossing: Ga naar Google Cloud Console en verhoog je Gemini API quotum, of wacht een minuut en probeer opnieuw." : {
+    "%@\n\n💡 Oplossing: Controleer je Mistral AI account op https://console.mistral.ai, of wacht een minuut en probeer opnieuw." : {
 
     },
     "%@\n\n💡 Oplossing: Genereer een nieuwe API sleutel in Google AI Studio of Cloud Console." : {
@@ -110,6 +110,9 @@
       }
     },
     "API Test" : {
+
+    },
+    "API verbinding testen..." : {
 
     },
     "Average per receipt:" : {
@@ -262,12 +265,6 @@
           }
         }
       }
-    },
-    "Deze tool helpt bij het diagnosticeren van netwerkproblemen met de Gemini API." : {
-
-    },
-    "Diagnostiek uitvoeren..." : {
-
     },
     "Edit" : {
       "localizations" : {
@@ -836,9 +833,6 @@
         }
       }
     },
-    "Start Diagnostiek" : {
-
-    },
     "Take a photo of your receipt" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -879,6 +873,12 @@
           }
         }
       }
+    },
+    "Test Mistral API" : {
+
+    },
+    "Test of de Mistral AI API verbinding werkt en controleer voor quota problemen." : {
+
     },
     "This will reset all changes made to the image." : {
       "extractionState" : "stale",

@@ -17,7 +17,7 @@ import PhotosUI
 struct AddReceiptView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
-    @StateObject private var geminiService = GeminiService()
+        @StateObject private var mistralService = MistralService()
     
     @State private var showingCamera = false
     @State private var showingCropper = false
@@ -82,7 +82,7 @@ struct AddReceiptView: View {
             } message: {
                 if let error = analysisError {
                     if error.contains("API limiet overschreden") {
-                        Text("\(error)\n\n💡 Oplossing: Ga naar Google Cloud Console en verhoog je Gemini API quotum, of wacht een minuut en probeer opnieuw.")
+                        Text("\(error)\n\n💡 Oplossing: Controleer je Mistral AI account op https://console.mistral.ai, of wacht een minuut en probeer opnieuw.")
                     } else if error.contains("Ongeldige API sleutel") {
                         Text("\(error)\n\n💡 Oplossing: Genereer een nieuwe API sleutel in Google AI Studio of Cloud Console.")
                     } else if error.contains("Toegang geweigerd") {
@@ -283,7 +283,7 @@ struct AddReceiptView: View {
         
         Task {
             do {
-                let receiptData = try await geminiService.analyzeReceipt(image: image)
+                let receiptData = try await mistralService.analyzeReceipt(image: image)
                 
                 await MainActor.run {
                     self.restaurantName = receiptData.restaurantName
