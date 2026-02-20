@@ -5,81 +5,92 @@ struct SignatureView: View {
     @Environment(\.dismiss) var dismiss
     
     @State private var lines: [Line] = []
+    @State private var canvasSize: CGSize = .zero
     
-    struct Line {
-        var points: [CGPoint]
-        var color: Color = .black
-    }
-
     var body: some View {
         NavigationView {
             VStack {
-                Text("Draw your signature")
-                    .font(.headline)
+                Text("Draw your signature below")
+                    .foregroundColor(.secondary)
                     .padding()
                 
-                Canvas { context, size in
-                    for line in lines {
-                        var path = Path()
-                        path.addLines(line.points)
-                        context.stroke(path, with: .color(line.color), lineWidth: 3)
+                GeometryReader { geometry in
+                    Canvas { context, size in
+                        for line in lines {
+                            var path = Path()
+                            path.addLines(line.points)
+                            context.stroke(path, with: .color(.black), lineWidth: line.lineWidth)
+                        }
                     }
-                }
-                .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
-                    .onChanged({ value in
-                        let newPoint = value.location
-                        if value.translation.width + value.translation.height == 0 {
-                            lines.append(Line(points: [newPoint]))
-                        } else {
-                            let index = lines.count - 1
-                            if index >= 0 {
+                    .background(Color.white) // Force white to see black ink in Dark Mode
+                    .cornerRadius(10)
+                    .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                        .onChanged({ value in
+                            let newPoint = value.location
+                            if value.translation.width == 0 && value.translation.height == 0 {
+                                lines.append(Line(points: [newPoint]))
+                            } else {
+                                let index = lines.count - 1
                                 lines[index].points.append(newPoint)
                             }
-                        }
-                    })
-                )
-                .background(Color.white)
-                .border(Color.gray, width: 2)
+                        })
+                    )
+                    .onAppear {
+                        self.canvasSize = geometry.size
+                    }
+                    .onChange(of: geometry.size) { newSize in
+                        self.canvasSize = newSize
+                    }
+                }
                 .padding()
                 
                 HStack {
-                    Button("Clear") {
+                    Button(role: .destructive) {
                         lines.removeAll()
+                    } label: {
+                        Text("Clear")
                     }
                     .buttonStyle(.bordered)
-                    .padding()
                     
                     Spacer()
                     
-                    Button("Save") {
-                        let image = renderImage()
-                        signatureImage = image
+                    Button {
+                        saveSignature()
                         dismiss()
+                    } label: {
+                        Text("Save Signature")
                     }
                     .buttonStyle(.borderedProminent)
-                    .padding()
                 }
+                .padding()
             }
             .navigationTitle("Signature")
-            .navigationBarItems(trailing: Button("Cancel") {
-                dismiss()
-            })
+            .navigationBarItems(trailing: Button("Cancel") { dismiss() })
         }
     }
     
-    @MainActor
-    private func renderImage() -> UIImage {
+    private func saveSignature() {
+        let targetSize = canvasSize == .zero ? CGSize(width: 400, height: 200) : canvasSize
+        
         let renderer = ImageRenderer(content: Canvas { context, size in
             for line in lines {
                 var path = Path()
                 path.addLines(line.points)
-                context.stroke(path, with: .color(line.color), lineWidth: 3)
+                // Draw a slightly thicker line for PDF legibility
+                context.stroke(path, with: .color(.black), lineWidth: line.lineWidth * 1.5)
             }
-        }.frame(width: 300, height: 150).background(Color.clear))
+        }.frame(width: targetSize.width, height: targetSize.height))
+        
+        renderer.scale = UIScreen.main.scale
         
         if let uiImage = renderer.uiImage {
-            return uiImage
+            self.signatureImage = uiImage
         }
-        return UIImage()
     }
+}
+
+struct Line {
+    var points = [CGPoint]()
+    var padding: CGFloat = 0
+    var lineWidth: CGFloat = 3.0
 }

@@ -9,18 +9,20 @@ struct HistoryView: View {
         NavigationView {
             List {
                 ForEach(receipts) { receipt in
-                    VStack(alignment: .leading) {
-                        Text(receipt.restaurantName)
-                            .font(.headline)
-                        
-                        HStack {
-                            Text(receipt.date, style: .date)
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
-                            Spacer()
-                            Text(String(format: "€%.2f", receipt.totalPrice))
-                                .font(.subheadline)
-                                .bold()
+                    NavigationLink(destination: ReceiptDetailView(receipt: receipt)) {
+                        VStack(alignment: .leading) {
+                            Text(receipt.restaurantName)
+                                .font(.headline)
+                            
+                            HStack {
+                                Text(receipt.date, style: .date)
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                                Spacer()
+                                Text(String(format: "€%.2f", receipt.totalPrice))
+                                    .font(.subheadline)
+                                    .bold()
+                            }
                         }
                     }
                 }

@@ -1,22 +1,79 @@
 import Foundation
 import UIKit
 import PDFKit
+import WebKit
+
+class ExportWebPDFGenerator: NSObject, WKNavigationDelegate {
+    private var webView: WKWebView?
+    private var continuation: CheckedContinuation<URL?, Never>?
+    private var targetURL: URL?
+
+    @MainActor
+    func generate(html: String, targetURL: URL) async -> URL? {
+        self.targetURL = targetURL
+        return await withCheckedContinuation { cont in
+            self.continuation = cont
+            let webView = WKWebView(frame: CGRect(x: 0, y: 0, width: 595.2, height: 841.8))
+            self.webView = webView
+            webView.navigationDelegate = self
+            webView.loadHTMLString(html, baseURL: nil)
+        }
+    }
+
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        let printFormatter = webView.viewPrintFormatter()
+        let render = UIPrintPageRenderer()
+        render.addPrintFormatter(printFormatter, startingAtPageAt: 0)
+        
+        // A4 paper size setup
+        let pageRange = CGRect(x: 0, y: 0, width: 595.2, height: 841.8) // A4 points
+        render.setValue(NSValue(cgRect: pageRange), forKey: "paperRect")
+        render.setValue(NSValue(cgRect: pageRange), forKey: "printableRect")
+        
+        let pdfData = NSMutableData()
+        UIGraphicsBeginPDFContextToData(pdfData, pageRange, nil)
+        
+        // Render all generated pages
+        let numberOfPages = render.numberOfPages
+        if numberOfPages > 0 {
+            for i in 0..<numberOfPages {
+                UIGraphicsBeginPDFPage()
+                render.drawPage(at: i, in: UIGraphicsGetPDFContextBounds())
+            }
+        } else {
+            // Failsafe in case nothing rendered
+            UIGraphicsBeginPDFPage()
+        }
+        UIGraphicsEndPDFContext()
+        
+        if let target = self.targetURL {
+            do {
+                try pdfData.write(to: target, options: .atomic)
+                self.continuation?.resume(returning: target)
+            } catch {
+                self.continuation?.resume(returning: nil)
+            }
+        } else {
+            self.continuation?.resume(returning: nil)
+        }
+        
+        self.continuation = nil
+    }
+}
 
 class ExportService {
     static let shared = ExportService()
     
-    // Generates a PDF from the given receipts and timeframe, returns the local URL
-    func generatePDF(for periodName: String, receipts: [ExpenseReceipt], signatureImage: UIImage? = nil) -> URL? {
-        // Group receipts by some logic if needed. 
-        // For the screenshot, they are split by "Brandstof" vs "Restaurant", etc.
-        // We will just list them under "Restaurantkosten" as per the user's focus.
-        
+    private var webGenerator: ExportWebPDFGenerator?
+    
+    @MainActor
+    func generatePDF(for periodName: String, receipts: [ExpenseReceipt], signatureImage: UIImage? = nil) async -> URL? {
         let total = receipts.reduce(0) { $0 + $1.totalPrice }
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let todayString = dateFormatter.string(from: Date())
         
-        // Convert signature image to base64 to embed in HTML if available
+        // WKWebView natively supports base64 embedded images perfectly.
         var signatureHTML = ""
         if let sigImage = signatureImage, let sigData = sigImage.pngData() {
             let base64 = sigData.base64EncodedString()
@@ -104,34 +161,12 @@ class ExportService {
         </html>
         """
         
-        let printFormatter = UIMarkupTextPrintFormatter(markupText: htmlBody)
-        let render = UIPrintPageRenderer()
-        render.addPrintFormatter(printFormatter, startingAtPageAt: 0)
-        
-        // A4 paper size setup
-        let pageRange = CGRect(x: 0, y: 0, width: 595.2, height: 841.8) // A4 points
-        render.setValue(NSValue(cgRect: pageRange), forKey: "paperRect")
-        render.setValue(NSValue(cgRect: pageRange), forKey: "printableRect")
-        
-        // Render PDF
-        let pdfData = NSMutableData()
-        UIGraphicsBeginPDFContextToData(pdfData, pageRange, nil)
-        
-        for i in 0..<render.numberOfPages {
-            UIGraphicsBeginPDFPage()
-            render.drawPage(at: i, in: UIGraphicsGetPDFContextBounds())
-        }
-        
-        UIGraphicsEndPDFContext()
-        
-        // Save to temp file
         let url = FileManager.default.temporaryDirectory.appendingPathComponent("Kostenoverzicht_\(periodName).pdf")
-        do {
-            try pdfData.write(to: url, options: .atomic)
-            return url
-        } catch {
-            print("Failed to save PDF: \(error)")
-            return nil
-        }
+        
+        let generator = ExportWebPDFGenerator()
+        self.webGenerator = generator
+        let result = await generator.generate(html: htmlBody, targetURL: url)
+        self.webGenerator = nil
+        return result
     }
 }

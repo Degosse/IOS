@@ -26,7 +26,7 @@ struct ScanView: View {
                         Text("Extracting with Mistral AI...")
                             .font(.headline)
                     }
-                } else if let result = ocrResult {
+                } else if ocrResult != nil {
                     Form {
                         Section(header: Text("Review Scanned Data")) {
                             TextField("Restaurant Name", text: $editedRestaurantName)

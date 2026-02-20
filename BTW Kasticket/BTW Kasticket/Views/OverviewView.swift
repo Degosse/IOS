@@ -6,10 +6,9 @@ struct OverviewView: View {
     @Query(sort: \ExpenseReceipt.date, order: .reverse) private var receipts: [ExpenseReceipt]
     
     @State private var selectedPeriod: Period = .quarterly
-    @State private var isShowingSignature = false
     @State private var signatureImage: UIImage?
-    @State private var isShowingShareSheet = false
-    @State private var pdfURL: URL?
+    @State private var activeSheet: SheetType?
+    @State private var isGeneratingPDF = false
 
     enum Period: String, CaseIterable, Identifiable {
         case weekly = "Weekly"
@@ -17,6 +16,17 @@ struct OverviewView: View {
         case quarterly = "Quarterly"
         case yearly = "Yearly"
         var id: Self { self }
+    }
+    
+    enum SheetType: Identifiable {
+        case signature
+        case share(URL)
+        var id: String {
+            switch self {
+            case .signature: return "signature"
+            case .share(let url): return url.absoluteString
+            }
+        }
     }
 
     var body: some View {
@@ -31,7 +41,7 @@ struct OverviewView: View {
                     .pickerStyle(.segmented)
                 }
                 
-                Section(header: Text("Summary")) {
+                Section(header: Text("Totaal Overzicht")) {
                     HStack {
                         Text("Total Expenses")
                             .font(.headline)
@@ -40,18 +50,24 @@ struct OverviewView: View {
                             .font(.title3)
                             .bold()
                     }
-                    
-                    HStack {
-                        Text("Receipts Count")
-                        Spacer()
-                        Text("\(filteredReceipts.count)")
-                            .foregroundColor(.secondary)
+                }
+                
+                // Show categorized grouped receipts
+                ForEach(groupedReceipts, id: \.0) { group in
+                    Section(header: Text(group.0)) {
+                        ForEach(group.1) { receipt in
+                            HStack {
+                                Text(receipt.restaurantName)
+                                Spacer()
+                                Text(String(format: "€%.2f", receipt.totalPrice))
+                            }
+                        }
                     }
                 }
                 
                 Section {
                     Button {
-                        isShowingSignature = true
+                        activeSheet = .signature
                     } label: {
                         Text(signatureImage == nil ? "Add Signature" : "Update Signature")
                     }
@@ -69,22 +85,34 @@ struct OverviewView: View {
                         exportPDF()
                     } label: {
                         HStack {
-                            Image(systemName: "square.and.arrow.up")
-                            Text("Export for Accountant")
+                            if isGeneratingPDF {
+                                ProgressView()
+                                    .padding(.trailing, 5)
+                            } else {
+                                Image(systemName: "square.and.arrow.up")
+                            }
+                            Text(isGeneratingPDF ? "Generating PDF..." : "Export for Accountant")
                         }
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding()
                     }
                     .buttonStyle(.borderedProminent)
+                    .disabled(isGeneratingPDF)
                 }
                 .listRowInsets(EdgeInsets())
             }
             .navigationTitle("Overview")
-            .sheet(isPresented: $isShowingSignature) {
-                SignatureView(signatureImage: $signatureImage)
+            .onAppear {
+                loadSignature()
             }
-            .sheet(isPresented: $isShowingShareSheet) {
-                if let url = pdfURL {
+            .onChange(of: signatureImage) { _ in
+                saveSignature()
+            }
+            .sheet(item: $activeSheet) { item in
+                switch item {
+                case .signature:
+                    SignatureView(signatureImage: $signatureImage)
+                case .share(let url):
                     ShareSheet(activityItems: [url])
                 }
             }
@@ -92,14 +120,39 @@ struct OverviewView: View {
     }
     
     private func exportPDF() {
-        if let url = ExportService.shared.generatePDF(for: selectedPeriod.rawValue, receipts: filteredReceipts, signatureImage: signatureImage) {
-            self.pdfURL = url
-            self.isShowingShareSheet = true
+        isGeneratingPDF = true
+        Task {
+            // Yield the main thread briefly so SwiftUI can render the ProgressView
+            try? await Task.sleep(nanoseconds: 100_000_000)
+            
+            // PDF generation bounds explicitly to the @MainActor cleanly using modern concurrency
+            let generatedURL = await ExportService.shared.generatePDF(for: selectedPeriod.rawValue, receipts: filteredReceipts, signatureImage: signatureImage)
+            
+            isGeneratingPDF = false
+            
+            // Show the UI Activity Sheet
+            if let url = generatedURL {
+                self.activeSheet = .share(url)
+            }
+        }
+    }
+    
+    // Group receipts by Month-Year for a nicer overview
+    var groupedReceipts: [(String, [ExpenseReceipt])] {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM yyyy"
+        
+        let groupedDictionary = Dictionary(grouping: filteredReceipts) { receipt in
+            formatter.string(from: receipt.date)
+        }
+        
+        // Sort the groups by the actual date of the first receipt in that group (newest first)
+        return groupedDictionary.sorted {
+            ($0.value.first?.date ?? Date()) > ($1.value.first?.date ?? Date())
         }
     }
     
     // Simplistic filtering for MVP purposes.
-    // In a real app, we'd calculate exactly the start/end of the current week/month/quarter.
     private var filteredReceipts: [ExpenseReceipt] {
         let calendar = Calendar.current
         let now = Date()
@@ -110,6 +163,8 @@ struct OverviewView: View {
             case .weekly:
                 return calendar.isDate(date, equalTo: now, toGranularity: .weekOfYear)
             case .monthly:
+                // If they select monthly, we actually might want to show everything grouped by month
+                // But keeping the current month filter if they just want this month's total
                 return calendar.isDate(date, equalTo: now, toGranularity: .month)
             case .quarterly:
                 return calendar.isDate(date, equalTo: now, toGranularity: .quarter)
@@ -121,6 +176,23 @@ struct OverviewView: View {
     
     private var totalExpenses: Double {
         filteredReceipts.reduce(0) { $0 + $1.totalPrice }
+    }
+    
+    // MARK: - Signature Persistence
+    private var signatureFileURL: URL {
+        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("saved_signature.png")
+    }
+    
+    private func loadSignature() {
+        if let data = try? Data(contentsOf: signatureFileURL), let image = UIImage(data: data) {
+            signatureImage = image
+        }
+    }
+    
+    private func saveSignature() {
+        if let image = signatureImage, let data = image.pngData() {
+            try? data.write(to: signatureFileURL)
+        }
     }
 }
 
