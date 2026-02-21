@@ -169,4 +169,123 @@ class ExportService {
         self.webGenerator = nil
         return result
     }
+
+    @MainActor
+    func generateSingleReceiptPDF(receipt: ExpenseReceipt) async -> URL? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let dateStr = dateFormatter.string(from: receipt.date)
+        
+        // Convert the raw receipt scan image to base64 if it exists
+        var receiptImageHTML = ""
+        if let data = receipt.imageData {
+            let base64 = data.base64EncodedString()
+            receiptImageHTML = """
+            <div style="margin-top: 40px; text-align: center;">
+                <h3>Scanned Image / Origineel Ticket</h3>
+                <img src='data:image/jpeg;base64,\(base64)' style="max-width: 100%; max-height: 500px; border: 1px solid #ccc; padding: 5px;"/>
+            </div>
+            """
+        }
+        
+        let htmlBody = """
+        <html>
+        <head>
+            <style>
+                body { font-family: Helvetica, Arial, sans-serif; font-size: 14px; margin: 40px; }
+                h1 { font-size: 22px; text-align: center; border-bottom: 2px solid black; padding-bottom: 10px; }
+                table { width: 100%; border-collapse: collapse; margin-top: 30px; }
+                th, td { border: 1px solid black; padding: 10px; text-align: left; }
+                th { background-color: #f2f2f2; width: 30%; }
+                .amount { font-size: 18px; font-weight: bold; }
+            </style>
+        </head>
+        <body>
+            <h1>Receipt Details / Kasticket Info</h1>
+            
+            <table>
+                <tr>
+                    <th>Leverancier / Restaurant</th>
+                    <td>\(receipt.restaurantName)</td>
+                </tr>
+                <tr>
+                    <th>Datum / Date</th>
+                    <td>\(dateStr)</td>
+                </tr>
+                <tr>
+                    <th>Bedrag / Total Price</th>
+                    <td class="amount">€\(String(format: "%.2f", receipt.totalPrice).replacingOccurrences(of: ".", with: ","))</td>
+                </tr>
+            </table>
+            
+            \(receiptImageHTML)
+        </body>
+        </html>
+        """
+        
+        let safeName = receipt.restaurantName.replacingOccurrences(of: " ", with: "_").components(separatedBy: .punctuationCharacters).joined()
+        let filename = "Receipt_\(safeName)_\(dateStr.replacingOccurrences(of: "/", with: "-")).pdf"
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent(filename)
+        
+        // Reuse the WebKit HTML-to-PDF generator since it correctly renders Base64
+        let generator = ExportWebPDFGenerator()
+        self.webGenerator = generator
+        let result = await generator.generate(html: htmlBody, targetURL: url)
+        self.webGenerator = nil
+        return result
+    }
+
+    func generateZIP(for periodName: String, receipts: [ExpenseReceipt]) async -> URL? {
+        let fileManager = FileManager.default
+        let bundleDir = fileManager.temporaryDirectory.appendingPathComponent("Kastickets_Archive_\(periodName)")
+        
+        do {
+            if fileManager.fileExists(atPath: bundleDir.path) {
+                try fileManager.removeItem(at: bundleDir)
+            }
+            try fileManager.createDirectory(at: bundleDir, withIntermediateDirectories: true, attributes: nil)
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            
+            // Write all images to the temporary folder
+            for (index, receipt) in receipts.enumerated() {
+                if let data = receipt.imageData {
+                    let dateStr = dateFormatter.string(from: receipt.date)
+                    let safeName = receipt.restaurantName.replacingOccurrences(of: " ", with: "_").components(separatedBy: .punctuationCharacters).joined()
+                    let filename = "\(dateStr)_\(safeName)_\(index).jpg"
+                    let fileURL = bundleDir.appendingPathComponent(filename)
+                    try data.write(to: fileURL)
+                }
+            }
+            
+            // NSFileCoordinator will securely zip the directory for us when using .forUploading
+            return await withCheckedContinuation { continuation in
+                let coordinator = NSFileCoordinator()
+                var error: NSError?
+                
+                coordinator.coordinate(readingItemAt: bundleDir, options: [.forUploading], error: &error) { zipURL in
+                    do {
+                        let finalZipURL = fileManager.temporaryDirectory.appendingPathComponent("Kastickets_Archive_\(periodName).zip")
+                        if fileManager.fileExists(atPath: finalZipURL.path) {
+                            try fileManager.removeItem(at: finalZipURL)
+                        }
+                        try fileManager.copyItem(at: zipURL, to: finalZipURL)
+                        continuation.resume(returning: finalZipURL)
+                    } catch {
+                        print("Failed to copy built zip: \(error)")
+                        continuation.resume(returning: nil)
+                    }
+                }
+                
+                if let coordinatorError = error {
+                    print("Coordinator zip error: \(coordinatorError)")
+                    continuation.resume(returning: nil)
+                }
+            }
+        } catch {
+            print("Failed to build directory for zip: \(error)")
+            return nil
+        }
+    }
 }

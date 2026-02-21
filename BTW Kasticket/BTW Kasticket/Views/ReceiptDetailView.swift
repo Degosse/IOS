@@ -52,5 +52,54 @@ struct ReceiptDetailView: View {
         }
         .navigationTitle("Receipt Details")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    exportSinglePDF()
+                } label: {
+                    if isGeneratingPDF {
+                        ProgressView()
+                    } else {
+                        Image(systemName: "square.and.arrow.up")
+                    }
+                }
+                .disabled(isGeneratingPDF)
+            }
+        }
+        .sheet(item: $activeSheet) { item in
+            switch item {
+            case .share(let url):
+                ShareSheet(activityItems: [url])
+            }
+        }
+    }
+    
+    // State needed for sharing
+    @State private var isGeneratingPDF = false
+    @State private var activeSheet: SheetType?
+    
+    enum SheetType: Identifiable {
+        case share(URL)
+        var id: String {
+            switch self {
+            case .share(let url): return url.absoluteString
+            }
+        }
+    }
+    
+    private func exportSinglePDF() {
+        isGeneratingPDF = true
+        Task {
+            // Tiny delay to let the ProgressView render
+            try? await Task.sleep(nanoseconds: 100_000_000)
+            
+            let generatedURL = await ExportService.shared.generateSingleReceiptPDF(receipt: receipt)
+            
+            isGeneratingPDF = false
+            
+            if let url = generatedURL {
+                self.activeSheet = .share(url)
+            }
+        }
     }
 }

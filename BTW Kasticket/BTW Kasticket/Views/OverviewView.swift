@@ -9,6 +9,7 @@ struct OverviewView: View {
     @State private var signatureImage: UIImage?
     @State private var activeSheet: SheetType?
     @State private var isGeneratingPDF = false
+    @State private var isGeneratingZIP = false
 
     enum Period: String, CaseIterable, Identifiable {
         case weekly = "Weekly"
@@ -89,15 +90,33 @@ struct OverviewView: View {
                                 ProgressView()
                                     .padding(.trailing, 5)
                             } else {
-                                Image(systemName: "square.and.arrow.up")
+                                Image(systemName: "doc.text")
                             }
-                            Text(isGeneratingPDF ? "Generating PDF..." : "Export for Accountant")
+                            Text(isGeneratingPDF ? "Generating PDF..." : "Export PDF for Accountant")
                         }
                         .frame(maxWidth: .infinity, alignment: .center)
-                        .padding()
+                        .padding(.vertical, 8)
                     }
                     .buttonStyle(.borderedProminent)
-                    .disabled(isGeneratingPDF)
+                    .disabled(isGeneratingPDF || isGeneratingZIP)
+                    
+                    Button {
+                        exportZIP()
+                    } label: {
+                        HStack {
+                            if isGeneratingZIP {
+                                ProgressView()
+                                    .padding(.trailing, 5)
+                            } else {
+                                Image(systemName: "shippingbox")
+                            }
+                            Text(isGeneratingZIP ? "Zipping Images..." : "Export Backup Archive (ZIP)")
+                        }
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(.vertical, 8)
+                    }
+                    .buttonStyle(.bordered)
+                    .disabled(isGeneratingPDF || isGeneratingZIP)
                 }
                 .listRowInsets(EdgeInsets())
             }
@@ -133,6 +152,22 @@ struct OverviewView: View {
             // Show the UI Activity Sheet
             if let url = generatedURL {
                 self.activeSheet = .share(url)
+            }
+        }
+    }
+    
+    private func exportZIP() {
+        isGeneratingZIP = true
+        Task {
+            try? await Task.sleep(nanoseconds: 100_000_000)
+            
+            let generatedURL = await ExportService.shared.generateZIP(for: selectedPeriod.rawValue, receipts: filteredReceipts)
+            
+            await MainActor.run {
+                isGeneratingZIP = false
+                if let url = generatedURL {
+                    self.activeSheet = .share(url)
+                }
             }
         }
     }
