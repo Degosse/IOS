@@ -10,6 +10,7 @@ struct OverviewView: View {
     @State private var activeSheet: SheetType?
     @State private var isGeneratingPDF = false
     @State private var isGeneratingZIP = false
+    @AppStorage("appLanguage") private var language = "nl"
 
     enum Period: String, CaseIterable, Identifiable {
         case weekly = "Weekly"
@@ -33,18 +34,26 @@ struct OverviewView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Filter")) {
-                    Picker("Time Period", selection: $selectedPeriod) {
+                Section(header: Text("Settings".localized(language))) {
+                    Picker("Language".localized(language), selection: $language) {
+                        ForEach(AppLanguage.allCases, id: \.rawValue) { lang in
+                            Text(lang.displayName).tag(lang.rawValue)
+                        }
+                    }
+                }
+                
+                Section(header: Text("Filter".localized(language))) {
+                    Picker("Time Period".localized(language), selection: $selectedPeriod) {
                         ForEach(Period.allCases) { period in
-                            Text(period.rawValue).tag(period)
+                            Text(period.rawValue.localized(language)).tag(period)
                         }
                     }
                     .pickerStyle(.segmented)
                 }
                 
-                Section(header: Text("Totaal Overzicht")) {
+                Section(header: Text("Totaal Overzicht".localized(language))) {
                     HStack {
-                        Text("Total Expenses")
+                        Text("Total Expenses".localized(language))
                             .font(.headline)
                         Spacer()
                         Text(String(format: "€%.2f", totalExpenses))
@@ -71,7 +80,7 @@ struct OverviewView: View {
                         Button {
                             activeSheet = .signature
                         } label: {
-                            Text(signatureImage == nil ? "Add Signature" : "Update Signature")
+                            Text(signatureImage == nil ? "Add Signature".localized(language) : "Update Signature".localized(language))
                         }
                         
                         Spacer()
@@ -98,7 +107,7 @@ struct OverviewView: View {
                             } else {
                                 Image(systemName: "doc.text")
                             }
-                            Text(isGeneratingPDF ? "Generating PDF..." : "Export to Accountant")
+                            Text(isGeneratingPDF ? "Generating PDF...".localized(language) : "Export to Accountant".localized(language))
                         }
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.vertical, 4)
@@ -117,7 +126,7 @@ struct OverviewView: View {
                             } else {
                                 Image(systemName: "shippingbox")
                             }
-                            Text(isGeneratingZIP ? "Zipping PDFs..." : "Export ZIP")
+                            Text(isGeneratingZIP ? "Zipping PDFs...".localized(language) : "Export ZIP".localized(language))
                         }
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.vertical, 4)
@@ -130,7 +139,7 @@ struct OverviewView: View {
             }
             .scrollContentBackground(.hidden)
             .background(Color.appBackground)
-            .navigationTitle("Overview")
+            .navigationTitle("Overview".localized(language))
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 loadSignature()
@@ -156,7 +165,7 @@ struct OverviewView: View {
             try? await Task.sleep(nanoseconds: 100_000_000)
             
             // PDF generation bounds explicitly to the @MainActor cleanly using modern concurrency
-            let generatedURL = await ExportService.shared.generatePDF(for: selectedPeriod.rawValue, receipts: filteredReceipts, signatureImage: signatureImage)
+            let generatedURL = await ExportService.shared.generatePDF(for: selectedPeriod.rawValue.localized(language), receipts: filteredReceipts, signatureImage: signatureImage)
             
             isGeneratingPDF = false
             
@@ -172,7 +181,7 @@ struct OverviewView: View {
         Task {
             try? await Task.sleep(nanoseconds: 100_000_000)
             
-            let generatedURL = await ExportService.shared.generateZIP(for: selectedPeriod.rawValue, receipts: filteredReceipts)
+            let generatedURL = await ExportService.shared.generateZIP(for: selectedPeriod.rawValue.localized(language), receipts: filteredReceipts)
             
             await MainActor.run {
                 isGeneratingZIP = false

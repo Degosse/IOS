@@ -7,6 +7,7 @@ extension Color {
 
 struct ContentView: View {
     @State private var selectedTab = 0
+    @AppStorage("appLanguage") private var language = "nl"
     
     init() {
         let darkBlue = UIColor(red: 0.05, green: 0.1, blue: 0.25, alpha: 1.0)
@@ -32,7 +33,7 @@ struct ContentView: View {
         TabView(selection: $selectedTab) {
             HistoryView()
                 .tabItem {
-                    Label("History", systemImage: "list.bullet.rectangle.portrait")
+                    Label("History".localized(language), systemImage: "list.bullet.rectangle.portrait")
                 }
                 .tag(0)
             
@@ -40,13 +41,13 @@ struct ContentView: View {
                 selectedTab = 0
             })
                 .tabItem {
-                    Label("Scan", systemImage: "camera")
+                    Label("Scan".localized(language), systemImage: "camera")
                 }
                 .tag(1)
             
             OverviewView()
                 .tabItem {
-                    Label("Overview", systemImage: "chart.bar.doc.horizontal")
+                    Label("Overview".localized(language), systemImage: "chart.bar.doc.horizontal")
                 }
                 .tag(2)
         }

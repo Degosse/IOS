@@ -4,6 +4,7 @@ import SwiftData
 struct HistoryView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \ExpenseReceipt.date, order: .reverse) private var receipts: [ExpenseReceipt]
+    @AppStorage("appLanguage") private var language = "nl"
 
     var body: some View {
         NavigationView {
@@ -36,7 +37,7 @@ struct HistoryView: View {
             }
             .scrollContentBackground(.hidden)
             .background(Color.appBackground)
-            .navigationTitle("Receipt History")
+            .navigationTitle("Receipt History".localized(language))
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
@@ -44,7 +45,7 @@ struct HistoryView: View {
             }
             .overlay {
                 if receipts.isEmpty {
-                    ContentUnavailableView("No Receipts", systemImage: "doc.text.magnifyingglass", description: Text("Scan a receipt to see it here."))
+                    ContentUnavailableView("No Receipts".localized(language), systemImage: "doc.text.magnifyingglass", description: Text("Scan a receipt to see it here.".localized(language)))
                 }
             }
         }

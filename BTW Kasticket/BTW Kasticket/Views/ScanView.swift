@@ -13,6 +13,7 @@ struct ScanView: View {
     @State private var editedRestaurantName = ""
     @State private var editedTotalPrice: Double = 0.0
     @State private var editedDate = Date()
+    @AppStorage("appLanguage") private var language = "nl"
     
     var switchToHistory: () -> Void
 
@@ -23,27 +24,27 @@ struct ScanView: View {
                     VStack(spacing: 20) {
                         ProgressView()
                             .scaleEffect(1.5)
-                        Text("Extracting with Mistral AI...")
+                        Text("Extracting with Mistral AI...".localized(language))
                             .font(.headline)
                     }
                 } else if ocrResult != nil {
                     Form {
-                        Section(header: Text("Review Scanned Data")) {
-                            TextField("Restaurant Name", text: $editedRestaurantName)
+                        Section(header: Text("Review Scanned Data".localized(language))) {
+                            TextField("Restaurant Name".localized(language), text: $editedRestaurantName)
                             
-                            DatePicker("Date", selection: $editedDate, displayedComponents: .date)
+                            DatePicker("Date".localized(language), selection: $editedDate, displayedComponents: .date)
                             
                             HStack {
-                                Text("Total (€)")
+                                Text("Total (€)".localized(language))
                                 Spacer()
-                                TextField("Total Price", value: $editedTotalPrice, format: .number)
+                                TextField("Total Price".localized(language), value: $editedTotalPrice, format: .number)
                                     .keyboardType(.decimalPad)
                                     .multilineTextAlignment(.trailing)
                             }
                         }
                         
                         if let image = scannedImage {
-                            Section(header: Text("Receipt Image")) {
+                            Section(header: Text("Receipt Image".localized(language))) {
                                 Image(uiImage: image)
                                     .resizable()
                                     .scaledToFit()
@@ -53,7 +54,7 @@ struct ScanView: View {
                         Button {
                             saveReceipt()
                         } label: {
-                            Text("Save to History")
+                            Text("Save to History".localized(language))
                                 .frame(maxWidth: .infinity)
                                 .bold()
                         }
@@ -69,10 +70,10 @@ struct ScanView: View {
                             .font(.system(size: 80))
                             .foregroundColor(.blue)
                         
-                        Text("Scan a new Receipt")
+                        Text("Scan a new Receipt".localized(language))
                             .font(.title2)
                         
-                        Button("Open Camera") {
+                        Button("Open Camera".localized(language)) {
                             isShowingScanner = true
                         }
                         .buttonStyle(.borderedProminent)
@@ -90,7 +91,7 @@ struct ScanView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.appBackground)
-            .navigationTitle("Scan Receipt")
+            .navigationTitle("Scan Receipt".localized(language))
             .sheet(isPresented: $isShowingScanner) {
                 // Pass completion handler to ScannerView
                 ScannerView { images in

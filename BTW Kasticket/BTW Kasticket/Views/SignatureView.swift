@@ -6,11 +6,12 @@ struct SignatureView: View {
     
     @State private var lines: [Line] = []
     @State private var canvasSize: CGSize = .zero
+    @AppStorage("appLanguage") private var language = "nl"
     
     var body: some View {
         NavigationView {
             VStack {
-                Text("Draw your signature below")
+                Text("Draw your signature below".localized(language))
                     .foregroundColor(.secondary)
                     .padding()
                 
@@ -48,7 +49,7 @@ struct SignatureView: View {
                     Button(role: .destructive) {
                         lines.removeAll()
                     } label: {
-                        Text("Clear")
+                        Text("Clear".localized(language))
                     }
                     .buttonStyle(.bordered)
                     
@@ -58,7 +59,7 @@ struct SignatureView: View {
                         saveSignature()
                         dismiss()
                     } label: {
-                        Text("Save Signature")
+                        Text("Save Signature".localized(language))
                     }
                     .buttonStyle(.borderedProminent)
                     .foregroundColor(.appBackground)
@@ -66,8 +67,8 @@ struct SignatureView: View {
                 .padding()
             }
             .background(Color.appBackground)
-            .navigationTitle("Signature")
-            .navigationBarItems(trailing: Button("Cancel") { dismiss() })
+            .navigationTitle("Signature".localized(language))
+            .navigationBarItems(trailing: Button("Cancel".localized(language)) { dismiss() })
         }
     }
     

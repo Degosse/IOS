@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ReceiptDetailView: View {
     var receipt: ExpenseReceipt
+    @AppStorage("appLanguage") private var language = "nl"
     
     var body: some View {
         ScrollView {
@@ -40,7 +41,7 @@ struct ReceiptDetailView: View {
                         Image(systemName: "photo")
                             .font(.largeTitle)
                             .foregroundColor(.gray)
-                        Text("No image saved for this receipt")
+                        Text("No image saved for this receipt".localized(language))
                             .foregroundColor(.secondary)
                     }
                     .frame(maxWidth: .infinity, minHeight: 200)
@@ -51,7 +52,7 @@ struct ReceiptDetailView: View {
             }
         }
         .background(Color.appBackground)
-        .navigationTitle("Receipt Details")
+        .navigationTitle("Receipt Details".localized(language))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
