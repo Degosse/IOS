@@ -61,9 +61,11 @@ struct SignatureView: View {
                         Text("Save Signature")
                     }
                     .buttonStyle(.borderedProminent)
+                    .foregroundColor(.appBackground)
                 }
                 .padding()
             }
+            .background(Color.appBackground)
             .navigationTitle("Signature")
             .navigationBarItems(trailing: Button("Cancel") { dismiss() })
         }

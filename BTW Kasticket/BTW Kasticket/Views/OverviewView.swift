@@ -78,6 +78,8 @@ struct OverviewView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(height: 80)
+                            .background(Color.white)
+                            .cornerRadius(8)
                     }
                 }
                 
@@ -98,6 +100,7 @@ struct OverviewView: View {
                         .padding(.vertical, 8)
                     }
                     .buttonStyle(.borderedProminent)
+                    .foregroundColor(.appBackground)
                     .disabled(isGeneratingPDF || isGeneratingZIP)
                     
                     Button {
@@ -110,16 +113,19 @@ struct OverviewView: View {
                             } else {
                                 Image(systemName: "shippingbox")
                             }
-                            Text(isGeneratingZIP ? "Zipping Images..." : "Export Backup Archive (ZIP)")
+                            Text(isGeneratingZIP ? "Zipping PDFs..." : "Export Backup Archive (ZIP)")
                         }
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.vertical, 8)
                     }
                     .buttonStyle(.bordered)
+                    .foregroundColor(.white)
                     .disabled(isGeneratingPDF || isGeneratingZIP)
                 }
                 .listRowInsets(EdgeInsets())
             }
+            .scrollContentBackground(.hidden)
+            .background(Color.appBackground)
             .navigationTitle("Overview")
             .onAppear {
                 loadSignature()
@@ -202,7 +208,11 @@ struct OverviewView: View {
                 // But keeping the current month filter if they just want this month's total
                 return calendar.isDate(date, equalTo: now, toGranularity: .month)
             case .quarterly:
-                return calendar.isDate(date, equalTo: now, toGranularity: .quarter)
+                // .quarter is not a valid granularity for isDate(_:equalTo:toGranularity:)
+                // We need to manually check if the dates fall in the same quarter and year
+                let receiptComponents = calendar.dateComponents([.year, .quarter], from: date)
+                let nowComponents = calendar.dateComponents([.year, .quarter], from: now)
+                return receiptComponents.year == nowComponents.year && receiptComponents.quarter == nowComponents.quarter
             case .yearly:
                 return calendar.isDate(date, equalTo: now, toGranularity: .year)
             }

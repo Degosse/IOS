@@ -50,6 +50,7 @@ struct ReceiptDetailView: View {
                 }
             }
         }
+        .background(Color.appBackground)
         .navigationTitle("Receipt Details")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {

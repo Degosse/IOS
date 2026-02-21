@@ -58,8 +58,11 @@ struct ScanView: View {
                                 .bold()
                         }
                         .buttonStyle(.borderedProminent)
+                        .foregroundColor(.appBackground)
                         .listRowInsets(EdgeInsets())
                     }
+                    .scrollContentBackground(.hidden)
+                    .background(Color.appBackground)
                 } else {
                     VStack(spacing: 30) {
                         Image(systemName: "camera.viewfinder")
@@ -73,6 +76,7 @@ struct ScanView: View {
                             isShowingScanner = true
                         }
                         .buttonStyle(.borderedProminent)
+                        .foregroundColor(.appBackground)
                         .controlSize(.large)
                         
                         if let errorMessage {
@@ -84,6 +88,8 @@ struct ScanView: View {
                     }
                 }
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.appBackground)
             .navigationTitle("Scan Receipt")
             .sheet(isPresented: $isShowingScanner) {
                 // Pass completion handler to ScannerView

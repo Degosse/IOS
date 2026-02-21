@@ -171,7 +171,7 @@ class ExportService {
     }
 
     @MainActor
-    func generateSingleReceiptPDF(receipt: ExpenseReceipt) async -> URL? {
+    func generateSingleReceiptPDF(receipt: ExpenseReceipt, generator: ExportWebPDFGenerator? = nil) async -> URL? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let dateStr = dateFormatter.string(from: receipt.date)
@@ -228,13 +228,18 @@ class ExportService {
         let url = FileManager.default.temporaryDirectory.appendingPathComponent(filename)
         
         // Reuse the WebKit HTML-to-PDF generator since it correctly renders Base64
-        let generator = ExportWebPDFGenerator()
-        self.webGenerator = generator
-        let result = await generator.generate(html: htmlBody, targetURL: url)
-        self.webGenerator = nil
+        let pdfGenerator = generator ?? ExportWebPDFGenerator()
+        if generator == nil {
+            self.webGenerator = pdfGenerator
+        }
+        let result = await pdfGenerator.generate(html: htmlBody, targetURL: url)
+        if generator == nil {
+            self.webGenerator = nil
+        }
         return result
     }
 
+    @MainActor
     func generateZIP(for periodName: String, receipts: [ExpenseReceipt]) async -> URL? {
         let fileManager = FileManager.default
         let bundleDir = fileManager.temporaryDirectory.appendingPathComponent("Kastickets_Archive_\(periodName)")
@@ -248,41 +253,54 @@ class ExportService {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
             
-            // Write all images to the temporary folder
+            // Create a single generator to reuse for all receipts in the ZIP
+            let generator = ExportWebPDFGenerator()
+            self.webGenerator = generator
+            
+            // Generate a PDF for each receipt and move it to the temporary folder
             for (index, receipt) in receipts.enumerated() {
-                if let data = receipt.imageData {
+                if let pdfURL = await generateSingleReceiptPDF(receipt: receipt, generator: generator) {
                     let dateStr = dateFormatter.string(from: receipt.date)
                     let safeName = receipt.restaurantName.replacingOccurrences(of: " ", with: "_").components(separatedBy: .punctuationCharacters).joined()
-                    let filename = "\(dateStr)_\(safeName)_\(index).jpg"
-                    let fileURL = bundleDir.appendingPathComponent(filename)
-                    try data.write(to: fileURL)
+                    let filename = "\(dateStr)_\(safeName)_\(index).pdf"
+                    let destinationURL = bundleDir.appendingPathComponent(filename)
+                    
+                    if fileManager.fileExists(atPath: destinationURL.path) {
+                        try fileManager.removeItem(at: destinationURL)
+                    }
+                    try fileManager.moveItem(at: pdfURL, to: destinationURL)
                 }
             }
             
+            self.webGenerator = nil
+            
             // NSFileCoordinator will securely zip the directory for us when using .forUploading
-            return await withCheckedContinuation { continuation in
-                let coordinator = NSFileCoordinator()
-                var error: NSError?
-                
-                coordinator.coordinate(readingItemAt: bundleDir, options: [.forUploading], error: &error) { zipURL in
-                    do {
-                        let finalZipURL = fileManager.temporaryDirectory.appendingPathComponent("Kastickets_Archive_\(periodName).zip")
-                        if fileManager.fileExists(atPath: finalZipURL.path) {
-                            try fileManager.removeItem(at: finalZipURL)
+            // We detach this to avoid blocking the MainActor during the synchronous zip operation
+            return await Task.detached {
+                return await withCheckedContinuation { continuation in
+                    let coordinator = NSFileCoordinator()
+                    var error: NSError?
+                    
+                    coordinator.coordinate(readingItemAt: bundleDir, options: [.forUploading], error: &error) { zipURL in
+                        do {
+                            let finalZipURL = fileManager.temporaryDirectory.appendingPathComponent("Kastickets_Archive_\(periodName).zip")
+                            if fileManager.fileExists(atPath: finalZipURL.path) {
+                                try fileManager.removeItem(at: finalZipURL)
+                            }
+                            try fileManager.copyItem(at: zipURL, to: finalZipURL)
+                            continuation.resume(returning: finalZipURL)
+                        } catch {
+                            print("Failed to copy built zip: \(error)")
+                            continuation.resume(returning: nil)
                         }
-                        try fileManager.copyItem(at: zipURL, to: finalZipURL)
-                        continuation.resume(returning: finalZipURL)
-                    } catch {
-                        print("Failed to copy built zip: \(error)")
+                    }
+                    
+                    if let coordinatorError = error {
+                        print("Coordinator zip error: \(coordinatorError)")
                         continuation.resume(returning: nil)
                     }
                 }
-                
-                if let coordinatorError = error {
-                    print("Coordinator zip error: \(coordinatorError)")
-                    continuation.resume(returning: nil)
-                }
-            }
+            }.value
         } catch {
             print("Failed to build directory for zip: \(error)")
             return nil

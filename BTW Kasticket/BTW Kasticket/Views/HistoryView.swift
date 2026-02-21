@@ -28,6 +28,8 @@ struct HistoryView: View {
                 }
                 .onDelete(perform: deleteReceipts)
             }
+            .scrollContentBackground(.hidden)
+            .background(Color.appBackground)
             .navigationTitle("Receipt History")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
