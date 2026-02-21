@@ -8,25 +8,31 @@ struct HistoryView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(receipts) { receipt in
-                    NavigationLink(destination: ReceiptDetailView(receipt: receipt)) {
-                        VStack(alignment: .leading) {
-                            Text(receipt.restaurantName)
-                                .font(.headline)
-                            
-                            HStack {
-                                Text(receipt.date, style: .date)
-                                    .font(.subheadline)
-                                    .foregroundColor(.secondary)
-                                Spacer()
-                                Text(String(format: "€%.2f", receipt.totalPrice))
-                                    .font(.subheadline)
-                                    .bold()
+                ForEach(groupedReceipts, id: \.0) { group in
+                    Section(header: Text(group.0).font(.headline).foregroundColor(.white)) {
+                        ForEach(group.1) { receipt in
+                            NavigationLink(destination: ReceiptDetailView(receipt: receipt)) {
+                                VStack(alignment: .leading) {
+                                    Text(receipt.restaurantName)
+                                        .font(.headline)
+                                    
+                                    HStack {
+                                        Text(receipt.date, style: .date)
+                                            .font(.subheadline)
+                                            .foregroundColor(.secondary)
+                                        Spacer()
+                                        Text(String(format: "€%.2f", receipt.totalPrice))
+                                            .font(.subheadline)
+                                            .bold()
+                                    }
+                                }
                             }
+                        }
+                        .onDelete { offsets in
+                            deleteReceipts(offsets: offsets, in: group.1)
                         }
                     }
                 }
-                .onDelete(perform: deleteReceipts)
             }
             .scrollContentBackground(.hidden)
             .background(Color.appBackground)
@@ -44,10 +50,28 @@ struct HistoryView: View {
         }
     }
 
-    private func deleteReceipts(offsets: IndexSet) {
+    // Group receipts by Quarter and Year
+    private var groupedReceipts: [(String, [ExpenseReceipt])] {
+        let calendar = Calendar.current
+        
+        let groupedDictionary = Dictionary(grouping: receipts) { receipt in
+            let components = calendar.dateComponents([.year, .quarter], from: receipt.date)
+            let year = components.year ?? calendar.component(.year, from: Date())
+            let quarter = components.quarter ?? 1
+            return "Q\(quarter) \(year)"
+        }
+        
+        // Sort the groups by the actual date of the first receipt in that group (newest first)
+        return groupedDictionary.sorted {
+            ($0.value.first?.date ?? Date()) > ($1.value.first?.date ?? Date())
+        }
+    }
+
+    private func deleteReceipts(offsets: IndexSet, in group: [ExpenseReceipt]) {
         withAnimation {
             for index in offsets {
-                modelContext.delete(receipts[index])
+                let receiptToDelete = group[index]
+                modelContext.delete(receiptToDelete)
             }
         }
     }

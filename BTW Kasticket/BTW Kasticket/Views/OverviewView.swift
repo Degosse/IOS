@@ -67,19 +67,23 @@ struct OverviewView: View {
                 }
                 
                 Section {
-                    Button {
-                        activeSheet = .signature
-                    } label: {
-                        Text(signatureImage == nil ? "Add Signature" : "Update Signature")
-                    }
-                    
-                    if let sig = signatureImage {
-                        Image(uiImage: sig)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 80)
-                            .background(Color.white)
-                            .cornerRadius(8)
+                    HStack {
+                        Button {
+                            activeSheet = .signature
+                        } label: {
+                            Text(signatureImage == nil ? "Add Signature" : "Update Signature")
+                        }
+                        
+                        Spacer()
+                        
+                        if let sig = signatureImage {
+                            Image(uiImage: sig)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 40)
+                                .background(Color.white)
+                                .cornerRadius(4)
+                        }
                     }
                 }
                 
@@ -94,10 +98,10 @@ struct OverviewView: View {
                             } else {
                                 Image(systemName: "doc.text")
                             }
-                            Text(isGeneratingPDF ? "Generating PDF..." : "Export PDF for Accountant")
+                            Text(isGeneratingPDF ? "Generating PDF..." : "Export to Accountant")
                         }
                         .frame(maxWidth: .infinity, alignment: .center)
-                        .padding(.vertical, 8)
+                        .padding(.vertical, 4)
                     }
                     .buttonStyle(.borderedProminent)
                     .foregroundColor(.appBackground)
@@ -113,10 +117,10 @@ struct OverviewView: View {
                             } else {
                                 Image(systemName: "shippingbox")
                             }
-                            Text(isGeneratingZIP ? "Zipping PDFs..." : "Export Backup Archive (ZIP)")
+                            Text(isGeneratingZIP ? "Zipping PDFs..." : "Export ZIP")
                         }
                         .frame(maxWidth: .infinity, alignment: .center)
-                        .padding(.vertical, 8)
+                        .padding(.vertical, 4)
                     }
                     .buttonStyle(.bordered)
                     .foregroundColor(.white)
@@ -127,6 +131,7 @@ struct OverviewView: View {
             .scrollContentBackground(.hidden)
             .background(Color.appBackground)
             .navigationTitle("Overview")
+            .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 loadSignature()
             }
