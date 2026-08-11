@@ -139,7 +139,12 @@ struct ScanView: View {
         )
         
         modelContext.insert(newReceipt)
-        
+
+        let allReceipts = (try? modelContext.fetch(FetchDescriptor<ExpenseReceipt>())) ?? []
+        Task {
+            await BackupFolderManager.shared.autoBackupIfNeeded(receipts: allReceipts)
+        }
+
         // Reset state
         ocrResult = nil
         scannedImage = nil

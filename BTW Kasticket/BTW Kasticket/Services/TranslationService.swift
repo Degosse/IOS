@@ -54,7 +54,27 @@ extension String {
             "Signature": "Handtekening",
             "Cancel": "Annuleren",
             "Language": "Taal",
-            "Settings": "Instellingen"
+            "Settings": "Instellingen",
+            "Backup & Restore": "Back-up & Herstel",
+            "Choose Backup Folder": "Kies Back-up-map",
+            "Change Backup Folder": "Wijzig Back-up-map",
+            "Back up now": "Nu Back-uppen",
+            "Backing up...": "Back-up maken...",
+            "Restore from Backup": "Herstel vanuit Back-up",
+            "Restoring...": "Herstellen...",
+            "Export Backup File": "Exporteer Back-upbestand",
+            "Last backup": "Laatste back-up",
+            "Never backed up": "Nog geen back-up",
+            "Backup folder not configured": "Back-up-map niet ingesteld",
+            "Backup folder needs attention — tap to reselect": "Back-up-map heeft aandacht nodig — tik om opnieuw te kiezen",
+            "Restore Successful": "Herstel Geslaagd",
+            "New receipts imported": "Nieuwe kastickets geïmporteerd",
+            "Receipts updated": "Kastickets bijgewerkt",
+            "Duplicates skipped": "Duplicaten overgeslagen",
+            "Invalid backup file": "Ongeldig back-upbestand",
+            "OK": "OK",
+            "Backup Failed": "Back-up Mislukt",
+            "Restore Failed": "Herstel Mislukt"
         ]
         
         let enTranslations: [String: String] = [

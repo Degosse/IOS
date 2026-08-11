@@ -40,12 +40,12 @@ struct ReceiptDetailView: View {
                     VStack {
                         Image(systemName: "photo")
                             .font(.largeTitle)
-                            .foregroundColor(.gray)
+                            .foregroundColor(.white.opacity(0.5))
                         Text("No image saved for this receipt".localized(language))
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.white.opacity(0.6))
                     }
                     .frame(maxWidth: .infinity, minHeight: 200)
-                    .background(Color(UIColor.secondarySystemBackground))
+                    .background(Color.white.opacity(0.08))
                     .clipShape(RoundedRectangle(cornerRadius: 12))
                     .padding()
                 }

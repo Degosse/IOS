@@ -41,7 +41,9 @@ struct OverviewView: View {
                         }
                     }
                 }
-                
+
+                BackupSettingsSection(receipts: receipts)
+
                 Section(header: Text("Filter".localized(language))) {
                     Picker("Time Period".localized(language), selection: $selectedPeriod) {
                         ForEach(Period.allCases) { period in
